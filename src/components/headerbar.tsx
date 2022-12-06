@@ -5,7 +5,7 @@ import React from 'react'
 
 const HeaderBar: React.FC<AnimatedBoxProps> = ({ children, ...rest }) => {
     return (
-        <AnimatedBox position={'absolute'} top={15} left={0} right={0} {...rest}>
+        <AnimatedBox position={'absolute'} top={12.5} left={0} right={0} {...rest}>
             <Bar
                 variant='headerBar'
                 flexDirection='row'

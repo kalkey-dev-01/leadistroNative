@@ -38,21 +38,20 @@ export default function MainScreen({ navigation }: Props) {
     }, [navigation])
     return (
         <Container justifyContent={'flex-start'} alignItems={'center'}>
-
+            {/* <HelperList /> */}
             <HeaderBar>
                 <TouchableOpacity m='xs' p={'xs'} rippleBorderless onPress={handleSidebarToggle}>
                     <FeatherIcon name='menu' size={22} />
                 </TouchableOpacity>
-                <Box alignItems={'center'} flex={1} ><Text fontSize={30}>Leadistro</Text></Box>
+                <Box alignItems={'center'} flex={1} >
+                    <TextInput px={'md'}  style={{ borderRadius: 25 }} width={'100%'} color={'ebony'} letterSpacing={2.5} placeholder='Enter Company Domain' alignItems={'center'} justifyContent={'center'} />
+                </Box>
                 <TouchableOpacity m='xs' p={'xs'} rippleBorderless>
-                    <FeatherIcon name='more-vertical' size={22} />
+                    <FeatherIcon name='search' size={22} />
                 </TouchableOpacity>
             </HeaderBar>
-            <Box mt={'100'} mb={'lg'} justifyContent={'space-between'} alignItems={'center'} backgroundColor={'$primary'} width={'90%'} flexDirection={'row'} py={'lg'} px={'lg'} style={{ borderRadius: 10 }}>
-                <Text fontSize={22} letterSpacing={1} fontWeight={'800'}>Enrich Company</Text>
-                <FeatherIcon name='menu' size={22} />
-            </Box>
-            <TextInput px={'md'} backgroundColor={'$foreground'} width={'80%'} />
+            
+
 
 
         </Container>

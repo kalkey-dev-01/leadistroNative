@@ -1,4 +1,4 @@
-export interface RootObject {
+export interface EmployeeContact {
     first_name: string;
     last_name: string;
     headline: string;
@@ -15,7 +15,7 @@ export interface RootObject {
     picture: string;
     city: string;
     linkedin_id: number;
-    skills: string[];
+    skills: string[] | string;
     past_company: string[];
     rewards: any[];
     industry: string;
@@ -28,6 +28,7 @@ export interface RootObject {
     company_linkedin_url: string;
     company_phone: string;
     company_type: string;
-    company_id: string;
+    company_id: string | number;
     email_format: string;
 }
+

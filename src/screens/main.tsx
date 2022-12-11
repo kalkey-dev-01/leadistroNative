@@ -1,4 +1,4 @@
-import { Box, Container, Text, TextInput, TouchableOpacity } from '@/atoms'
+import { Box, Container, Text,  TouchableOpacity } from '@/atoms'
 import EmployeeExampleList from '@/components/example-list'
 import HeaderBar from '@/components/headerbar'
 import FeatherIcon from '@/components/icon'
@@ -35,7 +35,9 @@ type Props = CompositeScreenProps<DrawerScreenProps<HomeDrawerParamList, "Main">
 //     )
 // }
 
-export default function MainScreen({ navigation }: Props) {
+// TODO - Make Use Of Axios And Create A logic for helpers
+
+export default function MainScreen({ navigation, }: Props) {
     const [concealEmployeeListItem, setConcealEmployeeListItem] = React.useState<(() => void) | null>(null)
     const refMoveContactSheet = React.useRef<MoveContactSheet>(null)
     const { barStyle, handleEmployeeListLayout, handleScroll, headerHeight } = StickyHeader()
@@ -62,16 +64,8 @@ export default function MainScreen({ navigation }: Props) {
     return (
         <Container justifyContent={'flex-start'} alignItems={'center'}>
             <EmployeeExampleList scrollInsetTop={headerHeight} onScroll={handleScroll} onItemPress={handleEmployeeListItemPress} onItemSwipeLeft={handleEmployeeListItemSwipeLeft} />
-            <HeaderBar style={barStyle} onLayout={handleEmployeeListLayout}>
-                <TouchableOpacity m='xs' p={'xs'} rippleBorderless onPress={handleSidebarToggle}>
-                    <FeatherIcon name='menu' size={22} />
-                </TouchableOpacity>
-                <Box alignItems={'center'} flex={1} >
-                    <TextInput px={'md'} style={{ borderRadius: 25 }} width={'100%'} letterSpacing={2.5} placeholder='Enter Company Domain' alignItems={'center'} justifyContent={'center'} />
-                </Box>
-                <TouchableOpacity m='xs' p={'xs'} rippleBorderless>
-                    <FeatherIcon name='search' size={22} />
-                </TouchableOpacity>
+            <HeaderBar onSidebarToggle={()=>navigation.openDrawer()} style={barStyle} onLayout={handleEmployeeListLayout}>
+       
             </HeaderBar>
             <MoveContactSheet ref={refMoveContactSheet} onClose={handleMoveEmployeeSheetClose} />
 

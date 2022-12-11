@@ -64,7 +64,7 @@ export default function MainScreen({ navigation, }: Props) {
     return (
         <Container justifyContent={'flex-start'} alignItems={'center'}>
             <EmployeeExampleList scrollInsetTop={headerHeight} onScroll={handleScroll} onItemPress={handleEmployeeListItemPress} onItemSwipeLeft={handleEmployeeListItemSwipeLeft} />
-            <HeaderBar onSidebarToggle={()=>navigation.openDrawer()} style={barStyle} onLayout={handleEmployeeListLayout}>
+            <HeaderBar onSidebarToggle={handleSidebarToggle} style={barStyle} onLayout={handleEmployeeListLayout}>
        
             </HeaderBar>
             <MoveContactSheet ref={refMoveContactSheet} onClose={handleMoveEmployeeSheetClose} />

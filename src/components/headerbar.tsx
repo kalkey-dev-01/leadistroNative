@@ -110,7 +110,20 @@ const HeaderBar: React.FC<Props> = props => {
               <FeatherIcon name="x" size={22} />
             </TouchableOpacity>
           )}
+          {searchQuery.length > 0 && (
+            <TouchableOpacity
+              m="xs"
+              p="xs"
+              rippleBorderless
+              onPress={handleClearButtonPress}
+           
+            >
+              <FeatherIcon name="search" size={22} />
+            </TouchableOpacity>
+          )}
+          
         </AnimatedBox>
+        
       </AnimatedBox>
     )
 }

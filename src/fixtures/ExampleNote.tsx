@@ -1,5 +1,4 @@
 import * as React from 'react'
-
 import { EmployeeContact } from '@/models/model'
 import { Box, Text, TouchableOpacity } from '@/atoms'
 import SwipeableView, { BackViewProps } from '@/components/swipable-view'
@@ -1117,6 +1116,47 @@ export interface ExampleItemProps extends EmployeeContact {
   onSwipeLeft?: (linkedin_id: string | number, done: () => void) => void
 }
 
+export interface EmployeeItemProps extends EmployeeContact {
+  onPress: (id: string | number) => void
+  onSwipeLeft?: (linkedin_id: string | number, done: () => void) => void
+}
+
+
+// export const EmployeeListItems: React.FC<EmployeeItemProps> = React.memo(props => {
+//   const { onPress, onSwipeLeft, uid } = props
+//   const renderBackView = React.useCallback(
+//     ({ progress }: BackViewProps) => (
+//       <ExampleListActionView progress={progress} />
+//     ),
+//     []
+//   )
+//   return (
+//     <>
+//       <SwipeableView
+//         bg="yellow"
+//         onSwipeLeft={handleSwipeLeft}
+//         backView={renderBackView}
+//       >
+//         <Box bg="$background" borderBottomWidth={1} borderBottomColor={'white'}>
+//           <TouchableOpacity
+//             bg="$background"
+//             px="lg"
+//             py="sm"
+//             onPress={handlePress}
+//           >
+//             <Text ellipsizeMode='tail' fontSize={22} fontWeight={'700'}>{`${props.first_name} ${props.last_name}`}</Text>
+//             <Text ellipsizeMode='tail' fontSize={18} fontWeight={'bold'} my='xs'>{props.description.length >= 10 ? props.description : 'No Description Provided To Company'}</Text>
+//             <Text ellipsizeMode='tail' fontSize={18} fontWeight={'bold'} mb='xs'>{props.company_name}</Text>
+//             <Text ellipsizeMode='tail' fontSize={18} fontWeight={'bold'} mb='xs'>{props.personal_email === '' ? 'No Personal Email Provided' : props.personal_email}</Text>
+//             <Text ellipsizeMode='tail' fontSize={18} fontWeight={'bold'} mb='xs'>{props.city}</Text>
+//           </TouchableOpacity>
+//         </Box>
+//       </SwipeableView>
+//     </>
+//   )
+// })
+
+
 export const ExampleListItem: React.FC<ExampleItemProps> = React.memo(props => {
   const { onPress, onSwipeLeft, linkedin_id } = props
   const handlePress = React.useCallback(() => {
@@ -1149,7 +1189,7 @@ export const ExampleListItem: React.FC<ExampleItemProps> = React.memo(props => {
           onPress={handlePress}
         >
           <Text ellipsizeMode='tail' fontSize={22} fontWeight={'700'}>{`${props.first_name} ${props.last_name}`}</Text>
-          <Text ellipsizeMode='tail' fontSize={18} fontWeight={'bold'} my='xs'>{props.description.length >= 10 ? props.description : 'No Description Provided To Company' }</Text>
+          <Text ellipsizeMode='tail' fontSize={18} fontWeight={'bold'} my='xs'>{props.description.length >= 10 ? props.description : 'No Description Provided To Company'}</Text>
           <Text ellipsizeMode='tail' fontSize={18} fontWeight={'bold'} mb='xs'>{props.company_name}</Text>
           <Text ellipsizeMode='tail' fontSize={18} fontWeight={'bold'} mb='xs'>{props.personal_email === '' ? 'No Personal Email Provided' : props.personal_email}</Text>
           <Text ellipsizeMode='tail' fontSize={18} fontWeight={'bold'} mb='xs'>{props.city}</Text>

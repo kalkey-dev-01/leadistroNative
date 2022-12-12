@@ -30,5 +30,6 @@ export interface EmployeeContact {
     company_type: string;
     company_id: string | number;
     email_format: string;
+    uid?: string;
 }
 

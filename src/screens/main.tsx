@@ -3,11 +3,14 @@ import EmployeeExampleList from '@/components/example-list'
 import HeaderBar from '@/components/headerbar'
 import FeatherIcon from '@/components/icon'
 import MoveContactSheet from '@/components/move-contact'
+import { ExampleData } from '@/fixtures/ExampleNote'
 import StickyHeader from '@/hooks/sticky-header'
 import { HomeDrawerParamList, RootStackParamList } from '@/navs'
+import { responseDataAtom } from '@/state/searchbar'
 import { DrawerScreenProps } from '@react-navigation/drawer'
 import { CompositeScreenProps } from '@react-navigation/native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { useAtom } from 'jotai'
 import React, { useCallback } from 'react'
 
 
@@ -61,9 +64,10 @@ export default function MainScreen({ navigation, }: Props) {
         concealEmployeeListItem && concealEmployeeListItem()
         setConcealEmployeeListItem(null)
     },[concealEmployeeListItem])
+    const [data] = useAtom(responseDataAtom)
     return (
         <Container justifyContent={'flex-start'} alignItems={'center'}>
-            <EmployeeExampleList scrollInsetTop={headerHeight} onScroll={handleScroll} onItemPress={handleEmployeeListItemPress} onItemSwipeLeft={handleEmployeeListItemSwipeLeft} />
+            <EmployeeExampleList scrollInsetTop={headerHeight} onScroll={handleScroll} onItemPress={handleEmployeeListItemPress} onItemSwipeLeft={handleEmployeeListItemSwipeLeft} data={ExampleData} />
             <HeaderBar onSidebarToggle={handleSidebarToggle} style={barStyle} onLayout={handleEmployeeListLayout}>
        
             </HeaderBar>

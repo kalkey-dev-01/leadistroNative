@@ -1,17 +1,25 @@
-import { Box, Container, Text,  TouchableOpacity } from '@/atoms'
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { Container, } from '@/atoms'
 import EmployeeExampleList from '@/components/example-list'
 import HeaderBar from '@/components/headerbar'
-import FeatherIcon from '@/components/icon'
+import Loading from '@/components/loading-spin-animation'
+// import FeatherIcon from '@/components/icon'
 import MoveContactSheet from '@/components/move-contact'
 import { ExampleData } from '@/fixtures/ExampleNote'
 import StickyHeader from '@/hooks/sticky-header'
+import { EmployeeContact } from '@/models/model'
 import { HomeDrawerParamList, RootStackParamList } from '@/navs'
-import { responseDataAtom } from '@/state/searchbar'
+import { loadingAtom, responseDataAtom } from '@/state/searchbar'
+import theme from '@/themes/solarised-dark'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+// import { responseDataAtom } from '@/state/searchbar'
 import { DrawerScreenProps } from '@react-navigation/drawer'
 import { CompositeScreenProps } from '@react-navigation/native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { useAtom } from 'jotai'
+import { useAtomValue } from 'jotai'
+// import { useAtom } from 'jotai'
 import React, { useCallback } from 'react'
+
 
 
 
@@ -60,17 +68,45 @@ export default function MainScreen({ navigation, }: Props) {
             setConcealEmployeeListItem(() => _conceal)
         }
     }, [])
-    const handleMoveEmployeeSheetClose = React.useCallback(()=>{
+    const handleMoveEmployeeSheetClose = React.useCallback(() => {
         concealEmployeeListItem && concealEmployeeListItem()
         setConcealEmployeeListItem(null)
-    },[concealEmployeeListItem])
-    const [data] = useAtom(responseDataAtom)
+    }, [concealEmployeeListItem])
+    const getData = async () => {
+        try {
+            const data = await AsyncStorage.getItem('Emp')
+            return data !== null ? JSON.parse(data) : null
+        } catch (error: any) {
+            console.log(error.message);
+        }
+    }
+
+    const data = useAtomValue(responseDataAtom)
+    // console.log(data);
+    const loading = useAtomValue(loadingAtom)
+    // const loading = true
+    if (loading) {
+        return (
+            <Container justifyContent={'center'} alignItems={'center'}>
+                <Loading col={theme.colors.white} /> 
+            </Container>
+        )
+    }
+
     return (
         <Container justifyContent={'flex-start'} alignItems={'center'}>
-            <EmployeeExampleList scrollInsetTop={headerHeight} onScroll={handleScroll} onItemPress={handleEmployeeListItemPress} onItemSwipeLeft={handleEmployeeListItemSwipeLeft} data={ExampleData} />
+            {
+                data !== undefined
+                    ?
+                    <EmployeeExampleList scrollInsetTop={headerHeight} onScroll={handleScroll} onItemPress={handleEmployeeListItemPress} onItemSwipeLeft={handleEmployeeListItemSwipeLeft} data={data} />
+                    :
+                    null
+            }
+
+
             <HeaderBar onSidebarToggle={handleSidebarToggle} style={barStyle} onLayout={handleEmployeeListLayout}>
-       
             </HeaderBar>
+
             <MoveContactSheet ref={refMoveContactSheet} onClose={handleMoveEmployeeSheetClose} />
 
 

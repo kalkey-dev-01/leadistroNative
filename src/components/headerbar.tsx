@@ -1,8 +1,8 @@
 import AnimatedBox, { AnimatedBoxProps } from '@/atoms/animated-box'
-import { TextInput as RNTextInput } from 'react-native'
+import { Alert, TextInput as RNTextInput } from 'react-native'
 import { TextInput, TouchableOpacity } from '@/atoms'
 
-import { searchQueryAtom, inputFocusAtom, responseDataAtom } from '@/state/searchbar'
+import { searchQueryAtom, inputFocusAtom, responseDataAtom, loadingAtom } from '@/state/searchbar'
 import { useAtom } from 'jotai'
 import React from 'react'
 import axios from 'axios'
@@ -13,9 +13,12 @@ import { useAnimatedStyle, withTiming } from 'react-native-reanimated'
 import HeaderBarLeftButton from './header-bar-left-icon'
 import FeatherIcon from './icon'
 import { apikey, employeesApi } from '@/api/uri-with-keys'
+// import { EmployeeContact } from '@/models/model'
+// import AsyncStorage from '@react-native-async-storage/async-storage'
+// import { EmployeeContact } from '@/models/model'
 
 type Props = AnimatedBoxProps & {
-  onSidebarToggle: () => any
+  onSidebarToggle: () => any,
 }
 
 const HeaderBar: React.FC<Props> = props => {
@@ -27,14 +30,26 @@ const HeaderBar: React.FC<Props> = props => {
   const [searchInputHasFocus, setSearchInputHasFocus] = useAtom(
     inputFocusAtom
   )
+  const [loading, setLoading] = useAtom(loadingAtom)
   const refSearchInput = React.useRef<RNTextInput>(null)
   const handleSearchPostValue = async () => {
     await axios.post(employeesApi, { "api_key": apikey, 'domain': searchQuery }).then((res) => {
-      setData(res.data)
+      console.log('Started Res.data');
+      setLoading(true)
+      setData(res.data['employees'])
+      console.log('Res  - > data - >  employees');
+      console.log(res.data['employees']);
     }).catch((error) => {
+      Alert.alert('Something Went Wrong Please try again.' + error.message)
       console.log(error.message);
     }).finally(() => {
+      setLoading(false)
+      console.log(loading);      
+      console.log('data =>');
       console.log(data);
+      console.log('done');
+
+
     })
   }
   const handleSearchInputFocus = () => {
@@ -72,6 +87,7 @@ const HeaderBar: React.FC<Props> = props => {
     }),
     [searchInputHasFocus]
   )
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
 
   return (
     <AnimatedBox position="absolute" top={0} left={0} right={0} {...rest}>
@@ -105,7 +121,9 @@ const HeaderBar: React.FC<Props> = props => {
           fontSize={18}
           autoCapitalize="none"
           color="$foreground"
-          placeholder="Search notes"
+          autoCorrect={false}
+          autoComplete={'off'}
+          placeholder="Search Employees from domain"
           placeholderColor="$fieldInputPlaceholderTextColor"
           value={searchQuery}
           onFocus={handleSearchInputFocus}
@@ -127,20 +145,16 @@ const HeaderBar: React.FC<Props> = props => {
             m="xs"
             p="xs"
             rippleBorderless
-
             onPress={handleSearchPostValue}
 
           >
             <FeatherIcon name="search" size={22} />
           </TouchableOpacity>
         )}
-
       </AnimatedBox>
-
     </AnimatedBox>
   )
 }
 
-export const EmpData = {}
 
 export default HeaderBar

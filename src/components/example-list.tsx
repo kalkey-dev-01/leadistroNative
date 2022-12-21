@@ -4,6 +4,7 @@ import { EmployeeContact } from "@/models/model";
 import { responseDataAtom } from "@/state/searchbar";
 import { Theme } from "@/themes";
 import { createBox } from "@shopify/restyle";
+import { AxiosResponse } from "axios";
 import { useAtom, useAtomValue } from "jotai";
 import React from "react";
 import { FlatList, FlatListProps, NativeScrollEvent, NativeSyntheticEvent } from 'react-native'
@@ -15,13 +16,13 @@ interface Props {
     onScroll: (event: NativeSyntheticEvent<NativeScrollEvent>) => void
     onItemPress: (id: string) => void
     onItemSwipeLeft: (id: string, cancel: () => void) => void
-    data?: EmployeeContact[]
+    data?: EmployeeContact[] |any
 }
 
-const EmployeeExampleList: React.FC<Props> = ({ onScroll, scrollInsetTop, onItemPress,onItemSwipeLeft,data }) => {
-    
+const EmployeeExampleList: React.FC<Props> = ({ onScroll, scrollInsetTop, onItemPress, onItemSwipeLeft, data }) => {
+
     const renderItem = React.useCallback(({ item }: { item: EmployeeContact }) => {
-        return <ExampleListItem {...item}  onPress={onItemPress} onSwipeLeft={onItemSwipeLeft} />
+        return <ExampleListItem {...item} onPress={onItemPress} onSwipeLeft={onItemSwipeLeft} />
     }, [])
     return (
         <StyledFlatlist

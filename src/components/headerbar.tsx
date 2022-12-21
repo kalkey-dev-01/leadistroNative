@@ -33,9 +33,9 @@ const HeaderBar: React.FC<Props> = props => {
   const [loading, setLoading] = useAtom(loadingAtom)
   const refSearchInput = React.useRef<RNTextInput>(null)
   const handleSearchPostValue = async () => {
+    setLoading(true)
     await axios.post(employeesApi, { "api_key": apikey, 'domain': searchQuery }).then((res) => {
-      console.log('Started Res.data');
-      setLoading(true)
+      console.log('Started Res.data');     
       setData(res.data['employees'])
       console.log('Res  - > data - >  employees');
       console.log(res.data['employees']);
@@ -48,8 +48,6 @@ const HeaderBar: React.FC<Props> = props => {
       console.log('data =>');
       console.log(data);
       console.log('done');
-
-
     })
   }
   const handleSearchInputFocus = () => {

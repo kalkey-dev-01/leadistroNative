@@ -13,6 +13,7 @@ import {
 import { Dimensions, View } from 'react-native'
 import Animated, { Extrapolate, interpolate, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
+import theme from '@/themes/light';
 
 type BackgroundGradientProps = {
     width: number;
@@ -22,17 +23,9 @@ type BackgroundGradientProps = {
 interface CardProps {
     children?: React.ReactNode
 }
-const colors = {
-    ebony: '#0A0708',
-    coolGray: '#444444',
-    gray: '#747474',
-    lightGray: '#B1B1B1',
-    white: '#FFF',
-    black: '#141416',
-    cyan: '#4FCFC'
-  }
+
 const { width: SCREEN_WIDTH } = Dimensions.get('window')
-const HEIGHT = 256;
+const HEIGHT = 512;
 const WIDTH = SCREEN_WIDTH * 0.9
 const CARD_HEIGHT = HEIGHT - 10;
 const CARD_WIDTH = WIDTH - 10;
@@ -49,9 +42,9 @@ export const BackgroundGradient: React.FC<BackgroundGradientProps> = React.memo(
     }, rValue);
     return (
         <Canvas style={{ width: width + canvasPadding, height: height + canvasPadding }} >
-            <RoundedRect x={canvasPadding / 2} y={canvasPadding / 2} width={width} height={height} color={colors.ebony} r={25} >
+            <RoundedRect x={canvasPadding / 2} y={canvasPadding / 2} width={width} height={height} color={theme.colors.$foreground} r={25} >
                 <SweepGradient c={vec((width + canvasPadding) / 2, (width + canvasPadding) / 2)}
-                    colors={[colors.ebony, colors.coolGray, colors.gray, colors.ebony]}
+                    colors={[theme.colors.$background, theme.colors.black, theme.colors.blue, theme.colors.white]}
                 />
                 <BlurMask blur={skValue} style={'solid'} />
             </RoundedRect>
@@ -84,7 +77,7 @@ export const Card: React.FC<CardProps> = ({ children }) => {
         rotate_y.value = withTiming(0);
     })
     return (
-        <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: colors.lightGray }}>
+        <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: theme.colors.$background }}>
             <BackgroundGradient height={HEIGHT} width={WIDTH} />
             <GestureDetector gesture={gesture}>
                 <Animated.View style={[{
@@ -93,7 +86,7 @@ export const Card: React.FC<CardProps> = ({ children }) => {
                     position: 'absolute',
                     borderRadius: 20,
                     zIndex: 300,
-                    backgroundColor: colors.white
+                    backgroundColor: theme.colors.$background
                 }, reanimatedStyle]} >
                     {children}
                 </Animated.View>

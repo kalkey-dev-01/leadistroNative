@@ -1,10 +1,12 @@
 import { Box, Container } from '@/atoms'
 import EmployeeExampleList from '@/components/example-list'
+import { Card } from '@/components/gradient-card'
 import HeaderBar from '@/components/headerbar'
 import Loading from '@/components/loading-spin-animation'
 import MoveContactSheet from '@/components/move-contact'
 // import { ExampleData } from '@/fixtures/ExampleNote'
 import StickyHeader from '@/hooks/sticky-header'
+import { EmployeeContact } from '@/models/model'
 import { HomeDrawerParamList, RootStackParamList } from '@/navs'
 import { loadingAtom, responseDataAtom } from '@/state/searchbar'
 import theme from '@/themes/solarised-dark'
@@ -13,7 +15,7 @@ import { CompositeScreenProps } from '@react-navigation/native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { useAtomValue } from 'jotai'
 
-import React, { useCallback } from 'react'
+import React from 'react'
 
 
 
@@ -41,21 +43,20 @@ type Props = CompositeScreenProps<DrawerScreenProps<HomeDrawerParamList, "Main">
 //     )
 // }
 
-
-
-export default function MainScreen({ navigation, }: Props) {
+export default function MainScreen({ navigation }: Props) {
     const [concealEmployeeListItem, setConcealEmployeeListItem] = React.useState<(() => void) | null>(null)
     const refMoveContactSheet = React.useRef<MoveContactSheet>(null)
     const { barStyle, handleEmployeeListLayout, handleScroll, headerHeight } = StickyHeader()
-    const handleSidebarToggle = useCallback(() => {
+    const handleSidebarToggle = React.useCallback(() => {
         navigation.toggleDrawer()
     }, [navigation])
-    const handleEmployeeListItemPress = React.useCallback((_linkedin_id: string) => {
+    const handleEmployeeListItemPress = React.useCallback((_linkedin_id: string | number, _data: EmployeeContact) => {
         // later
-        console.log('Pressed', _linkedin_id);
+        console.log('lets see', _data);
 
+        console.log('Wanna Save this figure it out', _linkedin_id);
     }, [])
-    const handleEmployeeListItemSwipeLeft = React.useCallback((_linkedin_id: string, _conceal: () => void) => {
+    const handleEmployeeListItemSwipeLeft = React.useCallback((_linkedin_id: string | number, _conceal: () => void) => {
         const { current: menu } = refMoveContactSheet
         if (menu) {
             console.log('show');
@@ -67,8 +68,6 @@ export default function MainScreen({ navigation, }: Props) {
         concealEmployeeListItem && concealEmployeeListItem()
         setConcealEmployeeListItem(null)
     }, [concealEmployeeListItem])
-
-
     const data = useAtomValue(responseDataAtom)
     // console.log(data);
     const loading = useAtomValue(loadingAtom)
@@ -76,19 +75,23 @@ export default function MainScreen({ navigation, }: Props) {
     if (loading) {
         return (
             <Container justifyContent={'center'} alignItems={'center'} >
+
                 <Box alignItems={'center'} justifyContent='center'>
-                    <Loading col={theme.colors.white} />
+                    <Card>
+                        <Loading col={theme.colors.white} />
+                    </Card>
                 </Box>
+
             </Container>
         )
     }
-
+    const EmployeeData = data.filter(emp => emp.personal_email != "")
     return (
         <Container justifyContent={'flex-start'} alignItems={'center'}>
             {
                 data !== undefined
                     ?
-                    <EmployeeExampleList scrollInsetTop={headerHeight} onScroll={handleScroll} onItemPress={handleEmployeeListItemPress} onItemSwipeLeft={handleEmployeeListItemSwipeLeft} data={data} />
+                    <EmployeeExampleList scrollInsetTop={headerHeight} onScroll={handleScroll} onItemPress={handleEmployeeListItemPress} onItemSwipeLeft={handleEmployeeListItemSwipeLeft} data={EmployeeData} />
                     :
                     null
             }

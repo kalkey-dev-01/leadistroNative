@@ -7,6 +7,7 @@ import { createBox } from "@shopify/restyle";
 // import { AxiosResponse } from "axios";
 // import { useAtom, useAtomValue } from "jotai";
 import React from "react";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { FlatList, FlatListProps, NativeScrollEvent, NativeSyntheticEvent } from 'react-native'
 import Animated, { AnimateProps } from "react-native-reanimated";
 const StyledFlatlist = createBox<Theme, AnimateProps<FlatListProps<EmployeeContact>>>(Animated.FlatList)
@@ -14,9 +15,9 @@ const StyledFlatlist = createBox<Theme, AnimateProps<FlatListProps<EmployeeConta
 interface Props {
     scrollInsetTop: number
     onScroll: (event: NativeSyntheticEvent<NativeScrollEvent>) => void
-    onItemPress: (id: string) => void
-    onItemSwipeLeft: (id: string, cancel: () => void) => void
-    data?: EmployeeContact[] | any
+    onItemPress: (id: string | number, data: EmployeeContact) => void
+    onItemSwipeLeft: (id: string | number, cancel: () => void) => void
+    data?: EmployeeContact[] 
 }
 
 const EmployeeExampleList: React.FC<Props> = ({ onScroll, scrollInsetTop, onItemPress, onItemSwipeLeft, data }) => {

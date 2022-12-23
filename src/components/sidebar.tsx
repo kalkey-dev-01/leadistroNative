@@ -8,8 +8,8 @@ const Sidebar: React.FC<DrawerContentComponentProps> = () => {
     return (
         <Box flex={1} bg={'$sidebarBackground'}>
             <SafeAreaView>
-                <Text variant='sidebar' m='lg' fontSize={30}>
-                    Leadistro
+                <Text variant='sidebar' m='lg' fontFamily={'Comfortaa-Bold'}  fontSize={30}>
+                    leadistro
                 </Text>
             </SafeAreaView>
         </Box>

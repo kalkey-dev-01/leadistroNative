@@ -1188,7 +1188,7 @@ export const ExampleListItem: React.FC<ExampleItemProps> = React.memo(props => {
           py="sm"
           onPress={handlePress}
         >
-          <Text ellipsizeMode='tail' fontSize={22} fontWeight={'700'}>{`${props.first_name} ${props.last_name}`}</Text>
+          <Text fontFamily={'Comfortaa'} ellipsizeMode='tail' fontSize={22} fontWeight={'700'}>{`${props.first_name} ${props.last_name}`}</Text>
           <Text ellipsizeMode='tail' fontSize={18} fontWeight={'bold'} my='xs'>{props.description.length >= 10 ? props.description : 'No Description Provided To Company'}</Text>
           <Text ellipsizeMode='tail' fontSize={20} fontWeight={'bold'} mb='xs'>{props.company_name}</Text>
           <Text ellipsizeMode='tail' fontSize={18} fontWeight={'bold'} mb='xs'>{props.personal_email === '' ? 'No Personal Email Provided' : props.personal_email}</Text>

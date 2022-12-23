@@ -53,7 +53,7 @@ export default function MainScreen({ navigation }: Props) {
     const handleEmployeeListItemPress = React.useCallback((_linkedin_id: string | number, _data: EmployeeContact) => {
         // later
         console.log('lets see', _data);
-
+        
         console.log('Wanna Save this figure it out', _linkedin_id);
     }, [])
     const handleEmployeeListItemSwipeLeft = React.useCallback((_linkedin_id: string | number, _conceal: () => void) => {
@@ -75,11 +75,9 @@ export default function MainScreen({ navigation }: Props) {
     if (loading) {
         return (
             <Container justifyContent={'center'} alignItems={'center'} >
-
-                <Box alignItems={'center'} justifyContent='center'>
-                    <Card>
+                     
+                <Box alignItems={'center'} justifyContent='center'>                    
                         <Loading col={theme.colors.white} />
-                    </Card>
                 </Box>
 
             </Container>

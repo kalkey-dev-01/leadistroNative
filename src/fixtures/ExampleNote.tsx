@@ -3,6 +3,7 @@ import { EmployeeContact } from '@/models/model'
 import { Box, Text, TouchableOpacity } from '@/atoms'
 import SwipeableView, { BackViewProps } from '@/components/swipable-view'
 import ExampleListActionView from '@/components/example-list-actions-view'
+import { BoldText, MediumText, RegularText, SemiBoldText } from '@/components/Typography'
 
 export const ExampleData: Array<EmployeeContact> = [
   {
@@ -1160,7 +1161,7 @@ export interface EmployeeItemProps extends EmployeeContact {
 export const ExampleListItem: React.FC<ExampleItemProps> = React.memo(props => {
   const { onPress, onSwipeLeft, linkedin_id, } = props
   const handlePress = React.useCallback(() => {
-    onPress(linkedin_id,{...props} )
+    onPress(linkedin_id, { ...props })
   }, [onPress, linkedin_id])
   const handleSwipeLeft = React.useCallback(
     (done: () => void) => {
@@ -1185,15 +1186,15 @@ export const ExampleListItem: React.FC<ExampleItemProps> = React.memo(props => {
         <TouchableOpacity
           bg="$background"
           px="lg"
-          py="sm"
+          py="xl"
           onPress={handlePress}
         >
-          <Text fontFamily={'Comfortaa'} ellipsizeMode='tail' fontSize={22} fontWeight={'700'}>{`${props.first_name} ${props.last_name}`}</Text>
-          <Text ellipsizeMode='tail' fontSize={18} fontWeight={'bold'} my='xs'>{props.description.length >= 10 ? props.description : 'No Description Provided To Company'}</Text>
-          <Text ellipsizeMode='tail' fontSize={20} fontWeight={'bold'} mb='xs'>{props.company_name}</Text>
-          <Text ellipsizeMode='tail' fontSize={18} fontWeight={'bold'} mb='xs'>{props.personal_email === '' ? 'No Personal Email Provided' : props.personal_email}</Text>
-          <Text ellipsizeMode='tail' fontSize={18} fontWeight={'bold'} mb='xs'>{props.city}</Text>
-        
+          <BoldText props={{ fontSize: 25, ellipsizeMode: 'tail' }}>{`${props.first_name} ${props.last_name}`}</BoldText>
+          <SemiBoldText props={{ fontSize: 22, my: 'xs', ellipsizeMode: 'tail' }}>{props.headline}</SemiBoldText>
+          <RegularText props={{ fontSize: 20, mb: 'xs', ellipsizeMode: 'tail' }}>{props.company_name}</RegularText>
+          <BoldText props={{ fontSize: 20, mb: 'xs', ellipsizeMode: 'tail' }}>{props.personal_email === '' ? 'No Personal Email Provided' : props.personal_email}</BoldText>
+          <MediumText props={{ fontSize: 20, mb: 'xs', ellipsizeMode: 'tail' }} >{props.city}</MediumText>
+
         </TouchableOpacity>
       </Box>
     </SwipeableView>

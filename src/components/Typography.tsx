@@ -1,10 +1,11 @@
 import { Text } from "@/atoms"
 import { Theme } from "@/themes"
 import { TextProps } from "@shopify/restyle"
+import {TextProps as RnTextProps} from 'react-native'
 import React from "react"
 
 interface Props {
-    props?: TextProps<Theme>,
+    props?: TextProps<Theme> & RnTextProps,
     children: React.ReactNode
 }
 

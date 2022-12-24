@@ -1,6 +1,6 @@
 import { Box, Container } from '@/atoms'
 import EmployeeExampleList from '@/components/example-list'
-import { Card } from '@/components/gradient-card'
+// import { Card } from '@/components/gradient-card'
 import HeaderBar from '@/components/headerbar'
 import Loading from '@/components/loading-spin-animation'
 import MoveContactSheet from '@/components/move-contact'

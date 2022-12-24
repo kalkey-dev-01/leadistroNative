@@ -113,7 +113,7 @@ const HeaderBar: React.FC<Props> = props => {
           backButtonVisible={searchInputHasFocus}
         />
         <TextInput
-          fontFamily={'Comfortaa-SemiBold'}
+
           ref={refSearchInput}
           flex={1}
           ml="sm"

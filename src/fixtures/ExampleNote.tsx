@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { EmployeeContact } from '@/models/model'
-import { Box, Text, TouchableOpacity } from '@/atoms'
+import { Box, TouchableOpacity } from '@/atoms'
 import SwipeableView, { BackViewProps } from '@/components/swipable-view'
 import ExampleListActionView from '@/components/example-list-actions-view'
 import { BoldText, MediumText, RegularText, SemiBoldText } from '@/components/Typography'

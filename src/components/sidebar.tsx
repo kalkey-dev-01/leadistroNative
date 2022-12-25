@@ -12,17 +12,17 @@ const Sidebar: React.FC<DrawerContentComponentProps> = () => {
         <Box flex={1} bg={'$sidebarBackground'}>
             <SafeAreaView>
                 <Image source={require('../assets/images/Logo.png')} style={{ maxHeight: 125, width: '100%',alignSelf:'center',resizeMode:'contain',marginTop:25 }} />
-                <SemiBoldText props={{ textAlign:'center', variant: 'sidebar', fontSize: 35, m: 'lg' }}>
+                <SemiBoldText fontName='Comfortaa'  props={{ textAlign:'center', variant: 'sidebar', fontSize: 35, m: 'lg' }}>
                     leadistro
                 </SemiBoldText>
                 <Box mt={"xl"} ml='lg' justifyContent={'space-between'} flexDirection={'column'} >
-                    <BoldText props={{ variant: 'sidebar', fontSize: 18, my: 'xl', numberOfLines: 1, }}>Search Similar Websites</BoldText>
-                    <BoldText props={{ variant: 'sidebar', fontSize: 18, my: 'xl', numberOfLines: 1, }}>Email Marketing</BoldText>
-                    <BoldText props={{ variant: 'sidebar', fontSize: 18, my: 'xl', numberOfLines: 1, }}>Help Required?</BoldText>
+                    <BoldText fontName='Comfortaa' props={{ variant: 'sidebar', fontSize: 18, my: 'xl', numberOfLines: 1, }}>Search Similar Websites</BoldText>
+                    <BoldText fontName='Comfortaa' props={{ variant: 'sidebar', fontSize: 18, my: 'xl', numberOfLines: 1, }}>Email Marketing</BoldText>
+                    <BoldText fontName='Comfortaa' props={{ variant: 'sidebar', fontSize: 18, my: 'xl', numberOfLines: 1, }}>Help Required?</BoldText>
                 </Box>
                 <Box mt='hg' mx={'lg'} flexDirection={'row'} width={'100%'} alignItems={'center'} justifyContent={'flex-start'} flex={1}>
                  <FeatherIcon name='log-out' size={25}  />
-                 <MediumText props={{variant:'sidebar', fontSize:20, mx:'lg'}}>Log Out</MediumText>
+                 <MediumText fontName='Poppins' props={{variant:'sidebar', fontSize:20, mx:'lg'}}>Log Out</MediumText>
                 </Box>
             </SafeAreaView>
         </Box>

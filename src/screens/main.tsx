@@ -83,13 +83,14 @@ export default function MainScreen({ navigation }: Props) {
             </Container>
         )
     }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const EmployeeData = data.filter(emp => emp.personal_email != "")
     return (
         <Container justifyContent={'flex-start'} alignItems={'center'}>
             {
                 data !== undefined
                     ?
-                    <EmployeeExampleList scrollInsetTop={headerHeight} onScroll={handleScroll} onItemPress={handleEmployeeListItemPress} onItemSwipeLeft={handleEmployeeListItemSwipeLeft} data={EmployeeData} />
+                    <EmployeeExampleList scrollInsetTop={headerHeight} onScroll={handleScroll} onItemPress={handleEmployeeListItemPress} onItemSwipeLeft={handleEmployeeListItemSwipeLeft} data={data} />
                     :
                     null
             }

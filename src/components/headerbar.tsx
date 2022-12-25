@@ -35,7 +35,7 @@ const HeaderBar: React.FC<Props> = props => {
   const handleSearchPostValue = async () => {
     setLoading(true)
     await axios.post(employeesApi, { "api_key": apikey, 'domain': searchQuery }).then((res) => {
-      console.log('Started Res.data');     
+      console.log('Started Res.data');
       setData(res.data['employees'])
       console.log('Res  - > data - >  employees');
       console.log(res.data['employees']);
@@ -44,7 +44,7 @@ const HeaderBar: React.FC<Props> = props => {
       console.log(error.message);
     }).finally(() => {
       setLoading(false)
-      console.log(loading);      
+      console.log(loading);
       console.log('data =>');
       console.log(data);
       console.log('done');
@@ -113,7 +113,6 @@ const HeaderBar: React.FC<Props> = props => {
           backButtonVisible={searchInputHasFocus}
         />
         <TextInput
-
           ref={refSearchInput}
           flex={1}
           ml="sm"

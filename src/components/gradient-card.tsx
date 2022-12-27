@@ -13,7 +13,7 @@ import {
 import { Dimensions, View } from 'react-native'
 import Animated, { Extrapolate, interpolate, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import theme from '@/themes/light';
+import theme from '@/themes/DarkSpace';
 
 type BackgroundGradientProps = {
     width: number;
@@ -25,7 +25,7 @@ interface CardProps {
 }
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window')
-const HEIGHT = 512;
+const HEIGHT = 256;
 const WIDTH = SCREEN_WIDTH * 0.9
 const CARD_HEIGHT = HEIGHT - 10;
 const CARD_WIDTH = WIDTH - 10;
@@ -44,7 +44,7 @@ export const BackgroundGradient: React.FC<BackgroundGradientProps> = React.memo(
         <Canvas style={{ width: width + canvasPadding, height: height + canvasPadding }} >
             <RoundedRect x={canvasPadding / 2} y={canvasPadding / 2} width={width} height={height} color={theme.colors.$foreground} r={25} >
                 <SweepGradient c={vec((width + canvasPadding) / 2, (width + canvasPadding) / 2)}
-                    colors={[theme.colors.$background, theme.colors.black, theme.colors.blue, theme.colors.white]}
+                    colors={[theme.colors.$primary, theme.colors.$headerBarBackground, theme.colors.$navbarBackground, theme.colors.$primary]}
                 />
                 <BlurMask blur={skValue} style={'solid'} />
             </RoundedRect>

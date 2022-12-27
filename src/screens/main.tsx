@@ -1,5 +1,7 @@
 import { Box, Container } from '@/atoms'
+import { BoldText } from '@/components/Typography'
 import EmployeeExampleList from '@/components/example-list'
+import { Card } from '@/components/gradient-card'
 // import { Card } from '@/components/gradient-card'
 import HeaderBar from '@/components/headerbar'
 import Loading from '@/components/loading-spin-animation'
@@ -53,7 +55,7 @@ export default function MainScreen({ navigation }: Props) {
     const handleEmployeeListItemPress = React.useCallback((_linkedin_id: string | number, _data: EmployeeContact) => {
         // later
         console.log('lets see', _data);
-        
+
         console.log('Wanna Save this figure it out', _linkedin_id);
     }, [])
     const handleEmployeeListItemSwipeLeft = React.useCallback((_linkedin_id: string | number, _conceal: () => void) => {
@@ -75,24 +77,48 @@ export default function MainScreen({ navigation }: Props) {
     if (loading) {
         return (
             <Container justifyContent={'center'} alignItems={'center'} >
-                     
-                <Box alignItems={'center'} justifyContent='center'>                    
-                        <Loading col={theme.colors.white} />
+
+                <Box alignItems={'center'} justifyContent='center'>
+                    <Loading col={theme.colors.white} />
                 </Box>
 
             </Container>
         )
     }
+    
+    
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const EmployeeData = data.filter(emp => emp.personal_email != "")
     return (
         <Container justifyContent={'flex-start'} alignItems={'center'}>
             {
+                data.length === 0
+                    ?
+                    <Box width={'100%'} my='hg' >
+                        <Card>
+                            <Box height={'100%'} width={'100%'} borderRadius={'lg'} bg={'$background'} flexDirection={'column'} justifyContent='center' alignItems={'center'}>
+                                <BoldText fontName='Poppins' >
+                                    Welcome to Leadistro
+                                </BoldText>
+                            </Box>
+                        </Card>
+                    </Box>
+                    : null
+            }
+            {
                 data !== undefined
                     ?
                     <EmployeeExampleList scrollInsetTop={headerHeight} onScroll={handleScroll} onItemPress={handleEmployeeListItemPress} onItemSwipeLeft={handleEmployeeListItemSwipeLeft} data={data} />
                     :
-                    null
+                    <Box width={'100%'} mt='hg' >
+                        <Card>
+                            <Box height={'80%'} width={'80%'} bg={'$background'}>
+                                <BoldText fontName='Comfortaa'>
+                                    Welcome to Leadistro
+                                </BoldText>
+                            </Box>
+                        </Card>
+                    </Box>
             }
             <HeaderBar onSidebarToggle={handleSidebarToggle} style={barStyle} onLayout={handleEmployeeListLayout}>
             </HeaderBar>

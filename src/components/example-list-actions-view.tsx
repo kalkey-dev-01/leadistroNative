@@ -29,7 +29,7 @@ const ExampleListActionView: React.FC<Props> = ({ progress }) => {
         justifyContent="center"
         style={iconStyle}
       >
-        <FeatherIcon name="folder" color="white" size={18} />
+        <FeatherIcon name="database" color="white" size={18} />
         <FeatherIcon name="arrow-right" color="white" size={12} />
       </AnimatedBox>
     </Box>

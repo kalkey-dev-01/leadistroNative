@@ -4,7 +4,8 @@ import { NavigationContainer } from '@react-navigation/native'
 import Navigations from './navs'
 import { ThemeProvider } from '@shopify/restyle'
 import StatusBar from './components/status-bar'
-import theme from './themes/solarised-dark'
+import theme from './themes/DarkSpace'
+
 
 const App = () => {
     return (

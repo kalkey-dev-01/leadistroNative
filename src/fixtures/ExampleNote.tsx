@@ -5,7 +5,7 @@ import SwipeableView, { BackViewProps } from '@/components/swipable-view'
 import ExampleListActionView from '@/components/example-list-actions-view'
 import { BoldText, MediumText, RegularText, SemiBoldText } from '@/components/Typography'
 import FeatherIcon from '@/components/icon'
-import theme from '@/themes/solarised-dark'
+import theme from '@/themes/DarkSpace'
 import { Linking, Alert } from 'react-native'
 
 
@@ -87,14 +87,23 @@ export const ExampleListItem: React.FC<ExampleItemProps> = React.memo(props => {
           onPress={handlePress}
         >
           <Box flexDirection={'row'} width={'100%'} justifyContent={'space-between'} alignItems={'center'}>
-            <BoldText fontName='Comfortaa' props={{ fontSize: 27.5, mb: 'xs', ellipsizeMode: 'tail' }}>{`${props.first_name.charAt(0).toLocaleUpperCase() + props.first_name.slice(1)} ${props.last_name.charAt(0).toLocaleUpperCase() + props.last_name.slice(1)}`}</BoldText>
-            <FeatherIcon name={props.personal_email && props.social_url ? `user` : `user-x`} style={{ backgroundColor: props.personal_email && props.social_url ? theme.colors.$navbarBackground : theme.colors.$sidebarSeparator, padding: 7.5, borderRadius: 5 }} size={25} />
+            <BoldText fontName='Comfortaa' props={{ fontSize: 27.5, mb: 'xs', ellipsizeMode: 'tail' }}>{`${props.first_name.charAt(0).toLocaleUpperCase() + props.first_name.slice(1,8)} ${props.last_name.charAt(0).toLocaleUpperCase() + props.last_name.slice(1,9)}`}</BoldText>
+            <Box flexDirection={'row'} width={'20%'} justifyContent={props.social_url && props.personal_email !== '' ? "space-between" : 'flex-end'} alignItems={'center'} >
+              {
+                props.personal_email && <FeatherIcon name={`mail`} style={{ backgroundColor: props.personal_email && props.social_url ? theme.colors.$navbarBackground : theme.colors.$sidebarSeparator, padding: 7.5, borderRadius: 5 }} size={25} />
+              }
+              {
+                props.social_url && <FeatherIcon name={`linkedin`} style={{ backgroundColor: props.personal_email && props.social_url ? theme.colors.$navbarBackground : theme.colors.$sidebarSeparator, padding: 7.5, borderRadius: 5 }} size={25} />
+              }
+            </Box>
+            {/* <FeatherIcon name={props.personal_email && props.social_url !== "" ? `user` : `user-x`} style={{ backgroundColor: props.personal_email && props.social_url ? theme.colors.$navbarBackground : theme.colors.$sidebarSeparator, padding: 7.5, borderRadius: 5 }} size={25} /> */}
           </Box>
 
           <MediumText fontName='Poppins' props={{ fontSize: 22, mb: 'xs', ellipsizeMode: 'tail', numberOfLines: 1 }}>{props.headline}</MediumText>
 
           <SemiBoldText fontName='Poppins' props={{ fontSize: 20, mb: 'xs', ellipsizeMode: 'tail' }}>{props.company_name}</SemiBoldText>
-          {props.personal_email &&
+          {
+            props.personal_email &&
             <RegularText fontName='Poppins' props={{ fontSize: 20, mb: 'xs', ellipsizeMode: 'tail' }}>{props.personal_email}</RegularText>
           }
           <MediumText fontName='Poppins' props={{ fontSize: 20, mb: 'xs', ellipsizeMode: 'tail' }} >{props.city}</MediumText>
@@ -109,8 +118,6 @@ export const ExampleListItem: React.FC<ExampleItemProps> = React.memo(props => {
                       <TouchableOpacity
                         onPress={
                           React.useCallback(async () => {
-                            console.log(props.social_url);
-
                             let supported = await Linking.canOpenURL(props.social_url.toString())
                             if (supported) {
                               await Linking.openURL(props.social_url.toString())
@@ -132,10 +139,10 @@ export const ExampleListItem: React.FC<ExampleItemProps> = React.memo(props => {
                       <TouchableOpacity
                         onPress={
                           React.useCallback(async () => {
-                            console.log(props.social_url);
+                            // console.log(props.social_url);
                             // Linking.openURL(props.social_url.toString())
                             let supported = await Linking.canOpenURL(props.social_url.toString())
-                            console.log(supported);                            
+                            // console.log(supported);
                             if (supported) {
                               await Linking.openURL(props.social_url.toString())
                             } else {
@@ -147,8 +154,7 @@ export const ExampleListItem: React.FC<ExampleItemProps> = React.memo(props => {
                           }, [props.social_url])
                         }
                         flexDirection={'row'} width={'100%'} justifyContent="flex-start" alignItems={'center'}>
-                        <SemiBoldText fontName='Poppins' props={{ fontSize: 22 }}>LinkedIn & Connections - {props.connections_count} </SemiBoldText>
-                        <FeatherIcon name='linkedin' style={{ paddingBottom: 7.5 }} size={25} />
+                        <SemiBoldText fontName='Poppins' props={{ fontSize: 22 }}>LinkedIn & Connections {props.connections_count} </SemiBoldText>
                       </TouchableOpacity>
                     </>
                 }

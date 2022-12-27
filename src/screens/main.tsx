@@ -1,5 +1,5 @@
 import { Box, Container } from '@/atoms'
-import { BoldText } from '@/components/Typography'
+import { BoldText, RegularText, SemiBoldText } from '@/components/Typography'
 import EmployeeExampleList from '@/components/example-list'
 import { Card } from '@/components/gradient-card'
 // import { Card } from '@/components/gradient-card'
@@ -85,8 +85,8 @@ export default function MainScreen({ navigation }: Props) {
             </Container>
         )
     }
-    
-    
+
+
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const EmployeeData = data.filter(emp => emp.personal_email != "")
     return (
@@ -94,31 +94,29 @@ export default function MainScreen({ navigation }: Props) {
             {
                 data.length === 0
                     ?
-                    <Box width={'100%'} my='hg' >
+                    <Box width={'100%'} mt='hg' >
                         <Card>
-                            <Box height={'100%'} width={'100%'} borderRadius={'lg'} bg={'$background'} flexDirection={'column'} justifyContent='center' alignItems={'center'}>
-                                <BoldText fontName='Poppins' >
-                                    Welcome to Leadistro
+                            <Box height={'100%'} width={'100%'} borderRadius={'lg'} px={'xl'} py={'xl'}
+                                bg={'$background'} flexDirection={'column'} justifyContent={'space-between'} alignItems={'flex-start'}>
+                                <BoldText fontName='Comfortaa' props={{ fontSize: 25 }} >
+                                    leadistro v0.1
                                 </BoldText>
+                                <RegularText fontName='Poppins' props={{ fontSize: 18 }} >
+                                    Search to pull the Employee Distribution of company specific domains
+                                </RegularText>
+                                <BoldText fontName='Comfortaa'>Remember to type .com after a company name </BoldText>
                             </Box>
                         </Card>
                     </Box>
-                    : null
+                    :
+                    null
             }
             {
                 data !== undefined
                     ?
                     <EmployeeExampleList scrollInsetTop={headerHeight} onScroll={handleScroll} onItemPress={handleEmployeeListItemPress} onItemSwipeLeft={handleEmployeeListItemSwipeLeft} data={data} />
                     :
-                    <Box width={'100%'} mt='hg' >
-                        <Card>
-                            <Box height={'80%'} width={'80%'} bg={'$background'}>
-                                <BoldText fontName='Comfortaa'>
-                                    Welcome to Leadistro
-                                </BoldText>
-                            </Box>
-                        </Card>
-                    </Box>
+                    null
             }
             <HeaderBar onSidebarToggle={handleSidebarToggle} style={barStyle} onLayout={handleEmployeeListLayout}>
             </HeaderBar>

@@ -88,12 +88,12 @@ export const ExampleListItem: React.FC<ExampleItemProps> = React.memo(props => {
         >
           <Box flexDirection={'row'} width={'100%'} justifyContent={'space-between'} alignItems={'center'}>
             <BoldText fontName='Comfortaa' props={{ fontSize: 27.5, mb: 'xs', ellipsizeMode: 'tail' }}>{`${props.first_name.charAt(0).toLocaleUpperCase() + props.first_name.slice(1,8)} ${props.last_name.charAt(0).toLocaleUpperCase() + props.last_name.slice(1,9)}`}</BoldText>
-            <Box flexDirection={'row'} width={'20%'} justifyContent={props.social_url && props.personal_email !== '' ? "space-between" : 'flex-end'} alignItems={'center'} >
-              {
-                props.personal_email && <FeatherIcon name={`mail`} style={{ backgroundColor: props.personal_email && props.social_url ? theme.colors.$navbarBackground : theme.colors.$sidebarSeparator, padding: 7.5, borderRadius: 5 }} size={25} />
-              }
+            <Box flexDirection={'row'} width={'25%'} justifyContent={props.social_url && props.personal_email !== '' ? "space-between" : 'flex-end'} alignItems={'center'} >
               {
                 props.social_url && <FeatherIcon name={`linkedin`} style={{ backgroundColor: props.personal_email && props.social_url ? theme.colors.$navbarBackground : theme.colors.$sidebarSeparator, padding: 7.5, borderRadius: 5 }} size={25} />
+              }
+              {
+                props.personal_email && <FeatherIcon name={`mail`} style={{ backgroundColor: props.personal_email && props.social_url ? theme.colors.$navbarBackground : theme.colors.$sidebarSeparator, padding: 7.5, borderRadius: 5 }} size={25} />
               }
             </Box>
             {/* <FeatherIcon name={props.personal_email && props.social_url !== "" ? `user` : `user-x`} style={{ backgroundColor: props.personal_email && props.social_url ? theme.colors.$navbarBackground : theme.colors.$sidebarSeparator, padding: 7.5, borderRadius: 5 }} size={25} /> */}

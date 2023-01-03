@@ -48,14 +48,14 @@ type Props = CompositeScreenProps<DrawerScreenProps<HomeDrawerParamList, "Main">
 export default function MainScreen({ navigation }: Props) {
     const [concealEmployeeListItem, setConcealEmployeeListItem] = React.useState<(() => void) | null>(null)
     const refMoveContactSheet = React.useRef<MoveContactSheet>(null)
-    const { barStyle, handleEmployeeListLayout, handleScroll, headerHeight } = StickyHeader()
+    const { barStyle, handleListLayout, handleScroll, headerHeight } = StickyHeader()
     const handleSidebarToggle = React.useCallback(() => {
         navigation.toggleDrawer()
     }, [navigation])
     const handleEmployeeListItemPress = React.useCallback((_linkedin_id: string | number, _data: EmployeeContact) => {
         // later
         console.log('lets see', _data);
-
+        
         console.log('Wanna Save this figure it out', _linkedin_id);
     }, [])
     const handleEmployeeListItemSwipeLeft = React.useCallback((_linkedin_id: string | number, _conceal: () => void) => {
@@ -76,10 +76,11 @@ export default function MainScreen({ navigation }: Props) {
     // const loading = true
     if (loading) {
         return (
-            <Container justifyContent={'center'} alignItems={'center'} >
-
+            <Container justifyContent={'center'} alignItems={'center'}>
                 <Box alignItems={'center'} justifyContent='center'>
-                    <Loading col={theme.colors.white} />
+                
+                        <Loading col={theme.colors.white} />
+               
                 </Box>
 
             </Container>
@@ -89,6 +90,7 @@ export default function MainScreen({ navigation }: Props) {
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const EmployeeData = data.filter(emp => emp.personal_email != "")
+    
     return (
         <Container justifyContent={'flex-start'} alignItems={'center'}>
             {
@@ -99,12 +101,14 @@ export default function MainScreen({ navigation }: Props) {
                             <Box height={'100%'} width={'100%'} borderRadius={'lg'} px={'xl'} py={'xl'}
                                 bg={'$background'} flexDirection={'column'} justifyContent={'space-between'} alignItems={'flex-start'}>
                                 <BoldText fontName='Comfortaa' props={{ fontSize: 25 }} >
-                                    leadistro v0.1
+                                    leadistroNative v0.1
                                 </BoldText>
                                 <RegularText fontName='Poppins' props={{ fontSize: 18 }} >
                                     Search to pull the Employee Distribution of company specific domains
                                 </RegularText>
-                                <BoldText fontName='Comfortaa'>Remember to type .com after a company name </BoldText>
+                                <BoldText fontName='Comfortaa'>
+                                    Remember to type | <SemiBoldText fontName='Poppins'> .com </SemiBoldText> | after a company name
+                                </BoldText>
                             </Box>
                         </Card>
                     </Box>
@@ -114,11 +118,15 @@ export default function MainScreen({ navigation }: Props) {
             {
                 data !== undefined
                     ?
-                    <EmployeeExampleList scrollInsetTop={headerHeight} onScroll={handleScroll} onItemPress={handleEmployeeListItemPress} onItemSwipeLeft={handleEmployeeListItemSwipeLeft} data={data} />
+                    <EmployeeExampleList
+                        scrollInsetTop={headerHeight} onScroll={handleScroll}
+                        onItemPress={handleEmployeeListItemPress} onItemSwipeLeft={handleEmployeeListItemSwipeLeft}
+                        data={data}
+                    />
                     :
                     null
             }
-            <HeaderBar onSidebarToggle={handleSidebarToggle} style={barStyle} onLayout={handleEmployeeListLayout}>
+            <HeaderBar onSidebarToggle={handleSidebarToggle} style={barStyle} onLayout={handleListLayout}>
             </HeaderBar>
             <MoveContactSheet ref={refMoveContactSheet} onClose={handleMoveEmployeeSheetClose} />
         </Container>

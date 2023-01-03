@@ -1,13 +1,17 @@
-import { Box } from '@/atoms'
+import { Box, TouchableOpacity } from '@/atoms'
 import { DrawerContentComponentProps } from '@react-navigation/drawer'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { BoldText, MediumText, SemiBoldText } from './Typography'
 import { Image } from 'react-native'
 import FeatherIcon from './icon'
+// import { HomeDrawerParamList } from '@/navs'
+
+// TODO !! - Complete Navigation To Other Screens
+
+const Sidebar: React.FC<DrawerContentComponentProps> = ({ navigation }) => {
 
 
-const Sidebar: React.FC<DrawerContentComponentProps> = () => {
     return (
         <Box flex={1} bg={'$sidebarBackground'}>
             <SafeAreaView>
@@ -16,7 +20,7 @@ const Sidebar: React.FC<DrawerContentComponentProps> = () => {
                     leadistro
                 </SemiBoldText>
                 <Box mt={"xl"} ml='lg' justifyContent={'space-between'} flexDirection={'column'} >
-                    <BoldText fontName='Comfortaa' props={{ variant: 'sidebar', fontSize: 18, my: 'xl', numberOfLines: 1, }}>Search Similar Websites</BoldText>
+                    <TouchableOpacity onPress={() => navigation.navigate('SSW')}><BoldText fontName='Comfortaa' props={{ variant: 'sidebar', fontSize: 18, my: 'xl', numberOfLines: 1, }}>Search Similar Websites</BoldText></TouchableOpacity>
                     <BoldText fontName='Comfortaa' props={{ variant: 'sidebar', fontSize: 18, my: 'xl', numberOfLines: 1, }}>Email Marketing</BoldText>
                     <BoldText fontName='Comfortaa' props={{ variant: 'sidebar', fontSize: 18, my: 'xl', numberOfLines: 1, }}>Create Contact</BoldText>
                 </Box>

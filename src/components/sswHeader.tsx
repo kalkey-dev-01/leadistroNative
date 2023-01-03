@@ -2,7 +2,7 @@ import AnimatedBox, { AnimatedBoxProps } from '@/atoms/animated-box'
 import { Alert, TextInput as RNTextInput } from 'react-native'
 import { TextInput, TouchableOpacity } from '@/atoms'
 
-import { searchQueryAtom, inputFocusAtom, responseDataAtom, loadingAtom } from '@/state/searchbar'
+import { searchQueryAtom, inputFocusAtom, loadingAtom, sswAtom } from '@/state/searchbar'
 import { useAtom } from 'jotai'
 import React from 'react'
 import axios from 'axios'
@@ -12,7 +12,7 @@ import { useTheme } from '@shopify/restyle'
 import { useAnimatedStyle, withTiming } from 'react-native-reanimated'
 import HeaderBarLeftButton from './header-bar-left-icon'
 import FeatherIcon from './icon'
-import { apikey, employeesApi } from '@/api/uri-with-keys'
+import { apikey, convertCompanyNamesApi, } from '@/api/uri-with-keys'
 // import { EmployeeContact } from '@/models/model'
 // import AsyncStorage from '@react-native-async-storage/async-storage'
 // import { EmployeeContact } from '@/models/model'
@@ -22,11 +22,11 @@ type Props = AnimatedBoxProps & {
 
 }
 
-const HeaderBar: React.FC<Props> = props => {
+const SSWHeaderBar: React.FC<Props> = props => {
   const { onSidebarToggle, ...rest } = props
   const safeAreaInsets = useSafeAreaInsets()
   const theme = useTheme<Theme>()
-  const [data, setData] = useAtom(responseDataAtom)
+  const [data, setData] = useAtom(sswAtom)
   const [searchQuery, setSearchQuery] = useAtom(searchQueryAtom)
   const [searchInputHasFocus, setSearchInputHasFocus] = useAtom(
     inputFocusAtom
@@ -35,11 +35,11 @@ const HeaderBar: React.FC<Props> = props => {
   const refSearchInput = React.useRef<RNTextInput>(null)
   const handleSearchPostValue = async () => {
     setLoading(true)
-    await axios.post(employeesApi, { "api_key": apikey, 'domain': searchQuery }).then((res) => {
+    await axios.post(convertCompanyNamesApi, { "api_key": apikey, "company_name": searchQuery }).then((res) => {
       console.log('Started Res.data');
-      setData(res.data['employees'])
-      console.log('Res  - > data - >  employees');
-      console.log(res.data['employees']);
+      setData(res.data['data'])
+      console.log('Res  - > data-> data ');
+      console.log(res.data['data']);
     }).catch((error) => {
       Alert.alert('Something Went Wrong Please try again.' + error.message)
       console.log(error.message);
@@ -122,7 +122,7 @@ const HeaderBar: React.FC<Props> = props => {
           color="$foreground"
           autoCorrect={false}
           autoComplete={'off'}
-          placeholder="Search Employees from domain"
+          placeholder="Search Similar Domains"
           placeholderColor="$fieldInputPlaceholderTextColor"
           value={searchQuery}
           onFocus={handleSearchInputFocus}
@@ -156,4 +156,4 @@ const HeaderBar: React.FC<Props> = props => {
 }
 
 
-export default HeaderBar
+export default SSWHeaderBar

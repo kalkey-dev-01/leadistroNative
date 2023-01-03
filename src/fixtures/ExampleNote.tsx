@@ -7,6 +7,8 @@ import { BoldText, MediumText, RegularText, SemiBoldText } from '@/components/Ty
 import FeatherIcon from '@/components/icon'
 import theme from '@/themes/DarkSpace'
 import { Linking, Alert } from 'react-native'
+import { useAtomValue } from 'jotai'
+import { searchQueryAtom } from '@/state/searchbar'
 
 
 export interface ExampleItemProps extends EmployeeContact {
@@ -73,6 +75,8 @@ export const ExampleListItem: React.FC<ExampleItemProps> = React.memo(props => {
     ),
     []
   )
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const searchQuery = useAtomValue(searchQueryAtom)
   return (
     <SwipeableView
       bg="yellow"
@@ -87,22 +91,23 @@ export const ExampleListItem: React.FC<ExampleItemProps> = React.memo(props => {
           onPress={handlePress}
         >
           <Box flexDirection={'row'} width={'100%'} justifyContent={'space-between'} alignItems={'center'}>
-            <BoldText fontName='Comfortaa' props={{ fontSize: 27.5, mb: 'xs', ellipsizeMode: 'tail' }}>{`${props.first_name.charAt(0).toLocaleUpperCase() + props.first_name.slice(1,8)} ${props.last_name.charAt(0).toLocaleUpperCase() + props.last_name.slice(1,9)}`}</BoldText>
-            <Box flexDirection={'row'} width={'25%'} justifyContent={props.social_url && props.personal_email !== '' ? "space-between" : 'flex-end'} alignItems={'center'} >
+            <BoldText fontName='Comfortaa' props={{ fontSize: 27.5, mb: 'xs', ellipsizeMode: 'tail' }}>{`${props.first_name.charAt(0).toLocaleUpperCase() + props.first_name.slice(1, 8)} ${props.last_name.charAt(0).toLocaleUpperCase() + props.last_name.slice(1, 9)}`}</BoldText>
+            <Box flexDirection={'row'} width={'22.5%'} justifyContent={props.social_url && props.personal_email !== '' ? "space-between" : 'flex-end'} alignItems={'center'} >
               {
-                props.social_url && <FeatherIcon name={`linkedin`} style={{ backgroundColor: props.personal_email && props.social_url ? theme.colors.$navbarBackground : theme.colors.$sidebarSeparator, padding: 7.5, borderRadius: 5 }} size={25} />
+                props.social_url && <FeatherIcon name={`linkedin`} style={{ backgroundColor: props.personal_email && props.social_url ? theme.colors.$navbarBackground : theme.colors.$sidebarSeparator, paddingHorizontal: 7.5, paddingVertical: 7.5, borderRadius: 4, borderColor: theme.colors.$navbarBackground, borderWidth: 0.5 }} size={22.5} />
               }
               {
-                props.personal_email && <FeatherIcon name={`mail`} style={{ backgroundColor: props.personal_email && props.social_url ? theme.colors.$navbarBackground : theme.colors.$sidebarSeparator, padding: 7.5, borderRadius: 5 }} size={25} />
+                props.personal_email && <FeatherIcon name={`mail`} style={{ backgroundColor: props.personal_email && props.social_url ? theme.colors.$navbarBackground : theme.colors.$sidebarSeparator, paddingHorizontal: 7.5, paddingVertical: 7.5, borderRadius: 4, borderColor: theme.colors.$navbarBackground, borderWidth: 0.5 }} size={22.5} />
               }
             </Box>
             {/* <FeatherIcon name={props.personal_email && props.social_url !== "" ? `user` : `user-x`} style={{ backgroundColor: props.personal_email && props.social_url ? theme.colors.$navbarBackground : theme.colors.$sidebarSeparator, padding: 7.5, borderRadius: 5 }} size={25} /> */}
           </Box>
 
           <MediumText fontName='Poppins' props={{ fontSize: 22, mb: 'xs', ellipsizeMode: 'tail', numberOfLines: 1 }}>{props.headline}</MediumText>
-
-          <SemiBoldText fontName='Poppins' props={{ fontSize: 20, mb: 'xs', ellipsizeMode: 'tail' }}>{props.company_name}</SemiBoldText>
           {
+            <SemiBoldText fontName='Poppins' props={{ fontSize: 20, mb: 'xs', ellipsizeMode: 'tail' }}>{`${props.company_name}`}</SemiBoldText>
+
+          }{
             props.personal_email &&
             <RegularText fontName='Poppins' props={{ fontSize: 20, mb: 'xs', ellipsizeMode: 'tail' }}>{props.personal_email}</RegularText>
           }
@@ -162,6 +167,7 @@ export const ExampleListItem: React.FC<ExampleItemProps> = React.memo(props => {
               :
               null
           }
+         
         </TouchableOpacity>
       </Box>
     </SwipeableView>
@@ -172,3 +178,16 @@ export const ExampleListItem: React.FC<ExampleItemProps> = React.memo(props => {
             //   <FeatherIcon name={props.social_url.toString().in} size={25} />
             //   <MediumText fontName='Poppins' props={{ fontSize: 22, mb: 'xs', ellipsizeMode: 'tail', numberOfLines: 1 }}>{props.social_url}</MediumText>
             // </Box>
+
+            // {
+            //   props.skills.length > 0
+            //     ?
+            //     <Box flexDirection={'column'}>
+            //       <BoldText fontName='Comfortaa'> Skills </BoldText>
+            //       {props.skills.map((skills, index) => <React.Fragment key={index}>
+            //         <SemiBoldText fontName='Poppins'>{skills}</SemiBoldText>
+            //       </React.Fragment>)}
+            //     </Box>
+            //     :
+            //     null
+            // }

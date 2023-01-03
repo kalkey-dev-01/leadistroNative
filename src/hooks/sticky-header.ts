@@ -20,7 +20,7 @@ export default function StickyHeader() {
 
   const MinimumY = -headerHeight
   const MaximumY = safeAreaInset.top
-  const handleEmployeeListLayout = React.useCallback((e: LayoutChangeEvent) => {
+  const handleListLayout = React.useCallback((e: LayoutChangeEvent) => {
     setHeaderHeight(e.nativeEvent.layout.height)
   }, [])
   const handleEndDrag = (e: NativeScrollEvent) => {
@@ -65,7 +65,7 @@ export default function StickyHeader() {
     ]
   }))
   return {
-    handleEmployeeListLayout,
+    handleListLayout,
     handleScroll,
     barStyle,
     headerHeight

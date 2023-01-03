@@ -36,3 +36,31 @@ const ExampleListActionView: React.FC<Props> = ({ progress }) => {
   )
 }
 export default ExampleListActionView
+
+export const SSWListActionView: React.FC<Props> = ({ progress }) => {
+  const iconStyle = useAnimatedStyle(() => ({
+    transform: [
+      { scale: progress.value }
+    ]
+  }))
+  return (
+    <Box
+      flex={1}
+      bg="$primary"
+      flexDirection="row"
+      alignItems="center"
+      justifyContent="flex-end"
+      pr="xl"
+    >
+      <AnimatedBox
+        flexDirection="row"
+        alignItems="center"
+        justifyContent="center"
+        style={iconStyle}
+      >
+        <FeatherIcon name="globe" color="white" size={18} />
+        <FeatherIcon name="save" color="white" size={12} />
+      </AnimatedBox>
+    </Box>
+  )
+}

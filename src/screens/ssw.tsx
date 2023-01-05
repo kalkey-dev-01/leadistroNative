@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
     Box,
     // Box,
@@ -34,22 +35,22 @@ export default function SSWScreen({ navigation }: Props) {
 
         console.log('Wanna Save this figure it out', _logo);
     }, [])
-
+    
     const onItemSwipeLeft = React.useCallback(() => {
         console.log('swipped');
 
     }, [])
-    const loading = useAtomValue(loadingAtom)
+    // const loading = useAtomValue(loadingAtom)
     // const loading = true
-    if (loading) {
-        return (
-            <Container justifyContent={'center'} alignItems={'center'}>
-                <Box alignItems={'center'} justifyContent='center'>
-                    <Loading col={theme.colors.white} />
-                </Box>
-            </Container>
-        )
-    }
+    // if (loading) {
+    //     return (
+    //         <Container justifyContent={'center'} alignItems={'center'}>
+    //             <Box alignItems={'center'} justifyContent='center'>
+    //                 <Loading col={theme.colors.white} />
+    //             </Box>
+    //         </Container>
+    //     )
+    // }
     const { barStyle, handleListLayout, handleScroll, headerHeight } = StickyHeader()
     return (
         <>

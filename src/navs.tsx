@@ -42,7 +42,7 @@ function Home() {
             <Drawer.Screen
                 name='SSW'
                 component={SSWScreen}
-                options={{ headerShown: true }}
+                options={{ headerShown: false }}
             />
         </Drawer.Navigator>
     )

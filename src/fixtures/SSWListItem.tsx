@@ -45,7 +45,7 @@ const SSWListItem: React.FC<SSWItemProps> = React.memo(props => {
                     py="xl"
                     onPress={handlePress}
                 >
-                    <Box flexDirection={'column'} width={'100%'} justifyContent={'space-between'} alignItems={'center'}>
+                    <Box flexDirection={'column'} width={'100%'} justifyContent={'space-between'} alignItems={'flex-start'}>
                         <BoldText fontName='Comfortaa' props={{
                             fontSize: 25,
                             color: 'white'
@@ -58,7 +58,7 @@ const SSWListItem: React.FC<SSWItemProps> = React.memo(props => {
                         }}>
                             {props.domain}
                         </RegularText>
-                        <Image source={{ uri: props.logo }} style={{ maxHeight: 125, width: '100%', alignSelf: 'center', resizeMode: 'contain', marginTop: 25 }} />
+                        {/* <Image source={{ uri: props.logo }} style={{ maxHeight: 125, width: '100%', alignSelf: 'center', resizeMode: 'contain', marginTop: 25 }} /> */}
                     </Box>
                 </TouchableOpacity>
             </Box>

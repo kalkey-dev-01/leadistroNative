@@ -1,4 +1,5 @@
-import { useAtom } from "jotai";
+import { atom } from "jotai";
 import {FirebaseAuthTypes} from '@react-native-firebase/auth'
 
-export const AuthAtom = useAtom<FirebaseAuthTypes.User | null>()
+export const AuthAtom = atom<FirebaseAuthTypes.User | null>(null)
+  

@@ -4,9 +4,17 @@ import MainScreen from './screens/main';
 import Sidebar from './components/sidebar';
 import { NavigatorScreenParams } from '@react-navigation/native';
 import SSWScreen from './screens/ssw';
-import LoginScreen from './screens/LoginScreen'; 
+import LoginScreen from './screens/LoginScreen';
 import { RegisterScreen } from './screens/RegisterScreen';
 import { OnboardingScreens } from './screens/OnboardingScreens';
+import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth'
+import { useAtom } from 'jotai';
+import { AuthAtom } from './state/authStateAtom';
+import { loadingAtom } from './state/searchbar';
+import React from 'react';
+import { Container, Box } from './atoms';
+import Loading from './components/loading-spin-animation';
+import theme from './themes/DarkSpace';
 
 
 export type HomeDrawerParamList = {
@@ -67,14 +75,29 @@ export const SignedOutNavigations = () => {
     )
 }
 
-
-
-export default function Navigations() {
+export const SignedInNavigations = () => {
     return (
         <Stack.Navigator initialRouteName='Home'>
             <Stack.Screen name='Home' component={Home} options={{
                 headerShown: false
             }} />
         </Stack.Navigator>
+    )
+}
+
+
+export default function Navigations() {
+    const [user, setUser] = useAtom(AuthAtom)
+
+
+
+    React.useEffect(() => {
+        auth().onAuthStateChanged(userState => {
+            setUser(userState)
+        })
+    }, [])
+
+    return (
+        <>{user ? <SignedInNavigations /> : <SignedOutNavigations />}</>
     )
 }

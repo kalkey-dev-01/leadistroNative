@@ -4,7 +4,7 @@ import { SSWListActionView } from '@/components/example-list-actions-view'
 import SwipeableView, { BackViewProps } from '@/components/swipable-view'
 import { ConvertCompanyNames } from '@/models/model'
 import React from 'react'
-import { Image } from 'react-native'
+// import { Image } from 'react-native'
 
 
 export interface SSWItemProps extends ConvertCompanyNames {

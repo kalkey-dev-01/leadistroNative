@@ -11,3 +11,4 @@ export const responseDataAtom = atom<Array<EmployeeContact>>([])
 export const loadingAtom = atom<boolean>(false)
 
 export const sswAtom = atom<Array<ConvertCompanyNames>>([])
+

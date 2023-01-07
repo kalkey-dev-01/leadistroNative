@@ -5,16 +5,19 @@ import Sidebar from './components/sidebar';
 import { NavigatorScreenParams } from '@react-navigation/native';
 import SSWScreen from './screens/ssw';
 import LoginScreen from './screens/LoginScreen';
-import { RegisterScreen } from './screens/RegisterScreen';
+
 import { OnboardingScreens } from './screens/OnboardingScreens';
-import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth'
+import auth from '@react-native-firebase/auth'
 import { useAtom } from 'jotai';
 import { AuthAtom } from './state/authStateAtom';
-import { loadingAtom } from './state/searchbar';
+// import { loadingAtom } from './state/searchbar';
 import React from 'react';
-import { Container, Box } from './atoms';
-import Loading from './components/loading-spin-animation';
-import theme from './themes/DarkSpace';
+// import { Container, Box } from './atoms';
+// import Loading from './components/loading-spin-animation';
+// import theme from './themes/DarkSpace';
+import WelcomeScreen from './screens/WelcomeScreen';
+import RegisterScreen from './screens/RegisterScreen';
+
 
 
 export type HomeDrawerParamList = {
@@ -31,9 +34,10 @@ export type RootStackParamList = {
 }
 
 export type SignedOutStackParamList = {
-    Register: {},
-    Login: {},
-    OnBoarding: {}
+    Register: undefined,
+    Login: undefined,
+    OnBoarding: undefined,
+    Welcome: undefined
 }
 
 const SignedOutStack = createNativeStackNavigator<SignedOutStackParamList>()
@@ -67,7 +71,8 @@ function Home() {
 
 export const SignedOutNavigations = () => {
     return (
-        <SignedOutStack.Navigator initialRouteName='Login'>
+        <SignedOutStack.Navigator initialRouteName='Welcome' screenOptions={{ animation: 'slide_from_bottom', animationDuration: 750, animationTypeForReplace: 'push' }}>
+            <SignedOutStack.Screen name='Welcome' component={WelcomeScreen} options={{ headerShown: false }} />
             <SignedOutStack.Screen name='Login' component={LoginScreen} options={{ headerShown: false }} />
             <SignedOutStack.Screen name='Register' component={RegisterScreen} options={{ headerShown: false }} />
             <SignedOutStack.Screen name='OnBoarding' component={OnboardingScreens} options={{ headerShown: false }} />

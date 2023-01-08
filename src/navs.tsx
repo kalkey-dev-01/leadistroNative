@@ -71,7 +71,7 @@ function Home() {
 
 export const SignedOutNavigations = () => {
     return (
-        <SignedOutStack.Navigator initialRouteName='Welcome' screenOptions={{ animation: 'slide_from_bottom', animationDuration: 750, animationTypeForReplace: 'push' }}>
+        <SignedOutStack.Navigator initialRouteName='Welcome' screenOptions={{ animation: 'fade' }}>
             <SignedOutStack.Screen name='Welcome' component={WelcomeScreen} options={{ headerShown: false }} />
             <SignedOutStack.Screen name='Login' component={LoginScreen} options={{ headerShown: false }} />
             <SignedOutStack.Screen name='Register' component={RegisterScreen} options={{ headerShown: false }} />

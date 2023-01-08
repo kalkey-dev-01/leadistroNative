@@ -19,19 +19,24 @@ export default function WelcomeScreen({ navigation }: Props) {
             <Image source={require('../assets/images/leadistroCircLogo.png')}
                 style={{ height: '20%', width: '100%', bottom: 100 }}
                 resizeMode='contain' resizeMethod='auto' />
-            <TouchableOpacity onPress={() => navigation.navigate('Login', undefined)} backgroundColor={'$sidebarSeparator'} borderColor='$foreground' borderWidth={2} alignItems='center' justifyContent={'center'} maxWidth='75%' minWidth={'50%'} width='80%' py='lg' borderRadius={'xs'}>
-                <SemiBoldText props={{ fontSize: 22, color: '$foreground', pt: 'xs' }} fontName='Poppins'>login</SemiBoldText>
+            <TouchableOpacity onPress={() => navigation.navigate('Login', undefined)}
+                backgroundColor={'$sidebarSeparator'} borderColor='$foreground' borderWidth={2}
+                alignItems='center' justifyContent={'center'}  minWidth={'50%'} width='66.5%' py='lg' borderRadius={'xs'}>
+                <SemiBoldText props={{ fontSize: 24, color: '$foreground', pt: 'xs' }} fontName='Poppins'>login</SemiBoldText>
             </TouchableOpacity>
             <Box flexDirection={'row'} alignItems='center' my='lg'>
                 <Box flex={1} height={1} backgroundColor='$foreground' />
                 <Box width={50}>
-                    <BoldText fontName='Poppins' props={{fontSize:15, color:'$foreground', textAlign:'center'}}>
+                    <BoldText fontName='Poppins' props={{ fontSize: 15, color: '$foreground', textAlign: 'center' }}>
                         Or
                     </BoldText>
                 </Box>
                 <Box flex={1} height={1} backgroundColor='$foreground' />
             </Box>
-            <TouchableOpacity onPress={() => navigation.navigate('Register', undefined)} backgroundColor={'$sidebarBackground'} borderColor='$foreground' borderWidth={2} alignItems='center' justifyContent={'center'} maxWidth='75%' minWidth={'50%'} width='80%' py='lg' borderRadius={'xs'}>
+            <TouchableOpacity
+                onPress={() => navigation.navigate('Register', undefined)}
+                backgroundColor={'$sidebarBackground'} borderColor='$foreground' borderWidth={2}
+                alignItems='center' justifyContent={'center'} maxWidth='75%' minWidth={'50%'} width='66.5%' py='lg' borderRadius={'xs'}>
                 <SemiBoldText props={{ fontSize: 22, color: '$foreground', pt: 'xs' }} fontName='Poppins'>Register</SemiBoldText>
             </TouchableOpacity>
         </Container>

@@ -5,25 +5,20 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import React from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { Image } from 'react-native'
-import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Alert } from 'react-native'
+import { loginSchema } from '@/fixtures/zodSchema'
+import auth from '@react-native-firebase/auth'
 
 
 type Props = NativeStackScreenProps<SignedOutStackParamList>
-const schema = z.object({
-    email: z.string().email(),
-    password: z.string().min(6)
-})
-export default function LoginScreen({ }: Props) {
-    const { control, handleSubmit, formState: { errors } } = useForm({ resolver: zodResolver(schema) })
-    const onSubmit = (data: any) => {
-        Alert.alert(`Data is, ${JSON.stringify(data)}`)
-        console.log(data)
-        console.log(errors);
 
+export default function LoginScreen({ }: Props) {
+    const { control, handleSubmit, formState: { errors } } = useForm({ resolver: zodResolver(loginSchema) })
+    const onSubmit = async (data: any) => {
+        await auth().signInWithEmailAndPassword(data.email, data.password).then(() => Alert.alert('Logged In Successfully', 'Welcome Back we have new leads', [{ style: 'cancel' }])).catch((e: any) => Alert.alert('Error Caused While Logging in', e.message, [{ style: 'cancel' }]))
     }
-console.log(errors);
+    // console.log(errors);
 
     return (
         <Container justifyContent={'flex-start'} alignItems={'center'}>
@@ -39,7 +34,6 @@ console.log(errors);
                         onBlur={onBlur}
                         onChangeText={e => onChange(e)}
                     />
-
                 )}
                     rules={{
                         required: {
@@ -68,11 +62,11 @@ console.log(errors);
                     }}
                 />
             </Box>
-            
+
             {errors.email && <BoldText fontName='Comfortaa'>{errors.email.message as string}</BoldText>}
             {errors.password && <BoldText fontName='Comfortaa'>{errors.password.message as string}</BoldText>}
             <TouchableOpacity
-            onPress={handleSubmit(onSubmit)}
+                onPress={handleSubmit(onSubmit)}
                 borderColor={'white'} borderWidth={2} width={'50%'} justifyContent='center' height={'7.5%'} alignItems={'center'}>
                 <BoldText fontName='Poppins' props={{ fontSize: 28 }}>
                     Log In

@@ -3,6 +3,7 @@ import { atom } from 'jotai'
 import { ConvertCompanyNames, EmployeeContact } from '@/models/model'
 
 export const searchQueryAtom = atom<string>('')
+export const searchDomainAtom = atom<string>('')
 export const inputFocusAtom = atom<boolean>(false)
 
 export const responseDataAtom = atom<Array<EmployeeContact>>([])

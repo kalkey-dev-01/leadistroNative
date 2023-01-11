@@ -1,5 +1,5 @@
-import { Box, Container, TextInput, TouchableOpacity } from '@/atoms'
-import { BoldText, MediumText, RegularText, SemiBoldText } from '@/components/Typography'
+import { Box, Container, TouchableOpacity } from '@/atoms'
+import { BoldText, MediumText,  SemiBoldText } from '@/components/Typography'
 import { SignedOutStackParamList } from '@/navs'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import React from 'react'

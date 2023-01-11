@@ -18,7 +18,7 @@ export default function LoginScreen({ }: Props) {
     const onSubmit = async (data: any) => {
         await auth().signInWithEmailAndPassword(data.email, data.password).then(() => Alert.alert('Logged In Successfully', 'Welcome Back we have new leads', [{ style: 'cancel' }])).catch((e: any) => Alert.alert('Error Caused While Logging in', e.message, [{ style: 'cancel' }]))
     }
-    // console.log(errors);
+
 
     return (
         <Container justifyContent={'flex-start'} alignItems={'center'}>

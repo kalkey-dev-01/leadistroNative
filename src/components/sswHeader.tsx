@@ -2,7 +2,7 @@ import AnimatedBox, { AnimatedBoxProps } from '@/atoms/animated-box'
 import { Alert, TextInput as RNTextInput } from 'react-native'
 import { TextInput, TouchableOpacity } from '@/atoms'
 
-import { searchQueryAtom, inputFocusAtom, loadingAtom, sswAtom } from '@/state/searchbar'
+import { inputFocusAtom, loadingAtom, sswAtom, searchDomainAtom } from '@/state/searchbar'
 import { useAtom } from 'jotai'
 import React from 'react'
 import axios from 'axios'
@@ -27,7 +27,7 @@ const SSWHeaderBar: React.FC<Props> = props => {
   const safeAreaInsets = useSafeAreaInsets()
   const theme = useTheme<Theme>()
   const [data, setData] = useAtom(sswAtom)
-  const [searchQuery, setSearchQuery] = useAtom(searchQueryAtom)
+  const [searchQuery, setSearchQuery] = useAtom(searchDomainAtom)
   const [searchInputHasFocus, setSearchInputHasFocus] = useAtom(
     inputFocusAtom
   )

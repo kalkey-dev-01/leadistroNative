@@ -52,7 +52,7 @@ export const SSWListActionView: React.FC<Props> = ({ progress }) => {
       justifyContent="flex-end"
       pr="xl"
     >
-      <AnimatedBox
+      <AnimatedBox 
         flexDirection="row"
         alignItems="center"
         justifyContent="center"

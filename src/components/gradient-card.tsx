@@ -44,7 +44,7 @@ export const BackgroundGradient: React.FC<BackgroundGradientProps> = React.memo(
         <Canvas style={{ width: width + canvasPadding, height: height + canvasPadding }} >
             <RoundedRect x={canvasPadding / 2} y={canvasPadding / 2} width={width} height={height} color={theme.colors.$foreground} r={25} >
                 <SweepGradient c={vec((width + canvasPadding) / 2, (width + canvasPadding) / 2)}
-                    colors={[theme.colors.$primary, theme.colors.$headerBarBackground, theme.colors.$navbarBackground, theme.colors.$primary]}
+                    colors={[theme.colors.white, theme.colors.$headerBarBackground, theme.colors.$navbarBackground, theme.colors.white]}
                 />
                 <BlurMask blur={skValue} style={'solid'} />
             </RoundedRect>

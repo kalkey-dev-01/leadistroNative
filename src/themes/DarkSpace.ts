@@ -5,20 +5,22 @@ import light, { Theme } from './light'
 // Palette
 const p = {
   slate00: '#0f0f0f',
-  slate10: '#1f1f1f',
+  slate10: '#0A0708',
   slate20: '#292929',
   slate30: '#333333',
   slate40: '#3d3d3d',
   slate100: '#767577',
   slate900: '#FBFBFB',
-  blue70: '#455A5E'
+  gray10: '#212529',
+  blue: '#0A66C2',
+
 }
 
 export const theme: Theme = createTheme({
   ...light,
   colors: {
     ...light.colors,
-    $primary: p.blue70,
+    $primary: p.gray10,
     $secondary: p.slate00,
     $windowBackground: p.slate10,
     $background: p.slate10,
@@ -31,7 +33,8 @@ export const theme: Theme = createTheme({
     $sidebarForeground: p.slate900,
     $sidebarSeparator: p.slate900 + '20',
     $fieldInputBackground: p.slate00,
-    $fieldInputPlaceholderTextColor: p.slate100
+    $fieldInputPlaceholderTextColor: p.slate100,
+ 
   },
   statusBar: {
     barStyle: 'light-content' as StatusBarStyle

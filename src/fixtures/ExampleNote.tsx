@@ -94,10 +94,10 @@ export const ExampleListItem: React.FC<ExampleItemProps> = React.memo(props => {
             <BoldText fontName='Comfortaa' props={{ fontSize: 27.5, mb: 'xs', ellipsizeMode: 'tail' }}>{`${props.first_name.charAt(0).toLocaleUpperCase() + props.first_name.slice(1, 8)} ${props.last_name.charAt(0).toLocaleUpperCase() + props.last_name.slice(1, 9)}`}</BoldText>
             <Box flexDirection={'row'} width={'22.5%'} justifyContent={props.social_url && props.personal_email !== '' ? "space-between" : 'flex-end'} alignItems={'center'} >
               {
-                props.social_url && <FeatherIcon name={`linkedin`} style={{ backgroundColor: props.personal_email && props.social_url ? theme.colors.$navbarBackground : theme.colors.$sidebarSeparator, paddingHorizontal: 7.5, paddingVertical: 7.5, borderRadius: 4, borderColor: theme.colors.$navbarBackground, borderWidth: 0.5 }} size={22.5} />
+                props.social_url && <FeatherIcon name={`linkedin`} style={{ color: theme.colors.white, backgroundColor: theme.colors.blue, paddingHorizontal: 7.5, paddingVertical: 7.5, borderRadius: 4, borderColor: theme.colors.$navbarBackground, borderWidth: 0.5 }} size={22.5} />
               }
               {
-                props.personal_email && <FeatherIcon name={`mail`} style={{ backgroundColor: props.personal_email && props.social_url ? theme.colors.$navbarBackground : theme.colors.$sidebarSeparator, paddingHorizontal: 7.5, paddingVertical: 7.5, borderRadius: 4, borderColor: theme.colors.$navbarBackground, borderWidth: 0.5 }} size={22.5} />
+                props.personal_email && <FeatherIcon name={`mail`} style={{ color: theme.colors.white, backgroundColor: theme.colors.red, paddingHorizontal: 7.5, paddingVertical: 7.5, borderRadius: 4, borderColor: theme.colors.$navbarBackground, borderWidth: 0.5 }} size={22.5} />
               }
             </Box>
             {/* <FeatherIcon name={props.personal_email && props.social_url !== "" ? `user` : `user-x`} style={{ backgroundColor: props.personal_email && props.social_url ? theme.colors.$navbarBackground : theme.colors.$sidebarSeparator, padding: 7.5, borderRadius: 5 }} size={25} /> */}
@@ -167,7 +167,7 @@ export const ExampleListItem: React.FC<ExampleItemProps> = React.memo(props => {
               :
               null
           }
-         
+
         </TouchableOpacity>
       </Box>
     </SwipeableView>

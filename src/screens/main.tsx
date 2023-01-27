@@ -78,11 +78,8 @@ export default function MainScreen({ navigation }: Props) {
         return (
             <Container justifyContent={'center'} alignItems={'center'}>
                 <Box alignItems={'center'} justifyContent='center'>
-                
                         <Loading col={theme.colors.white} />
-               
                 </Box>
-
             </Container>
         )
     }

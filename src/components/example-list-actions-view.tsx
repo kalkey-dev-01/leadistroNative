@@ -58,8 +58,8 @@ export const SSWListActionView: React.FC<Props> = ({ progress }) => {
         justifyContent="center"
         style={iconStyle}
       >
-        <FeatherIcon name="globe" color="white" size={18} />
-        <FeatherIcon name="save" color="white" size={12} />
+        <FeatherIcon name="globe" color="white" size={20} style={{paddingHorizontal:2}} />
+        <FeatherIcon name="save" color="white" size={14} style={{paddingHorizontal:2}} />
       </AnimatedBox>
     </Box>
   )

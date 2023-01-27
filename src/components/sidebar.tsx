@@ -16,7 +16,7 @@ const Sidebar: React.FC<DrawerContentComponentProps> = ({ navigation }) => {
     return (
         <Box flex={1} bg={'$sidebarBackground'}>
             <SafeAreaView>
-                <Image source={require('../assets/images/Logo.png')} style={{ maxHeight: 125, width: '100%', alignSelf: 'center', resizeMode: 'contain', marginTop: 25 }} />
+                <Image source={require('../assets/images/leadistroWhite.png')} style={{ maxHeight: 100, width: '100%', alignSelf: 'center', resizeMode: 'contain', marginTop: 25 }} />
                 <SemiBoldText fontName='Comfortaa' props={{ textAlign: 'center', variant: 'sidebar', fontSize: 35, m: 'lg' }}>
                     leadistro
                 </SemiBoldText>

@@ -17,6 +17,10 @@ import React from 'react';
 // import theme from './themes/DarkSpace';
 import WelcomeScreen from './screens/WelcomeScreen';
 import RegisterScreen from './screens/RegisterScreen';
+import { UserStateLoadingAtom } from './state/searchbar';
+import { Box, Container } from './atoms';
+import Loading from './components/loading-spin-animation';
+import theme from './themes/DarkSpace';
 
 
 
@@ -93,15 +97,25 @@ export const SignedInNavigations = () => {
 
 export default function Navigations() {
     const [user, setUser] = useAtom(AuthAtom)
-
+    const [loading, setLoading] = useAtom(UserStateLoadingAtom)
 
 
     React.useEffect(() => {
         auth().onAuthStateChanged(userState => {
+            setLoading(true)
             setUser(userState)
+            setLoading(false)
         })
     }, [])
-
+    if (loading) {
+        return (
+            <Container justifyContent={'center'} alignItems={'center'}>
+                <Box alignItems={'center'} justifyContent='center'>
+                    <Loading col={theme.colors.white} />
+                </Box>
+            </Container>
+        )
+    }
     return (
         <>{user ? <SignedInNavigations /> : <SignedOutNavigations />}</>
     )

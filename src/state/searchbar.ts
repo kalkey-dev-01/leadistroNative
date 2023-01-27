@@ -10,6 +10,7 @@ export const responseDataAtom = atom<Array<EmployeeContact>>([])
 // export const responseErrorAtom = atom<AxiosError>
 
 export const loadingAtom = atom<boolean>(false)
+export const UserStateLoadingAtom = atom<boolean>(false)
 
 export const sswAtom = atom<Array<ConvertCompanyNames>>([])
 

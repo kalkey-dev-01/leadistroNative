@@ -6,7 +6,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Box, Container, TextInput, TouchableOpacity } from '@/atoms';
 import { BoldText } from '@/components/Typography';
 import auth from '@react-native-firebase/auth'
-import { Controller, useForm } from 'react-hook-form';
+import { Controller, FieldValues, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { RegisterSchema } from '@/fixtures/zodSchema';
 
@@ -24,9 +24,10 @@ export default function RegisterScreen({ }: Props) {
         } = useForm({
                 resolver: zodResolver(RegisterSchema)
         })
-        
-        const onSubmit = async(data: any) => {     
-                  await auth().createUserWithEmailAndPassword(data.email,data.password).then(()=> Alert.alert('Welcome to your Leadistro','Your account has been successfully created',[{style:'cancel'}])).catch((e:any) => Alert.alert('Error Creating Account',e.message))
+
+        const onSubmit = async (data: FieldValues) => {
+                
+                await auth().createUserWithEmailAndPassword(data.email, data.password).then(() => Alert.alert('Welcome to your Leadistro', 'Your account has been successfully created', [{ style: 'cancel' }])).catch((e: any) => Alert.alert('Error Creating Account', e.message))
         }
         // console.log(handleSubmit(onSubmit));
         return (
@@ -34,7 +35,7 @@ export default function RegisterScreen({ }: Props) {
                         <Image source={require('../assets/images/leadistroCircLogo.png')}
                                 style={{ height: '25%', width: '100%', marginVertical: 25 }}
                                 resizeMode='contain' resizeMethod='auto' />
-                     
+
                         <Box flexDirection={'row-reverse'}>
                                 <Controller control={control} name={'email'} render={({ field: { onChange, value, onBlur } }) => (
                                         <TextInput

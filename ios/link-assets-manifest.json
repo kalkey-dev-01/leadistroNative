@@ -46,6 +46,14 @@
       "sha1": "8a4ace9392d06bcb7f8ea2f5169b07e4c383a90d"
     },
     {
+      "path": "src/assets/images/CircLogo.png",
+      "sha1": "488216a3a408b59ac465bae94fe990145c0aaee9"
+    },
+    {
+      "path": "src/assets/images/CircLogoBlack.png",
+      "sha1": "df0f029616732b31a35f88eb5c7dabf456f62289"
+    },
+    {
       "path": "src/assets/images/leadistroBlack.png",
       "sha1": "283bb9fbb1a9d2020bb2db848a2833bcf7c2c41d"
     },

@@ -29,6 +29,8 @@
 		F872E48237F24FAAAC30BFEF /* leadistroCircLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 96D9719048814F59A6B970F0 /* leadistroCircLogo.png */; };
 		8E335211EAC54CD093584F88 /* leadistroBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = 164BBEE577314D8CA031FA18 /* leadistroBlack.png */; };
 		571D75BC01914E51B0191ED0 /* leadistroWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = F5AB75BF73944907A8D9514F /* leadistroWhite.png */; };
+		D4AC5C8996A546F8B5D2212B /* CircLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = A09D5F7B42E348C38CFA4EC2 /* CircLogo.png */; };
+		7DCF5E9C3F934FC68D365A4D /* CircLogoBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = 441329DAB3B7448C9D5B1EBE /* CircLogoBlack.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +76,8 @@
 		96D9719048814F59A6B970F0 /* leadistroCircLogo.png */ = {isa = PBXFileReference; name = "leadistroCircLogo.png"; path = "../src/assets/images/leadistroCircLogo.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		164BBEE577314D8CA031FA18 /* leadistroBlack.png */ = {isa = PBXFileReference; name = "leadistroBlack.png"; path = "../src/assets/images/leadistroBlack.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		F5AB75BF73944907A8D9514F /* leadistroWhite.png */ = {isa = PBXFileReference; name = "leadistroWhite.png"; path = "../src/assets/images/leadistroWhite.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A09D5F7B42E348C38CFA4EC2 /* CircLogo.png */ = {isa = PBXFileReference; name = "CircLogo.png"; path = "../src/assets/images/CircLogo.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		441329DAB3B7448C9D5B1EBE /* CircLogoBlack.png */ = {isa = PBXFileReference; name = "CircLogoBlack.png"; path = "../src/assets/images/CircLogoBlack.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +201,8 @@
 				96D9719048814F59A6B970F0 /* leadistroCircLogo.png */,
 				164BBEE577314D8CA031FA18 /* leadistroBlack.png */,
 				F5AB75BF73944907A8D9514F /* leadistroWhite.png */,
+				A09D5F7B42E348C38CFA4EC2 /* CircLogo.png */,
+				441329DAB3B7448C9D5B1EBE /* CircLogoBlack.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -313,6 +319,8 @@
 				F872E48237F24FAAAC30BFEF /* leadistroCircLogo.png in Resources */,
 				8E335211EAC54CD093584F88 /* leadistroBlack.png in Resources */,
 				571D75BC01914E51B0191ED0 /* leadistroWhite.png in Resources */,
+				D4AC5C8996A546F8B5D2212B /* CircLogo.png in Resources */,
+				7DCF5E9C3F934FC68D365A4D /* CircLogoBlack.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

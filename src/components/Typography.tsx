@@ -13,7 +13,9 @@ interface Props {
 export const RegularText: React.FC<Props> = ({ props, children, fontName }) => {
     return (
         <>
-            <Text fontFamily={`${fontName}-Regular`} {...props}>
+            <Text fontFamily={`${fontName}-Regular`} style={{
+                includeFontPadding: false
+            }} {...props}>
                 {children}
             </Text>
         </>
@@ -23,7 +25,9 @@ export const RegularText: React.FC<Props> = ({ props, children, fontName }) => {
 export const BoldText: React.FC<Props> = ({ props, children, fontName }) => {
     return (
         <>
-            <Text fontFamily={`${fontName}-Bold`} {...props}>
+            <Text fontFamily={`${fontName}-Bold`} style={{
+                includeFontPadding: false
+            }} {...props}>
                 {children}
             </Text>
         </>
@@ -33,7 +37,9 @@ export const BoldText: React.FC<Props> = ({ props, children, fontName }) => {
 export const MediumText: React.FC<Props> = ({ props, children, fontName }) => {
     return (
         <>
-            <Text fontFamily={`${fontName}-Medium`} {...props}>
+            <Text fontFamily={`${fontName}-Medium`} style={{
+                includeFontPadding: false
+            }}  {...props}>
                 {children}
             </Text>
         </>
@@ -43,7 +49,9 @@ export const MediumText: React.FC<Props> = ({ props, children, fontName }) => {
 export const SemiBoldText: React.FC<Props> = ({ props, children, fontName }) => {
     return (
         <>
-            <Text fontFamily={`${fontName}-SemiBold`} {...props}>
+            <Text fontFamily={`${fontName}-SemiBold`} style={{
+                includeFontPadding: false
+            }} {...props}>
                 {children}
             </Text>
         </>
@@ -53,7 +61,9 @@ export const SemiBoldText: React.FC<Props> = ({ props, children, fontName }) => 
 export const lightText: React.FC<Props> = ({ props, children, fontName }) => {
     return (
         <>
-            <Text fontFamily={`${fontName}-Light`} {...props}>
+            <Text fontFamily={`${fontName}-Light`} style={{
+                includeFontPadding: false
+            }} {...props}>
                 {children}
             </Text>
         </>

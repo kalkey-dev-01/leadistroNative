@@ -27,9 +27,7 @@ export default function WelcomeScreen({ navigation }: Props) {
                         leadistro
                     </BoldText>
                     {/* SubHeading */}
-
                     <RegularText fontName='Poppins' props={{
-
                         fontSize: 25,
                         mb: 'md',
                         textAlign: 'center',
@@ -52,10 +50,6 @@ export default function WelcomeScreen({ navigation }: Props) {
                         <MediumText fontName='Poppins' props={{
                             fontSize: 35,
                             textAlign: 'center',
-
-                            style: {
-                                includeFontPadding: false
-                            }
                         }}>
                             Login
                         </MediumText>
@@ -78,9 +72,6 @@ export default function WelcomeScreen({ navigation }: Props) {
                             color: '$background',
                             fontSize: 30,
                             textAlign: 'center',
-                            style: {
-                                includeFontPadding: false
-                            }
                         }}>
                             Create Account
                         </BoldText>

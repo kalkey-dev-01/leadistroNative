@@ -21,9 +21,9 @@ export default function LoginScreen({ }: Props) {
 
 
     return (
-        <Container justifyContent={'flex-start'} alignItems={'center'}>
-            <Image source={require('../assets/images/leadistroCircLogo.png')}
-                style={{ height: '25%', width: '100%', marginVertical: 25 }}
+        <Container justifyContent={'flex-start'} alignItems={'center'} >
+            <Image source={require('../assets/images/leadistroBlack.png')}
+                style={{ height: '10%',  paddingVertical: 25, backgroundColor:'#fff' }}
                 resizeMode='contain' resizeMethod='auto' />
             <Box flexDirection={'row-reverse'}>
                 <Controller control={control} name={'email'} render={({ field: { onChange, value, onBlur } }) => (

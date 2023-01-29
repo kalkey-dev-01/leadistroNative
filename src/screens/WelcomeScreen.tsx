@@ -1,11 +1,12 @@
-import { Box, Container, TouchableOpacity } from '@/atoms'
+import { Box, Container, Pressable, TouchableOpacity } from '@/atoms'
+import Image from '@/atoms/image'
 import { BoldText, MediumText, RegularText, SemiBoldText } from '@/components/Typography'
 import { SignedOutStackParamList } from '@/navs'
 // import theme from '@/themes/DarkSpace'
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import React from 'react'
-import { Image } from 'react-native'
+
 
 
 
@@ -16,32 +17,38 @@ type Props = NativeStackScreenProps<SignedOutStackParamList>
 export default function WelcomeScreen({ navigation }: Props) {
     return (
         <Container justifyContent={'flex-start'} alignItems={'center'}>
-            <Box justifyContent={'space-between'} height={'40%'} alignItems={'center'} flexDirection={'column'} bg={'$background'}>
-                {/* Heading */}
-                <BoldText fontName='Comfortaa' props={{
-                    fontSize: 50,
-                    my: 'xl'
-                }}>
-                    leadistro
-                </BoldText>
-                {/* SubHeading */}
-                <RegularText fontName='Poppins' props={{
-                    fontSize: 25,
-                    mb: 'md',
-                    textAlign: 'center',
-                    px: "xl"
-                }}>
-                    Revolutionize lead Generation and Email Marketing
-                </RegularText>
-                {/* Logo */}
-                <Image source={require('../assets/images/CircLogo.png')} resizeMode='contain' style={{ width: 125, height: 125, top: 62.5, borderRadius: 75, borderColor: '#fff',borderWidth:0.75 }} />
+            <Box justifyContent={'center'} height={'40%'} alignItems={'center'} flexDirection={'column'} bg={'$background'}>
+                <Box alignItems={'center'} pb={'hg'}>
+                    {/* Heading */}
+                    <BoldText fontName='Comfortaa' props={{
+                        fontSize: 50,
+                        my: 'xl'
+                    }}>
+                        leadistro
+                    </BoldText>
+                    {/* SubHeading */}
 
+                    <RegularText fontName='Poppins' props={{
+
+                        fontSize: 25,
+                        mb: 'md',
+                        textAlign: 'center',
+                        px: "xl"
+                    }}>
+                        Revolutionize lead Generation and Email Marketing
+                    </RegularText>
+                </Box>
+            </Box>
+            {/* Logo */}
+            <Box alignItems={'center'} justifyContent={'center'}>
+                <Image resizeMode='contain' width={100} height={100} zIndex={10} source={require('../assets/images/leadistroWhite.png')} backgroundColor={'$sidebarBackground'} position={'absolute'} />
+                <Box height={200} width={200} backgroundColor={'$sidebarBackground'} position={'absolute'} zIndex={0} borderRadius={'hg'} />
             </Box>
             {/* CTA Section*/}
             <Box flexDirection={'column'} justifyContent={'center'} alignItems={'center'} height={'60%'} bg={'$sidebarBackground'} borderTopLeftRadius={"lg"} borderTopRightRadius={"lg"} zIndex={-10}>
                 {/* Login Button */}
                 <Box my={'lg'}  >
-                    <TouchableOpacity onPress={() => navigation.navigate('Login')} px={'lg'}  >
+                    <Pressable onPress={() => navigation.navigate('Login')} px={'lg'} py={'sm'} borderRadius={'xs'} borderColor={'$foreground'} borderWidth={2} bg={'$background'}  >
                         <MediumText fontName='Poppins' props={{
                             fontSize: 35,
                             textAlign: 'center',
@@ -49,11 +56,10 @@ export default function WelcomeScreen({ navigation }: Props) {
                             style: {
                                 includeFontPadding: false
                             }
-
                         }}>
                             Login
                         </MediumText>
-                    </TouchableOpacity>
+                    </Pressable>
                 </Box>
                 {/* Divider */}
                 <Box flexDirection={'row'} alignItems='center' my='lg'>

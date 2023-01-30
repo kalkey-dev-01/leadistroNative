@@ -39,7 +39,7 @@ export default function WelcomeScreen({ navigation }: Props) {
             </Box>
             {/* Logo */}
             <Box alignItems={'center'} justifyContent={'center'}>
-                <Image resizeMode='contain' width={100} height={100} zIndex={10} source={require('../assets/images/leadistroWhite.png')} backgroundColor={'$sidebarBackground'} position={'absolute'} />
+                <Image resizeMode='contain' width={100} height={100} zIndex={10} source={require('../assets/images/leadistroWhite.png')} backgroundColor={'$sidebarBackground'} position={'absolute'} borderRadius={'sm'} />
                 <Box height={200} width={200} backgroundColor={'$sidebarBackground'} position={'absolute'} zIndex={0} borderRadius={'hg'} />
             </Box>
             {/* CTA Section*/}

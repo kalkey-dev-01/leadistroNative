@@ -13,14 +13,18 @@ import Image from '@/atoms/image';
 import FeatherIcon from '@/components/icon';
 import { PasswordAtom } from '@/state/passwordState';
 import { useAtom } from 'jotai';
-
+import { onGoogleSignIn } from '@/fixtures/GoogleOAuth';
+import { loadingAtom } from '@/state/searchbar';
+import theme from '@/themes/DarkSpace';
+import Loading from '@/components/loading-spin-animation';
+import firestore from '@react-native-firebase/firestore'
 type Props = NativeStackScreenProps<SignedOutStackParamList>
 
 
-// console.log(auth().currentUser?.email);
+
 
 export default function RegisterScreen({ }: Props) {
-
+        const [loading, setLoading] = useAtom(loadingAtom)
         const {
                 control,
                 handleSubmit,
@@ -30,10 +34,38 @@ export default function RegisterScreen({ }: Props) {
         })
 
         const onSubmit = async (data: FieldValues) => {
+                setLoading(true)
+                await auth()
+                        .createUserWithEmailAndPassword(data.email, data.password)
+                        .then(() => Alert.alert('Welcome to your Leadistro', 'Your account has been successfully created', [{ style: 'cancel' }]))
+                        .catch(e => Alert.alert('Error Creating Account', e.message))
+                firestore().collection('users').doc(auth().currentUser?.email?.toString()).set({
+                        userEmail: auth().currentUser?.email,
+                        uid: auth().currentUser?.uid,
+                })
+                setLoading(false)
 
-                await auth().createUserWithEmailAndPassword(data.email, data.password).then(() => Alert.alert('Welcome to your Leadistro', 'Your account has been successfully created', [{ style: 'cancel' }])).catch((e: any) => Alert.alert('Error Creating Account', e.message))
         }
         const [secure, setSecure] = useAtom(PasswordAtom)
+        // if (errors.email?.message) {
+        //         return Alert.alert('Please', errors.email?.message.toString(), [{
+        //                 style: 'cancel'
+        //         }])
+        // }
+        // if (errors.password?.message) return Alert.alert('Please', errors.password?.message.toString(), [{
+        //         style: 'cancel'
+        // }])
+        if (loading) {
+                return (
+                        <>
+                                <Container justifyContent={'center'} alignItems={'center'}>
+                                        <Box alignItems={'center'} justifyContent='center'>
+                                                <Loading col={theme.colors.white} />
+                                        </Box>
+                                </Container>
+                        </>
+                )
+        }
         return (
                 <Container justifyContent={'flex-start'} alignItems={'center'}>
                         <Box justifyContent={'center'} height={'40%'} width={'100%'} alignItems={'center'} flexDirection={'column'} bg={'$background'} >
@@ -89,6 +121,13 @@ export default function RegisterScreen({ }: Props) {
                                                 }}
                                         />
                                 </Box>
+                                {
+                                        errors.email?.message
+                                        &&
+                                        <RegularText fontName='Comfortaa'>
+                                                {errors.email?.message.toString()}
+                                        </RegularText>
+                                }
                                 {/* Password Input Field */}
                                 <Box
                                         mb='lg' flexDirection={'row-reverse'} alignItems={'center'} justifyContent={'space-between'}
@@ -117,10 +156,15 @@ export default function RegisterScreen({ }: Props) {
                                                 }}
                                         />
                                 </Box>
+                                {
+                                        errors.password?.message
+                                        &&
+                                        <RegularText fontName='Comfortaa'>
+                                                {errors.password?.message.toString()}
+                                        </RegularText>
+                                }
                                 <Box mt={'md'} px={'xl'} py={'sm'} borderRadius={'lg'} bg={'$foreground'}>
-                                        <Pressable onPress={() => {
-                                                console.log(handleSubmit(onSubmit), errors.email?.message);
-                                        }}   >
+                                        <Pressable onPress={handleSubmit(onSubmit)}>
                                                 <BoldText fontName='Poppins' props={{
                                                         color: '$background',
                                                         fontSize: 30,
@@ -142,18 +186,13 @@ export default function RegisterScreen({ }: Props) {
                                 </Box>
                                 {/* Google Sign In Button */}
                                 <Pressable flexDirection={'row'} width={'72.5%'} alignItems={'center'} justifyContent={'space-between'} borderRadius={'md'} borderColor={'$foreground'} borderWidth={.75}
-                                        onPress={() => {
-                                                console.log('Nigga Attach Google O AUTH NIGAAA');
-                                        }}
-                                >
+                                        onPress={onGoogleSignIn}                                >
                                         <Box alignItems={'center'} justifyContent={'center'} width={45} height={45} borderColor={'$foreground'} borderWidth={1.25} borderRadius={'hg'}
-
                                         >
                                                 <Image source={require('../assets/images/leadistroWhite.png')} width={37.5} height={37.5}
                                                         resizeMethod='auto' resizeMode='contain' borderRadius={'hg'}
                                                 />
                                         </Box>
-
                                         <MediumText fontName='Poppins' props={{
                                                 color: '$foreground',
                                                 fontSize: 22,

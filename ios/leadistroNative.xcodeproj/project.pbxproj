@@ -15,7 +15,6 @@
 		7699B88040F8A987B510C191 /* libPods-leadistroNative-leadistroNativeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-leadistroNative-leadistroNativeTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		73D1C077AAA94E07AD3976F1 /* Comfortaa.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D85148B720324D96AF033BDF /* Comfortaa.ttf */; };
-		E3280B3FA937465F8B736C1C /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 58014540B4D54A2EBBC6B567 /* Logo.png */; };
 		E795AB23B65E4FB29A76CA32 /* Comfortaa-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 549986EBD7154BE5A71F4AD1 /* Comfortaa-Bold.ttf */; };
 		55A355C4BB834670A6AD1D2E /* Comfortaa-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F976220BBCD47A5B203C956 /* Comfortaa-Light.ttf */; };
 		659F0826394240568DCEF767 /* Comfortaa-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C8271E516D645C89A18653F /* Comfortaa-Medium.ttf */; };
@@ -26,11 +25,9 @@
 		5B87099AFE274772B3B894B1 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 86A8CBACDA2648E8B40CA577 /* Poppins-Medium.ttf */; };
 		2252B0715BC24608892C24F0 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D799153A6AC24137B722FC8C /* Poppins-Regular.ttf */; };
 		877268A1A22149969ED270DE /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 933DC601E1EA4DD8A62045CF /* Poppins-SemiBold.ttf */; };
-		F872E48237F24FAAAC30BFEF /* leadistroCircLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 96D9719048814F59A6B970F0 /* leadistroCircLogo.png */; };
 		8E335211EAC54CD093584F88 /* leadistroBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = 164BBEE577314D8CA031FA18 /* leadistroBlack.png */; };
 		571D75BC01914E51B0191ED0 /* leadistroWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = F5AB75BF73944907A8D9514F /* leadistroWhite.png */; };
-		D4AC5C8996A546F8B5D2212B /* CircLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = A09D5F7B42E348C38CFA4EC2 /* CircLogo.png */; };
-		7DCF5E9C3F934FC68D365A4D /* CircLogoBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = 441329DAB3B7448C9D5B1EBE /* CircLogoBlack.png */; };
+		1A20ADDD8B254E61A30B5CC1 /* OauthVec.png in Resources */ = {isa = PBXBuildFile; fileRef = 09852DD4DF47464A94DD495E /* OauthVec.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,7 +59,6 @@
 		89C6BE57DB24E9ADA2F236DE /* Pods-leadistroNative-leadistroNativeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-leadistroNative-leadistroNativeTests.release.xcconfig"; path = "Target Support Files/Pods-leadistroNative-leadistroNativeTests/Pods-leadistroNative-leadistroNativeTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		D85148B720324D96AF033BDF /* Comfortaa.ttf */ = {isa = PBXFileReference; name = "Comfortaa.ttf"; path = "../src/assets/fonts/Comfortaa.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		58014540B4D54A2EBBC6B567 /* Logo.png */ = {isa = PBXFileReference; name = "Logo.png"; path = "../src/assets/images/Logo.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		549986EBD7154BE5A71F4AD1 /* Comfortaa-Bold.ttf */ = {isa = PBXFileReference; name = "Comfortaa-Bold.ttf"; path = "../src/assets/fonts/Comfortaa-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		5F976220BBCD47A5B203C956 /* Comfortaa-Light.ttf */ = {isa = PBXFileReference; name = "Comfortaa-Light.ttf"; path = "../src/assets/fonts/Comfortaa-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		4C8271E516D645C89A18653F /* Comfortaa-Medium.ttf */ = {isa = PBXFileReference; name = "Comfortaa-Medium.ttf"; path = "../src/assets/fonts/Comfortaa-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
@@ -73,11 +69,9 @@
 		86A8CBACDA2648E8B40CA577 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; name = "Poppins-Medium.ttf"; path = "../src/assets/fonts/Poppins-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		D799153A6AC24137B722FC8C /* Poppins-Regular.ttf */ = {isa = PBXFileReference; name = "Poppins-Regular.ttf"; path = "../src/assets/fonts/Poppins-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		933DC601E1EA4DD8A62045CF /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; name = "Poppins-SemiBold.ttf"; path = "../src/assets/fonts/Poppins-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		96D9719048814F59A6B970F0 /* leadistroCircLogo.png */ = {isa = PBXFileReference; name = "leadistroCircLogo.png"; path = "../src/assets/images/leadistroCircLogo.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		164BBEE577314D8CA031FA18 /* leadistroBlack.png */ = {isa = PBXFileReference; name = "leadistroBlack.png"; path = "../src/assets/images/leadistroBlack.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		F5AB75BF73944907A8D9514F /* leadistroWhite.png */ = {isa = PBXFileReference; name = "leadistroWhite.png"; path = "../src/assets/images/leadistroWhite.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		A09D5F7B42E348C38CFA4EC2 /* CircLogo.png */ = {isa = PBXFileReference; name = "CircLogo.png"; path = "../src/assets/images/CircLogo.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		441329DAB3B7448C9D5B1EBE /* CircLogoBlack.png */ = {isa = PBXFileReference; name = "CircLogoBlack.png"; path = "../src/assets/images/CircLogoBlack.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		09852DD4DF47464A94DD495E /* OauthVec.png */ = {isa = PBXFileReference; name = "OauthVec.png"; path = "../src/assets/images/OauthVec.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,7 +181,6 @@
 			isa = "PBXGroup";
 			children = (
 				D85148B720324D96AF033BDF /* Comfortaa.ttf */,
-				58014540B4D54A2EBBC6B567 /* Logo.png */,
 				549986EBD7154BE5A71F4AD1 /* Comfortaa-Bold.ttf */,
 				5F976220BBCD47A5B203C956 /* Comfortaa-Light.ttf */,
 				4C8271E516D645C89A18653F /* Comfortaa-Medium.ttf */,
@@ -198,11 +191,9 @@
 				86A8CBACDA2648E8B40CA577 /* Poppins-Medium.ttf */,
 				D799153A6AC24137B722FC8C /* Poppins-Regular.ttf */,
 				933DC601E1EA4DD8A62045CF /* Poppins-SemiBold.ttf */,
-				96D9719048814F59A6B970F0 /* leadistroCircLogo.png */,
 				164BBEE577314D8CA031FA18 /* leadistroBlack.png */,
 				F5AB75BF73944907A8D9514F /* leadistroWhite.png */,
-				A09D5F7B42E348C38CFA4EC2 /* CircLogo.png */,
-				441329DAB3B7448C9D5B1EBE /* CircLogoBlack.png */,
+				09852DD4DF47464A94DD495E /* OauthVec.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -305,7 +296,6 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				73D1C077AAA94E07AD3976F1 /* Comfortaa.ttf in Resources */,
-				E3280B3FA937465F8B736C1C /* Logo.png in Resources */,
 				E795AB23B65E4FB29A76CA32 /* Comfortaa-Bold.ttf in Resources */,
 				55A355C4BB834670A6AD1D2E /* Comfortaa-Light.ttf in Resources */,
 				659F0826394240568DCEF767 /* Comfortaa-Medium.ttf in Resources */,
@@ -316,11 +306,9 @@
 				5B87099AFE274772B3B894B1 /* Poppins-Medium.ttf in Resources */,
 				2252B0715BC24608892C24F0 /* Poppins-Regular.ttf in Resources */,
 				877268A1A22149969ED270DE /* Poppins-SemiBold.ttf in Resources */,
-				F872E48237F24FAAAC30BFEF /* leadistroCircLogo.png in Resources */,
 				8E335211EAC54CD093584F88 /* leadistroBlack.png in Resources */,
 				571D75BC01914E51B0191ED0 /* leadistroWhite.png in Resources */,
-				D4AC5C8996A546F8B5D2212B /* CircLogo.png in Resources */,
-				7DCF5E9C3F934FC68D365A4D /* CircLogoBlack.png in Resources */,
+				1A20ADDD8B254E61A30B5CC1 /* OauthVec.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

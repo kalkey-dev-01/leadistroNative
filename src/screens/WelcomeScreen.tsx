@@ -1,6 +1,8 @@
 import { Box, Container, Pressable, TouchableOpacity } from '@/atoms'
 import Image from '@/atoms/image'
 import { BoldText, MediumText, RegularText, SemiBoldText } from '@/components/Typography'
+import FeatherIcon from '@/components/icon'
+import { onGoogleSignIn } from '@/fixtures/GoogleOAuth'
 import { SignedOutStackParamList } from '@/navs'
 // import theme from '@/themes/DarkSpace'
 
@@ -45,15 +47,17 @@ export default function WelcomeScreen({ navigation }: Props) {
             {/* CTA Section*/}
             <Box flexDirection={'column'} justifyContent={'center'} alignItems={'center'} height={'60%'} bg={'$sidebarBackground'} borderTopLeftRadius={"lg"} borderTopRightRadius={"lg"} zIndex={-10}>
                 {/* Login Button */}
-                <Box my={'lg'}  >
-                    <Pressable onPress={() => navigation.navigate('Login')} px={'lg'} py={'sm'} borderRadius={'xs'} borderColor={'$foreground'} borderWidth={2} bg={'$background'}  >
-                        <MediumText fontName='Poppins' props={{
-                            fontSize: 35,
+                <Box my={'lg'} px={'md'} py={'sm'} borderRadius={'lg'} bg={'$foreground'}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Register')} flexDirection={'row'} alignItems={'center'} android_ripple={{ color: 'black', borderless: true }}  >
+                        <BoldText fontName='Poppins' props={{
+                            color: '$background',
+                            fontSize: 25,
                             textAlign: 'center',
                         }}>
-                            Login
-                        </MediumText>
-                    </Pressable>
+                            Get Started For Free
+                        </BoldText>
+                        <FeatherIcon name='arrow-right-circle' size={25} color={'$background'} style={{ paddingLeft: 10 }} />
+                    </TouchableOpacity>
                 </Box>
                 {/* Divider */}
                 <Box flexDirection={'row'} alignItems='center' my='lg'>
@@ -65,18 +69,30 @@ export default function WelcomeScreen({ navigation }: Props) {
                     </Box>
                     <Box flex={1} height={1} backgroundColor='$foreground' />
                 </Box>
-                {/* Register Button */}
-                <Box my={'lg'} px={'md'} py={'sm'} borderRadius={'xs'} bg={'$foreground'}>
-                    <TouchableOpacity onPress={() => navigation.navigate('Register')} android_ripple={{ color: 'black', borderless: true }}  >
-                        <BoldText fontName='Poppins' props={{
-                            color: '$background',
-                            fontSize: 30,
+                {/* Google Sign In Oauth */}
+                <Box mb={'xxl'} mt={"lg"}  >
+                    <Pressable flexDirection={'row-reverse'} alignItems={'center'} onPress={onGoogleSignIn} px={'lg'} py={'sm'} borderRadius={'xs'} borderColor={'$foreground'} borderWidth={2} bg={'$background'}  >
+                        <MediumText fontName='Poppins' props={{
+                            fontSize: 27,
                             textAlign: 'center',
                         }}>
-                            Create Account
-                        </BoldText>
-                    </TouchableOpacity>
+                            Sign In with Google
+                        </MediumText>
+                        <Image source={require('../assets/images/OauthVec.png')} height={25} width={25} mr={'sm'} />
+                    </Pressable>
                 </Box>
+
+                {/* Disclamier */}
+                <RegularText fontName='Comfortaa' props={{
+                    textAlign: 'center',
+                    fontSize: 14,
+                    px:'xxl',
+                    letterSpacing:0.25,
+                    lineHeight:25
+
+                }}>
+                    By clicking "Sign In With Google" above you acknowledge that you have understood and agree to our Terms and Policy
+                </RegularText>
             </Box>
         </Container>
     )

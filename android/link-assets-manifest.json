@@ -46,28 +46,16 @@
       "sha1": "8a4ace9392d06bcb7f8ea2f5169b07e4c383a90d"
     },
     {
-      "path": "src/assets/images/CircLogo.png",
-      "sha1": "488216a3a408b59ac465bae94fe990145c0aaee9"
-    },
-    {
-      "path": "src/assets/images/CircLogoBlack.png",
-      "sha1": "df0f029616732b31a35f88eb5c7dabf456f62289"
-    },
-    {
       "path": "src/assets/images/leadistroBlack.png",
       "sha1": "283bb9fbb1a9d2020bb2db848a2833bcf7c2c41d"
-    },
-    {
-      "path": "src/assets/images/leadistroCircLogo.png",
-      "sha1": "c72d82cac07f5e57b3b24244337136931c0a7ea4"
     },
     {
       "path": "src/assets/images/leadistroWhite.png",
       "sha1": "a29408f62f2ed99c91771aa9bd6bc428537ae8e7"
     },
     {
-      "path": "src/assets/images/Logo.png",
-      "sha1": "094123a6504b2965d3cde94661992a04eefbb8d1"
+      "path": "src/assets/images/OauthVec.png",
+      "sha1": "7f54563bc3b23927d076e2be865a546efab487e7"
     }
   ]
 }

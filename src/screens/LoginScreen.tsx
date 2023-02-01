@@ -50,7 +50,6 @@ export default function LoginScreen({ }: Props) {
         )
     }
     return (
-
         <Container justifyContent={'flex-start'} alignItems={'center'} >
             {/* Login Header Image */}
             <Box alignItems={'center'} justifyContent={'center'} width={175} height={175} bg='$foreground' borderRadius={'hg'}

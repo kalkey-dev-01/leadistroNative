@@ -60,7 +60,7 @@ export default function WelcomeScreen({ navigation }: Props) {
                     </TouchableOpacity>
                 </Box>
                 {/* Divider */}
-                <Box flexDirection={'row'} alignItems='center' my='lg'>
+                <Box flexDirection={'row'} alignItems='center' mt='lg' mb='xl'>
                     <Box flex={1} height={1} backgroundColor='$foreground' />
                     <Box width={50}>
                         <SemiBoldText fontName='Comfortaa' props={{ fontSize: 15, color: '$foreground', textAlign: 'center' }}>

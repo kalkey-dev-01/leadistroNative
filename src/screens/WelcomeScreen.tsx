@@ -73,10 +73,10 @@ export default function WelcomeScreen({ navigation }: Props) {
                 <Box mb={'xxl'} mt={"lg"}  >
                     <Pressable flexDirection={'row-reverse'} alignItems={'center'} onPress={onGoogleSignIn} px={'lg'} py={'sm'} borderRadius={'xs'} borderColor={'$foreground'} borderWidth={2} bg={'$background'}  >
                         <MediumText fontName='Poppins' props={{
-                            fontSize: 27,
+                            fontSize: 25,
                             textAlign: 'center',
                         }}>
-                            Sign In with Google
+                            Sign Up with Google
                         </MediumText>
                         <Image source={require('../assets/images/OauthVec.png')} height={25} width={25} mr={'sm'} />
                     </Pressable>
@@ -89,7 +89,6 @@ export default function WelcomeScreen({ navigation }: Props) {
                     px:'xxl',
                     letterSpacing:0.25,
                     lineHeight:25
-
                 }}>
                     By clicking "Sign In With Google" above you acknowledge that you have understood and agree to our Terms and Policy
                 </RegularText>

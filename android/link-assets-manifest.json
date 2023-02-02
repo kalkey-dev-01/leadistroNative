@@ -46,6 +46,10 @@
       "sha1": "8a4ace9392d06bcb7f8ea2f5169b07e4c383a90d"
     },
     {
+      "path": "src/assets/images/email.png",
+      "sha1": "24c81bf38e612a865a408ad0155516d66003439b"
+    },
+    {
       "path": "src/assets/images/leadistroBlack.png",
       "sha1": "283bb9fbb1a9d2020bb2db848a2833bcf7c2c41d"
     },
@@ -54,8 +58,16 @@
       "sha1": "a29408f62f2ed99c91771aa9bd6bc428537ae8e7"
     },
     {
+      "path": "src/assets/images/marketing.png",
+      "sha1": "2ed8ba7601501eda9694128daff366a7df09a6d9"
+    },
+    {
       "path": "src/assets/images/OauthVec.png",
       "sha1": "7f54563bc3b23927d076e2be865a546efab487e7"
+    },
+    {
+      "path": "src/assets/images/plan.png",
+      "sha1": "3afdc6f3fc146923ff637c784f295ed3026c590d"
     }
   ]
 }

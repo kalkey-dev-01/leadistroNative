@@ -18,7 +18,7 @@ export async function onGoogleSignIn() {
         .then(user => firestore().collection('users').doc(user.user.email?.toString()).set({
             userEmail: user.user.email,
             uid: user.user.uid,
-            registeredOn: new Date(Date.now()).toLocaleDateString(),
+            lastLoginOn: new Date(Date.now()).toLocaleDateString(),
             additionalInfo: {
                 name: user.additionalUserInfo?.profile?.name,
                 picture: user.additionalUserInfo?.profile?.picture,

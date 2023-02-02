@@ -175,7 +175,7 @@ export default function RegisterScreen({ navigation }: Props) {
                                         mb='md' flexDirection={'row-reverse'} alignItems={'center'} justifyContent={'space-between'}
                                         width={'85%'} borderRadius={'lg'} borderColor={'$foreground'} borderWidth={1.2}
                                 >
-                                        <FeatherIcon name={secure ? 'eye-off' : 'eye'} size={25} style={{ paddingRight: 25 }} onPress={() => setSecure(!secure)} />
+                                        <FeatherIcon name={secure ? 'eye' : 'eye-off'} size={25} style={{ paddingRight: 25 }} onPress={() => setSecure(!secure)} />
                                         <Controller control={control} name={'password'} render={({ field: { onChange, value, onBlur } }) => (
                                                 <TextInput
                                                         placeholder='Password' px={'md'} borderColor={'white'} borderRadius={'md'}
@@ -186,7 +186,7 @@ export default function RegisterScreen({ navigation }: Props) {
                                                         autoCapitalize='none'
                                                         autoCorrect={false}
                                                         autoComplete='off'
-                                                        secureTextEntry={secure}
+                                                        secureTextEntry={!secure}
                                                         textContentType='password'
                                                 />
                                         )}

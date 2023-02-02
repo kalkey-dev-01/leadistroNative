@@ -5,22 +5,19 @@ import Sidebar from './components/sidebar';
 import { NavigatorScreenParams } from '@react-navigation/native';
 import SSWScreen from './screens/ssw';
 import LoginScreen from './screens/LoginScreen';
-
-import { OnboardingScreens } from './screens/OnboardingScreens';
+import { useAtom, useAtomValue } from 'jotai'
+import { atomWithStorage, createJSONStorage } from 'jotai/utils'
 import auth from '@react-native-firebase/auth'
-import { useAtom } from 'jotai';
 import { AuthAtom } from './state/authStateAtom';
-// import { loadingAtom } from './state/searchbar';
 import React from 'react';
-// import { Container, Box } from './atoms';
-// import Loading from './components/loading-spin-animation';
-// import theme from './themes/DarkSpace';
 import WelcomeScreen from './screens/WelcomeScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import { UserStateLoadingAtom } from './state/searchbar';
 import { Box, Container } from './atoms';
 import Loading from './components/loading-spin-animation';
 import theme from './themes/DarkSpace';
+import OnboardingScreens from './screens/OnboardingScreens';
+
 
 
 
@@ -73,13 +70,21 @@ function Home() {
     )
 }
 
+// const storage = createJSONStorage<boolean>(() => AsyncStorage)
+export const SeenOnboaringAtom = atomWithStorage<boolean>('hasSeen', false,
+)
+
 export const SignedOutNavigations = () => {
+    const hasSeen = useAtomValue(SeenOnboaringAtom)
+    console.log(hasSeen, 'Seen');
+    // console.log(!seen, 'Not ! Seen');
+
     return (
-        <SignedOutStack.Navigator initialRouteName='Welcome' screenOptions={{ animation: 'fade' }}>
+        <SignedOutStack.Navigator initialRouteName={hasSeen ? 'Welcome' : 'OnBoarding'} screenOptions={{ animation: 'fade' }}>
             <SignedOutStack.Screen name='Welcome' component={WelcomeScreen} options={{ headerShown: false }} />
             <SignedOutStack.Screen name='Login' component={LoginScreen} options={{ headerShown: false }} />
             <SignedOutStack.Screen name='Register' component={RegisterScreen} options={{ headerShown: false }} />
-            <SignedOutStack.Screen name='OnBoarding' component={OnboardingScreens} options={{ headerShown: false }} />
+            {!hasSeen && <SignedOutStack.Screen name='OnBoarding' component={OnboardingScreens} options={{ headerShown: false }} />}
         </SignedOutStack.Navigator>
     )
 }

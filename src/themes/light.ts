@@ -28,7 +28,10 @@ const theme = createTheme({
     lg: 16,
     xl: 24,
     xxl: 48,
-    hg: 128
+    hg: 128,
+    '50': 50,
+    '100': 100,
+    '150': 150
   },
   breakpoints: {
     phone: 0,
@@ -56,6 +59,7 @@ const theme = createTheme({
   },
   borderRadii: {
     xs: 4,
+    '10': 10,
     sm: 16,
     md: 24,
     lg: 64,
@@ -86,4 +90,3 @@ const theme = createTheme({
 export default theme
 
 export type Theme = typeof theme
-

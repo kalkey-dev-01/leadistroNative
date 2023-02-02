@@ -28,6 +28,9 @@
 		8E335211EAC54CD093584F88 /* leadistroBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = 164BBEE577314D8CA031FA18 /* leadistroBlack.png */; };
 		571D75BC01914E51B0191ED0 /* leadistroWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = F5AB75BF73944907A8D9514F /* leadistroWhite.png */; };
 		1A20ADDD8B254E61A30B5CC1 /* OauthVec.png in Resources */ = {isa = PBXBuildFile; fileRef = 09852DD4DF47464A94DD495E /* OauthVec.png */; };
+		BDBAAFCFC31240EF92F4283F /* email.png in Resources */ = {isa = PBXBuildFile; fileRef = 70F3B63A4A094D7EA1EF71AE /* email.png */; };
+		0C6097ACA60744519082CCB6 /* marketing.png in Resources */ = {isa = PBXBuildFile; fileRef = F89A92135FEA4D6F8B1A0FF1 /* marketing.png */; };
+		0504D30FDFCD47BB87EBA05B /* plan.png in Resources */ = {isa = PBXBuildFile; fileRef = CA599F9BE5054C79AE938276 /* plan.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +75,9 @@
 		164BBEE577314D8CA031FA18 /* leadistroBlack.png */ = {isa = PBXFileReference; name = "leadistroBlack.png"; path = "../src/assets/images/leadistroBlack.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		F5AB75BF73944907A8D9514F /* leadistroWhite.png */ = {isa = PBXFileReference; name = "leadistroWhite.png"; path = "../src/assets/images/leadistroWhite.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		09852DD4DF47464A94DD495E /* OauthVec.png */ = {isa = PBXFileReference; name = "OauthVec.png"; path = "../src/assets/images/OauthVec.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		70F3B63A4A094D7EA1EF71AE /* email.png */ = {isa = PBXFileReference; name = "email.png"; path = "../src/assets/images/email.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F89A92135FEA4D6F8B1A0FF1 /* marketing.png */ = {isa = PBXFileReference; name = "marketing.png"; path = "../src/assets/images/marketing.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		CA599F9BE5054C79AE938276 /* plan.png */ = {isa = PBXFileReference; name = "plan.png"; path = "../src/assets/images/plan.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +200,9 @@
 				164BBEE577314D8CA031FA18 /* leadistroBlack.png */,
 				F5AB75BF73944907A8D9514F /* leadistroWhite.png */,
 				09852DD4DF47464A94DD495E /* OauthVec.png */,
+				70F3B63A4A094D7EA1EF71AE /* email.png */,
+				F89A92135FEA4D6F8B1A0FF1 /* marketing.png */,
+				CA599F9BE5054C79AE938276 /* plan.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -309,6 +318,9 @@
 				8E335211EAC54CD093584F88 /* leadistroBlack.png in Resources */,
 				571D75BC01914E51B0191ED0 /* leadistroWhite.png in Resources */,
 				1A20ADDD8B254E61A30B5CC1 /* OauthVec.png in Resources */,
+				BDBAAFCFC31240EF92F4283F /* email.png in Resources */,
+				0C6097ACA60744519082CCB6 /* marketing.png in Resources */,
+				0504D30FDFCD47BB87EBA05B /* plan.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

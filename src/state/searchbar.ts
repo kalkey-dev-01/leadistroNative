@@ -14,3 +14,6 @@ export const UserStateLoadingAtom = atom<boolean>(false)
 
 export const sswAtom = atom<Array<ConvertCompanyNames>>([])
 
+export const searchContacts = atom<string>('')
+
+export const savedContactDataAtom = atom<Array<ConvertCompanyNames>>([])

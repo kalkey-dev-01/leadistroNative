@@ -1,4 +1,4 @@
-import { Box, TouchableOpacity } from '@/atoms'
+import { Box, Pressable, TouchableOpacity } from '@/atoms'
 import { DrawerContentComponentProps } from '@react-navigation/drawer'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -21,9 +21,34 @@ const Sidebar: React.FC<DrawerContentComponentProps> = ({ navigation }) => {
                     leadistro
                 </SemiBoldText>
                 <Box mt={"xl"} ml='lg' justifyContent={'space-between'} flexDirection={'column'} >
-                    <TouchableOpacity onPress={() => navigation.navigate('SSW')}><BoldText fontName='Comfortaa' props={{ variant: 'sidebar', fontSize: 18, my: 'xl', numberOfLines: 1, }}>Search Similar Websites</BoldText></TouchableOpacity>
-                    <BoldText fontName='Comfortaa' props={{ variant: 'sidebar', fontSize: 18, my: 'xl', numberOfLines: 1, }}>Email Marketing</BoldText>
-                    <BoldText fontName='Comfortaa' props={{ variant: 'sidebar', fontSize: 18, my: 'xl', numberOfLines: 1, }}>Create Contact</BoldText>
+                    <Pressable onPress={() => navigation.navigate('SSW')}>
+                        <BoldText fontName='Comfortaa' props={{
+                            variant: 'sidebar', fontSize: 18, my: 'xl', numberOfLines: 1,
+                        }}>
+                            Search Similar Websites
+                        </BoldText>
+                    </Pressable>
+                    <Pressable onPress={()=> navigation.navigate('Email')}>
+                        <BoldText fontName='Comfortaa' props={{
+                            variant: 'sidebar', fontSize: 18, my: 'xl', numberOfLines: 1,
+                        }}>
+                            Email Marketing
+                        </BoldText>
+                    </Pressable>
+                    <Pressable onPress={()=> navigation.navigate('CreateContacts')}>
+                        <BoldText fontName='Comfortaa' props={{
+                            variant: 'sidebar', fontSize: 18, my: 'xl', numberOfLines: 1,
+                        }}>
+                            Create Contact
+                        </BoldText>
+                    </Pressable>
+                    <Pressable onPress={()=> navigation.navigate('Settings')}>
+                        <BoldText fontName='Comfortaa' props={{
+                            variant: 'sidebar', fontSize: 18, my: 'xl', numberOfLines: 1,
+                        }}>
+                            Settings
+                        </BoldText>
+                    </Pressable>
                 </Box>
                 <TouchableOpacity onPress={() => {
                     auth().signOut().then(() => Alert.alert('Signed Out', 'You Have been successfully signed out'))

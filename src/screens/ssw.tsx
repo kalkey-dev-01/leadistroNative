@@ -55,7 +55,6 @@ export default function SSWScreen({ navigation }: Props) {
     return (
         <>
             <Container justifyContent={'flex-start'} alignItems={'center'}>
-
                 {
                     data.length === 0
                         ?

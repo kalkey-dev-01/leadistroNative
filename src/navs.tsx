@@ -6,7 +6,7 @@ import { NavigatorScreenParams } from '@react-navigation/native';
 import SSWScreen from './screens/ssw';
 import LoginScreen from './screens/LoginScreen';
 import { useAtom, useAtomValue } from 'jotai'
-import { atomWithStorage, createJSONStorage } from 'jotai/utils'
+import { atomWithStorage } from 'jotai/utils'
 import auth from '@react-native-firebase/auth'
 import { AuthAtom } from './state/authStateAtom';
 import React from 'react';
@@ -17,6 +17,9 @@ import { Box, Container } from './atoms';
 import Loading from './components/loading-spin-animation';
 import theme from './themes/DarkSpace';
 import OnboardingScreens from './screens/OnboardingScreens';
+import EmailMarketing from './screens/EmailMarketing';
+import CreateContactsPage from './screens/CreateContacts';
+import Settings from './screens/Setttings';
 
 
 
@@ -26,6 +29,15 @@ export type HomeDrawerParamList = {
 
     },
     SSW: {
+
+    },
+    Email: {
+
+    },
+    CreateContacts: {
+
+    },
+    Settings: {
 
     }
 }
@@ -64,6 +76,21 @@ function Home() {
             <Drawer.Screen
                 name='SSW'
                 component={SSWScreen}
+                options={{ headerShown: false }}
+            />
+            <Drawer.Screen
+                name='Email'
+                component={EmailMarketing}
+                options={{ headerShown: false }}
+            />
+            <Drawer.Screen
+                name='CreateContacts'
+                component={CreateContactsPage}
+                options={{ headerShown: false }}
+            />
+            <Drawer.Screen
+                name='Settings'
+                component={Settings}
                 options={{ headerShown: false }}
             />
         </Drawer.Navigator>

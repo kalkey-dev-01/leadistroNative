@@ -23,7 +23,7 @@ import React from 'react'
 
 
 
-type Props = CompositeScreenProps<DrawerScreenProps<HomeDrawerParamList, "Main">, NativeStackScreenProps<RootStackParamList>>
+type Props = CompositeScreenProps<DrawerScreenProps<HomeDrawerParamList, "Emp">, NativeStackScreenProps<RootStackParamList>>
 
 
 // type TabParamList = {
@@ -45,7 +45,7 @@ type Props = CompositeScreenProps<DrawerScreenProps<HomeDrawerParamList, "Main">
 //     )
 // }
 
-export default function MainScreen({ navigation }: Props) {
+export default function EmpScreen({ navigation }: Props) {
     const [concealEmployeeListItem, setConcealEmployeeListItem] = React.useState<(() => void) | null>(null)
     const refMoveContactSheet = React.useRef<MoveContactSheet>(null)
     const { barStyle, handleListLayout, handleScroll, headerHeight } = StickyHeader()
@@ -101,7 +101,7 @@ export default function MainScreen({ navigation }: Props) {
                                     leadistroNative v0.1
                                 </BoldText>
                                 <RegularText fontName='Poppins' props={{ fontSize: 18 }} >
-                                    Search to pull the Employee Distribution of company specific domains
+                                    Search to pull the Employee Distribution of company specific doemps
                                 </RegularText>
                                 <BoldText fontName='Comfortaa'>
                                     Remember to type | <SemiBoldText fontName='Poppins'> .com </SemiBoldText> | after a company name

@@ -3,7 +3,7 @@ import AnimatedBox from '@/atoms/animated-box';
 import * as React from 'react';
 import { SharedValue, useAnimatedStyle } from 'react-native-reanimated';
 import FeatherIcon from './icon';
-import { BoldText, MediumText, RegularText } from './Typography';
+import {MediumText } from './Typography';
 
 interface Props {
   progress: Readonly<SharedValue<number>>

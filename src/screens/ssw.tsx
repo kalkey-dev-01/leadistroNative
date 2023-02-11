@@ -37,7 +37,7 @@ export default function SSWScreen({ navigation }: Props) {
         console.log('Wanna Save this figure it out', _domain);
     }, [])
     const onItemSwipeLeft = React.useCallback((_domain: string | number) => {
-        navigation.navigate('Main', {})
+        navigation.navigate('Emp', {})
         setSearchQuery(_domain.toString())
     }, [])
     // const loading = useAtomValue(loadingAtom)

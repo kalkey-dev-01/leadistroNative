@@ -21,6 +21,13 @@ const Sidebar: React.FC<DrawerContentComponentProps> = ({ navigation }) => {
                     leadistro
                 </SemiBoldText>
                 <Box mt={"xl"} ml='lg' justifyContent={'space-between'} flexDirection={'column'} >
+                    <Pressable onPress={() => navigation.navigate('Emp')}>
+                        <BoldText fontName='Comfortaa' props={{
+                            variant: 'sidebar', fontSize: 18, my: 'xl', numberOfLines: 1,
+                        }}>
+                            Research Cold Leads
+                        </BoldText>
+                    </Pressable>
                     <Pressable onPress={() => navigation.navigate('SSW')}>
                         <BoldText fontName='Comfortaa' props={{
                             variant: 'sidebar', fontSize: 18, my: 'xl', numberOfLines: 1,
@@ -28,21 +35,21 @@ const Sidebar: React.FC<DrawerContentComponentProps> = ({ navigation }) => {
                             Search Similar Websites
                         </BoldText>
                     </Pressable>
-                    <Pressable onPress={()=> navigation.navigate('Email')}>
+                    <Pressable onPress={() => navigation.navigate('Email')}>
                         <BoldText fontName='Comfortaa' props={{
                             variant: 'sidebar', fontSize: 18, my: 'xl', numberOfLines: 1,
                         }}>
                             Email Marketing
                         </BoldText>
                     </Pressable>
-                    <Pressable onPress={()=> navigation.navigate('CreateContacts')}>
+                    <Pressable onPress={() => navigation.navigate('CreateContacts')}>
                         <BoldText fontName='Comfortaa' props={{
                             variant: 'sidebar', fontSize: 18, my: 'xl', numberOfLines: 1,
                         }}>
                             Create Contact
                         </BoldText>
                     </Pressable>
-                    <Pressable onPress={()=> navigation.navigate('Settings')}>
+                    <Pressable onPress={() => navigation.navigate('Settings')}>
                         <BoldText fontName='Comfortaa' props={{
                             variant: 'sidebar', fontSize: 18, my: 'xl', numberOfLines: 1,
                         }}>

@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import MainScreen from './screens/main';
+
 import Sidebar from './components/sidebar';
 import { NavigatorScreenParams } from '@react-navigation/native';
 import SSWScreen from './screens/ssw';
@@ -20,6 +20,8 @@ import OnboardingScreens from './screens/OnboardingScreens';
 import EmailMarketing from './screens/EmailMarketing';
 import CreateContactsPage from './screens/CreateContacts';
 import Settings from './screens/Setttings';
+import EmpScreen from './screens/empScreen';
+import MainScreen from './screens/MainScreen';
 
 
 
@@ -28,8 +30,11 @@ export type HomeDrawerParamList = {
     Main: {
 
     },
+    Emp: {
+
+    },
     SSW: {
-        
+
     },
     Email: {
 
@@ -71,6 +76,11 @@ function Home() {
             <Drawer.Screen
                 name='Main'
                 component={MainScreen}
+                options={{ headerShown: false }}
+            />
+            <Drawer.Screen
+                name='Emp'
+                component={EmpScreen}
                 options={{ headerShown: false }}
             />
             <Drawer.Screen

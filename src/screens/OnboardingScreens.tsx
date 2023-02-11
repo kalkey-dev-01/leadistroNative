@@ -73,7 +73,7 @@ export default function OnboardingScreens({  }: Props) {
                                         <Page key={index.toString()} page={page} translateX={translateX} index={index} />
                                 ))}
                         </AnimatedScrollView>
-                        <Box height={50} mb='50' flexDirection={'row'}>
+                        <Box height={50} mb='md' flexDirection={'row'}>
                                 <Box flex={1} alignItems={'center'} justifyContent={'center'} flexDirection={'row'}>
                                         {Pages.map((_, index) => {
                                                 return (

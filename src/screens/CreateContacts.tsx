@@ -18,7 +18,7 @@ export default function CreateContactsPage({ navigation }: Props) {
     }, [navigation])
     return (
         <Container justifyContent={'flex-start'}  alignItems={'flex-start'}>
-            <CCHeader onSidebarToggle={handleSidebarToggle} />
+            <CCHeader onSidebarToggle={handleSidebarToggle}  />
             <Box mt='100' px={'xl'} flexDirection={'column'} width={'100%'}>
                 <Box width={'100%'} flexDirection={'row'} alignItems={'center'}>
                     <BoldText fontName='Comfortaa' props={{

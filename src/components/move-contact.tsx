@@ -46,6 +46,7 @@ const MoveContactSheet = React.forwardRef<MoveContactSheetHandle, Props>(
                 <Box justifyContent={'center'} alignItems={'center'}>
                     <Text fontWeight={'bold'}>
                         Move
+                        
                     </Text>
                 </Box>
             </BottomSheet>

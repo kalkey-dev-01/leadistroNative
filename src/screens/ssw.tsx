@@ -12,12 +12,12 @@ import SSWHeaderBar from '@/components/sswHeader'
 import StickyHeader from '@/hooks/sticky-header'
 import { ConvertCompanyNames } from '@/models/model'
 import { HomeDrawerParamList, RootStackParamList } from '@/navs'
-import { loadingAtom, sswAtom } from '@/state/searchbar'
+import { loadingAtom, searchQueryAtom, sswAtom } from '@/state/searchbar'
 import theme from '@/themes/DarkSpace'
 import { DrawerScreenProps } from '@react-navigation/drawer'
 import { CompositeScreenProps } from '@react-navigation/native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { useAtomValue } from 'jotai'
+import { useAtom, useAtomValue } from 'jotai'
 import React from 'react'
 
 
@@ -25,20 +25,20 @@ type Props = CompositeScreenProps<DrawerScreenProps<HomeDrawerParamList, "SSW">,
 
 // TODO - Work On this Screen and Integrate Drawer
 export default function SSWScreen({ navigation }: Props) {
+    const [, setSearchQuery] = useAtom(searchQueryAtom)
+    const [, setData] = useAtom(sswAtom)
     const data = useAtomValue(sswAtom)
     const handleSidebarToggle = React.useCallback(() => {
         navigation.toggleDrawer()
     }, [navigation])
-    const onItemPress = React.useCallback((_logo: string | number, _data: ConvertCompanyNames) => {
+    const onItemPress = React.useCallback((_domain: string | number, _data: ConvertCompanyNames) => {
         // later
         console.log('lets see', _data);
-
-        console.log('Wanna Save this figure it out', _logo);
+        console.log('Wanna Save this figure it out', _domain);
     }, [])
-    
-    const onItemSwipeLeft = React.useCallback(() => {
-        console.log('swipped');
-
+    const onItemSwipeLeft = React.useCallback((_domain: string | number) => {
+        navigation.navigate('Main', {})
+        setSearchQuery(_domain.toString())
     }, [])
     // const loading = useAtomValue(loadingAtom)
     // const loading = true

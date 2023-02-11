@@ -36,7 +36,6 @@ const EmployeeExampleList: React.FC<Props> = ({ onScroll, scrollInsetTop, onItem
             scrollEventThrottle={16}
             ListHeaderComponent={<Box width={'100%'} height={scrollInsetTop} />}
         />
-
     )
 }
 

@@ -13,7 +13,7 @@ interface Props {
     scrollInsetTop: number
     onScroll: (event: NativeSyntheticEvent<NativeScrollEvent>) => void
     onItemPress: (id: string | number, data: ConvertCompanyNames) => void
-    onItemSwipeLeft: (id: string | number, cancel: () => void) => void
+    onItemSwipeLeft: (id: string | number,  cancel: () => void) => void
     data?: ConvertCompanyNames[]
 }
 
@@ -26,7 +26,7 @@ const ConvertCompanyNamesList: React.FC<Props> = ({ onItemPress, onItemSwipeLeft
             contentInsetAdjustmentBehavior="automatic"
             data={data}
             renderItem={renderItem}
-            keyExtractor={item => item.logo.toString()}
+            keyExtractor={item => item.domain.toString()}
             width='100%'
             onScroll={onScroll}
             scrollEventThrottle={16}

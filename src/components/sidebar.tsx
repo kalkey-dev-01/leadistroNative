@@ -51,7 +51,7 @@ const Sidebar: React.FC<DrawerContentComponentProps> = ({ navigation }) => {
                     </Pressable>
                 </Box>
                 <TouchableOpacity onPress={() => {
-                    auth().signOut().then(() => Alert.alert('Signed Out', 'You Have been successfully signed out'))
+                    auth().signOut().then(() => Alert.alert('Signed Out', 'You Have been successfully signed out, We Will Update your Distro'))
                 }} mt='xl' mx={'lg'} flexDirection={'row'} width={'100%'} alignItems={'center'} justifyContent={'flex-start'} flex={1}>
                     <FeatherIcon name='log-out' size={25} />
                     <MediumText fontName='Poppins' props={{ variant: 'sidebar', fontSize: 20, mx: 'lg' }}>Log Out</MediumText>

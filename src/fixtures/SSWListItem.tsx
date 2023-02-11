@@ -9,21 +9,21 @@ import React from 'react'
 
 export interface SSWItemProps extends ConvertCompanyNames {
     onPress: (id: string, data: ConvertCompanyNames) => void
-    onSwipeLeft?: (logo: string, done: () => void) => void
+    onSwipeLeft?: (domain: string, done: () => void) => void
 }
 
 
 
 const SSWListItem: React.FC<SSWItemProps> = React.memo(props => {
-    const { onPress, onSwipeLeft, logo } = props
+    const { onPress, onSwipeLeft, domain } = props
     const handlePress = React.useCallback(() => {
-        onPress(logo, { ...props })
+        onPress(domain, { ...props })
     }, [])
     const handleSwipeLeft = React.useCallback(
         (done: () => void) => {
-            onSwipeLeft && onSwipeLeft(logo, done)
+            onSwipeLeft && onSwipeLeft(domain, done)
         },
-        [logo, onSwipeLeft]
+        [domain, onSwipeLeft]
     )
 
     const renderBackView = React.useCallback(
@@ -58,7 +58,7 @@ const SSWListItem: React.FC<SSWItemProps> = React.memo(props => {
                         }}>
                             {props.domain}
                         </RegularText>
-                        {/* <Image source={{ uri: props.logo }} style={{ maxHeight: 125, width: '100%', alignSelf: 'center', resizeMode: 'contain', marginTop: 25 }} /> */}
+                        {/* <Image source={{ uri: props.domain }} style={{ maxHeight: 125, width: '100%', alignSelf: 'center', resizeMode: 'contain', marginTop: 25 }} /> */}
                     </Box>
                 </TouchableOpacity>
             </Box>

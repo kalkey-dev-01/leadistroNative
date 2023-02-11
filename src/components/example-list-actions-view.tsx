@@ -3,6 +3,7 @@ import AnimatedBox from '@/atoms/animated-box';
 import * as React from 'react';
 import { SharedValue, useAnimatedStyle } from 'react-native-reanimated';
 import FeatherIcon from './icon';
+import { BoldText, MediumText, RegularText } from './Typography';
 
 interface Props {
   progress: Readonly<SharedValue<number>>
@@ -39,6 +40,7 @@ export default ExampleListActionView
 
 export const SSWListActionView: React.FC<Props> = ({ progress }) => {
   const iconStyle = useAnimatedStyle(() => ({
+    opacity: progress.value,
     transform: [
       { scale: progress.value }
     ]
@@ -52,14 +54,19 @@ export const SSWListActionView: React.FC<Props> = ({ progress }) => {
       justifyContent="flex-end"
       pr="xl"
     >
-      <AnimatedBox 
+      <AnimatedBox
         flexDirection="row"
         alignItems="center"
         justifyContent="center"
         style={iconStyle}
       >
-        <FeatherIcon name="globe" color="white" size={20} style={{paddingHorizontal:2}} />
-        <FeatherIcon name="save" color="white" size={14} style={{paddingHorizontal:2}} />
+        <MediumText fontName='Comfortaa' props={{
+          pr: 'md'
+        }}>
+          Start Researching Leads
+        </MediumText>
+        <FeatherIcon name="globe" color="white" size={20} style={{ paddingHorizontal: 2 }} />
+        <FeatherIcon name="arrow-right" color="white" size={14} style={{ paddingHorizontal: 2 }} />
       </AnimatedBox>
     </Box>
   )

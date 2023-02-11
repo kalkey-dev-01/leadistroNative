@@ -45,14 +45,14 @@ export default function WelcomeScreen({ navigation }: Props) {
                 <Box height={200} width={200} backgroundColor={'$sidebarBackground'} position={'absolute'} zIndex={0} borderRadius={'hg'} />
             </Box>
             {/* CTA Section*/}
-            <Box flexDirection={'column'} justifyContent={'center'} alignItems={'center'} height={'60%'} bg={'$sidebarBackground'} borderTopLeftRadius={"lg"} borderTopRightRadius={"lg"} zIndex={-10}>
+            <Box flexDirection={'column'} justifyContent={'center'} alignItems={'center'} height={'60%'} bg={'$sidebarBackground'} borderTopLeftRadius={"lg"} borderTopRightRadius={"lg"} zIndex={0}>
                 {/* Login Button */}
                 <Box my={'lg'} px={'md'} py={'sm'} borderRadius={'lg'} bg={'$foreground'}>
-                    <TouchableOpacity onPress={() => navigation.navigate('Register')} flexDirection={'row'} alignItems={'center'} android_ripple={{ color: 'black', borderless: true }}  >
+                    <TouchableOpacity onPress={() => navigation.navigate('Register')} flexDirection={'row'} alignItems={'center'} android_ripple={{ color: 'black', borderless: true }} zIndex={20} >
                         <BoldText fontName='Poppins' props={{
                             color: '$background',
                             fontSize: 25,
-                            textAlign: 'center',
+                            textAlign: 'center',     
                         }}>
                             Get Started For Free
                         </BoldText>
@@ -86,9 +86,9 @@ export default function WelcomeScreen({ navigation }: Props) {
                 <RegularText fontName='Comfortaa' props={{
                     textAlign: 'center',
                     fontSize: 14,
-                    px:'xxl',
-                    letterSpacing:0.25,
-                    lineHeight:25
+                    px: 'xxl',
+                    letterSpacing: 0.25,
+                    lineHeight: 25
                 }}>
                     By clicking "Sign In With Google" above you acknowledge that you have understood and agree to our Terms and Policy
                 </RegularText>

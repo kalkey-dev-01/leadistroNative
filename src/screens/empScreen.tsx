@@ -10,7 +10,7 @@ import MoveContactSheet from '@/components/move-contact'
 import StickyHeader from '@/hooks/sticky-header'
 import { EmployeeContact } from '@/models/model'
 import { HomeDrawerParamList, RootStackParamList } from '@/navs'
-import { loadingAtom, responseDataAtom } from '@/state/searchbar'
+import { loadingAtom, responseDataAtom, searchQueryAtom } from '@/state/searchbar'
 import theme from '@/themes/solarised-dark'
 import { DrawerScreenProps } from '@react-navigation/drawer'
 import { CompositeScreenProps } from '@react-navigation/native'
@@ -46,6 +46,7 @@ type Props = CompositeScreenProps<DrawerScreenProps<HomeDrawerParamList, "Emp">,
 // }
 
 export default function EmpScreen({ navigation }: Props) {
+    const searchQuery = useAtomValue(searchQueryAtom)
     const [concealEmployeeListItem, setConcealEmployeeListItem] = React.useState<(() => void) | null>(null)
     const refMoveContactSheet = React.useRef<MoveContactSheet>(null)
     const { barStyle, handleListLayout, handleScroll, headerHeight } = StickyHeader()
@@ -55,7 +56,7 @@ export default function EmpScreen({ navigation }: Props) {
     const handleEmployeeListItemPress = React.useCallback((_linkedin_id: string | number, _data: EmployeeContact) => {
         // later
         console.log('lets see', _data);
-        
+
         console.log('Wanna Save this figure it out', _linkedin_id);
     }, [])
     const handleEmployeeListItemSwipeLeft = React.useCallback((_linkedin_id: string | number, _conceal: () => void) => {
@@ -76,18 +77,29 @@ export default function EmpScreen({ navigation }: Props) {
     // const loading = true
     if (loading) {
         return (
-            <Container justifyContent={'center'} alignItems={'center'}>
-                <Box alignItems={'center'} justifyContent='center'>
-                        <Loading col={theme.colors.white} />
-                </Box>
+            <Container justifyContent={'center'} width={'100%'} height={'100%'} alignItems={'center'}>
+                <SemiBoldText fontName='Comfortaa' props={{
+                    textAlign: 'center',
+                    px: 'lg',
+                    fontSize: 28,
+                    lineHeight: 34,
+                    style: { top: 100, position: 'absolute' }
+                }}>
+                    Searching for your distro request <BoldText fontName='Poppins' props={{
+                        lineHeight: 34,
+                        fontSize: 28
+                    }}>{searchQuery === undefined ? null : `' ${searchQuery.replace('.com', '')} '`}</BoldText>. This may take a moment.
+                </SemiBoldText>
+                <Loading col={theme.colors.white} />
             </Container>
         )
     }
+    console.log(searchQuery);
 
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const EmployeeData = data.filter(emp => emp.personal_email != "")
-    
+
     return (
         <Container justifyContent={'flex-start'} alignItems={'center'}>
             {

@@ -1,5 +1,5 @@
-import { Box, Container } from '@/atoms';
-import { BoldText, SemiBoldText } from '@/components/Typography';
+import { Box, Container, Pressable, ScrollView } from '@/atoms';
+import { BoldText, MediumText } from '@/components/Typography';
 import CCHeader from '@/components/ccHeader';
 import { HomeDrawerParamList, RootStackParamList } from '@/navs';
 import { DrawerScreenProps } from '@react-navigation/drawer';
@@ -17,19 +17,27 @@ export default function CreateContactsPage({ navigation }: Props) {
         navigation.toggleDrawer()
     }, [navigation])
     return (
-        <Container justifyContent={'flex-start'}  alignItems={'flex-start'}>
-            <CCHeader onSidebarToggle={handleSidebarToggle}  />
-            <Box mt='100' px={'xl'} flexDirection={'column'} width={'100%'}>
-                <Box width={'100%'} flexDirection={'row'} alignItems={'center'}>
-                    <BoldText fontName='Comfortaa' props={{
-                        fontSize: 23,
+        <Container justifyContent={'flex-start'} alignItems={'flex-start'}>
+            <CCHeader onSidebarToggle={handleSidebarToggle} />
+            <ScrollView mt='75' px={'xl'} pt={'lg'} flexDirection={'column'} width={'100%'}>
+                <Box width={'100%'} flexDirection={'row'} justifyContent={'flex-start'} alignItems={'center'}>
+                    <BoldText fontName='Poppins' props={{
+                        fontSize: 28,
                     }}>
-                        Retrive All Saved Contacts
+                        Grow Audience
                     </BoldText>
-                    <FeatherIcon name='refresh-ccw' size={27} style={{paddingHorizontal:10}} />
+                    <FeatherIcon name='users' size={20} style={{ marginHorizontal: 10, marginVertical: 10 }} />
                 </Box>
-
-            </Box>
+                {/* Manually */}
+                <Pressable onPress={() => console.log('Clicked')} flexDirection={'row'} borderColor={'$foreground'} borderWidth={2} borderRadius={'10'} my={'lg'} py={'sm'} px={'sm'} alignItems={'center'} justifyContent={'space-between'}>
+                    <MediumText fontName='Poppins' props={{
+                        fontSize: 22
+                    }}>
+                        Import Contacts
+                    </MediumText>
+                    <FeatherIcon name='user-plus' size={20} />
+                </Pressable>
+            </ScrollView>
         </Container>
     )
 }

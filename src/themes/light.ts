@@ -30,7 +30,9 @@ const theme = createTheme({
     xxl: 48,
     hg: 128,
     '50': 50,
+    '75': 75,
     '100': 100,
+    '125': 125,
     '150': 150
   },
   breakpoints: {

@@ -13,7 +13,7 @@ import { searchQueryAtom } from '@/state/searchbar'
 
 export interface ExampleItemProps extends EmployeeContact {
   onPress: (id: string | number, data: EmployeeContact) => void
-  onSwipeLeft?: (linkedin_id: string | number, done: () => void) => void
+  onSwipeLeft?: (linkedin_id: string | number, data: EmployeeContact, done: () => void) => void
 }
 
 export interface EmployeeItemProps extends EmployeeContact {
@@ -64,7 +64,7 @@ export const ExampleListItem: React.FC<ExampleItemProps> = React.memo(props => {
   }, [onPress, linkedin_id])
   const handleSwipeLeft = React.useCallback(
     (done: () => void) => {
-      onSwipeLeft && onSwipeLeft(linkedin_id, done)
+      onSwipeLeft && onSwipeLeft(linkedin_id, props, done)
     },
     [linkedin_id, onSwipeLeft]
   )
@@ -91,7 +91,7 @@ export const ExampleListItem: React.FC<ExampleItemProps> = React.memo(props => {
           onPress={handlePress}
         >
           <Box flexDirection={'row'} width={'100%'} justifyContent={'space-between'} alignItems={'center'}>
-            <BoldText fontName='Comfortaa' props={{ fontSize: 27.5,  ellipsizeMode: 'tail' }}>{`${props.first_name.charAt(0).toLocaleUpperCase() + props.first_name.slice(1, 8)} ${props.last_name.charAt(0).toLocaleUpperCase() + props.last_name.slice(1, 9)}`}</BoldText>
+            <BoldText fontName='Comfortaa' props={{ fontSize: 27.5, ellipsizeMode: 'tail' }}>{`${props.first_name.charAt(0).toLocaleUpperCase() + props.first_name.slice(1, 8)} ${props.last_name.charAt(0).toLocaleUpperCase() + props.last_name.slice(1, 9)}`}</BoldText>
             <Box flexDirection={'row'} width={'22.5%'} justifyContent={props.social_url && props.personal_email !== '' ? "space-between" : 'flex-end'} alignItems={'center'} >
               {
                 props.social_url && <FeatherIcon name={`linkedin`} style={{ color: theme.colors.white, backgroundColor: theme.colors.blue, paddingHorizontal: 7.5, paddingVertical: 7.5, borderRadius: 4, borderColor: theme.colors.$navbarBackground, borderWidth: 0.5 }} size={22.5} />

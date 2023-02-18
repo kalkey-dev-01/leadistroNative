@@ -2,7 +2,8 @@ import React from 'react'
 import RNBottomSheet, { BottomSheetBackdrop } from '@gorhom/bottom-sheet'
 import BottomSheet from '@/atoms/bottom-sheet'
 import { Box } from '@/atoms'
-import { BoldText } from './Typography'
+import { BoldText, MediumText } from './Typography'
+import FeatherIcon from './icon'
 
 interface Props {
     onClose?: () => void
@@ -44,19 +45,21 @@ const MoveContactSheet = React.forwardRef<MoveContactSheetHandle, Props>(
                 onClose={onClose}
 
             >
-                <Box flexDirection={'column'} height={'100%'} width={'100%'} justifyContent={'flex-start'} alignItems={'flex-start'}>
-                    <BoldText fontName='Poppins'>
-                        Move                        
-                    </BoldText>
-                    <BoldText fontName='Poppins'>
-                        Send Email
-                    </BoldText>
+                <Box flexDirection={'column'} height={'100%'} width={'100%'} mx={'xl'} my={'lg'} justifyContent={'flex-start'} alignItems={'flex-start'}>
+                    <Box flexDirection={'row'} width={'100%'} justifyContent={'flex-start'} alignItems={'center'}>
+                        <MediumText fontName='Poppins' props={{
+                            fontSize:16
+                        }}>
+                            Send A Custom Email To This Contact
+                        </MediumText>
+                        <FeatherIcon name='send' size={22} />
+                    </Box>
                 </Box>
             </BottomSheet>
         )
     }
 )
 
-type MoveContactSheet  = MoveContactSheetHandle
+type MoveContactSheet = MoveContactSheetHandle
 
 export default MoveContactSheet

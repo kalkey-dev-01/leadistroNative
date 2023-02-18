@@ -16,7 +16,7 @@ interface Props {
     scrollInsetTop: number
     onScroll: (event: NativeSyntheticEvent<NativeScrollEvent>) => void
     onItemPress: (id: string | number, data: EmployeeContact) => void
-    onItemSwipeLeft: (id: string | number, cancel: () => void) => void
+    onItemSwipeLeft: (id: string | number, data: EmployeeContact, cancel: () => void) => void
     data?: EmployeeContact[] 
 }
 

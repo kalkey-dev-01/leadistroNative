@@ -59,10 +59,11 @@ export default function EmpScreen({ navigation }: Props) {
 
         console.log('Wanna Save this figure it out', _linkedin_id);
     }, [])
-    const handleEmployeeListItemSwipeLeft = React.useCallback((_linkedin_id: string | number, _conceal: () => void) => {
+    const handleEmployeeListItemSwipeLeft = React.useCallback((_linkedin_id: string | number, _data: EmployeeContact, _conceal: () => void) => {
         const { current: menu } = refMoveContactSheet
+                
         if (menu) {
-            console.log('show');
+            console.log(_data);
             menu.show()
             setConcealEmployeeListItem(() => _conceal)
         }
@@ -94,16 +95,16 @@ export default function EmpScreen({ navigation }: Props) {
             </Container>
         )
     }
-    console.log(searchQuery);
+    // console.log(searchQuery);
 
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const EmployeeData = data.filter(emp => emp.personal_email != "")
+    // const EmployeeData = data.filter(emp => emp.personal_email != "")
 
     return (
         <Container justifyContent={'flex-start'} alignItems={'center'}>
             {
-                data.length === 0
+                data !== undefined && data.length === 0
                     ?
                     <Box width={'100%'} mt='hg' >
                         <Card>

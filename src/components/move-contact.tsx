@@ -1,7 +1,8 @@
 import React from 'react'
 import RNBottomSheet, { BottomSheetBackdrop } from '@gorhom/bottom-sheet'
 import BottomSheet from '@/atoms/bottom-sheet'
-import { Box, Text } from '@/atoms'
+import { Box } from '@/atoms'
+import { BoldText } from './Typography'
 
 interface Props {
     onClose?: () => void
@@ -43,11 +44,13 @@ const MoveContactSheet = React.forwardRef<MoveContactSheetHandle, Props>(
                 onClose={onClose}
 
             >
-                <Box justifyContent={'center'} alignItems={'center'}>
-                    <Text fontWeight={'bold'}>
-                        Move
-                        
-                    </Text>
+                <Box flexDirection={'column'} height={'100%'} width={'100%'} justifyContent={'flex-start'} alignItems={'flex-start'}>
+                    <BoldText fontName='Poppins'>
+                        Move                        
+                    </BoldText>
+                    <BoldText fontName='Poppins'>
+                        Send Email
+                    </BoldText>
                 </Box>
             </BottomSheet>
         )

@@ -77,7 +77,7 @@ export default function EmpScreen({ navigation }: Props) {
     // const loading = true
     if (loading) {
         return (
-            <Container justifyContent={'center'} width={'100%'} height={'100%'} alignItems={'center'}>
+            <Container justifyContent={'center'} width={'100%'}  height={'100%'} alignItems={'center'}>
                 <SemiBoldText fontName='Comfortaa' props={{
                     textAlign: 'center',
                     px: 'lg',

@@ -4,6 +4,8 @@ import BottomSheet from '@/atoms/bottom-sheet'
 import { Box } from '@/atoms'
 import { BoldText, MediumText, RegularText, SemiBoldText } from './Typography'
 import FeatherIcon from './icon'
+import { useAtomValue } from 'jotai'
+import { singleContactAtom } from '@/state/singleContactState'
 
 interface Props {
     onClose?: () => void
@@ -24,6 +26,7 @@ const MoveContactSheet = React.forwardRef<MoveContactSheetHandle, Props>(
                 }
             }
         }))
+        const data = useAtomValue(singleContactAtom)
         return (
             <BottomSheet
                 ref={refBottomSheet}
@@ -55,7 +58,7 @@ const MoveContactSheet = React.forwardRef<MoveContactSheetHandle, Props>(
                             Send Customized Email To This Contact
                         </RegularText>
                         <Box justifyContent={'center'} alignItems={'center'} bg={'$primary'} px={'sm'} py={'sm'} borderRadius={'10'} borderWidth={1} borderColor={'$foreground'}>
-                            <FeatherIcon name='send' size={40} />
+                            <FeatherIcon name='send' size={35} />
                         </Box>
                     </Box>
                     {/* Divider */}
@@ -76,7 +79,7 @@ const MoveContactSheet = React.forwardRef<MoveContactSheetHandle, Props>(
                             Save This Contact To Cold Leads List
                         </BoldText>
                         <Box justifyContent={'center'} alignItems={'center'} bg={'$primary'} px={'sm'} py={'sm'} borderRadius={'10'} borderWidth={1} borderColor={'$foreground'}>
-                            <FeatherIcon name='save' size={40} />
+                            <FeatherIcon name='save' size={35} />
                         </Box>
                     </Box>
                     {/* Misc Info */}
@@ -92,15 +95,18 @@ const MoveContactSheet = React.forwardRef<MoveContactSheetHandle, Props>(
                     </Box>
                     {/* Call to Action */}
                     <Box flexDirection={'row'} width={'100%'} px={'50'} my={'md'} justifyContent={'center'} alignItems={'center'}>
-                        <BoldText fontName='Poppins' props={{
-                            fontSize: 25, numberOfLines: 2, pr: '50', textAlign:'center'
+                        <BoldText fontName='Comfortaa' props={{
+                            fontSize: 25, numberOfLines: 2, pr: '50',
                         }}>
                             Delete and Report this Contact.
                         </BoldText>
                         <Box justifyContent={'center'} alignItems={'center'} bg={'$primary'} px={'sm'} py={'sm'} borderRadius={'10'} borderWidth={1} borderColor={'$foreground'}>
-                            <FeatherIcon name='trash-2' size={40} />
+                            <FeatherIcon name='trash-2' size={35} />
                         </Box>
                     </Box>
+                    {
+                        data.industry && <></>
+                    }
                 </Box>
             </BottomSheet>
         )

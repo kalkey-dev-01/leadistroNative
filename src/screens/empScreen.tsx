@@ -11,11 +11,12 @@ import StickyHeader from '@/hooks/sticky-header'
 import { EmployeeContact } from '@/models/model'
 import { HomeDrawerParamList, RootStackParamList } from '@/navs'
 import { loadingAtom, responseDataAtom, searchQueryAtom } from '@/state/searchbar'
+import { singleContactAtom } from '@/state/singleContactState'
 import theme from '@/themes/solarised-dark'
 import { DrawerScreenProps } from '@react-navigation/drawer'
 import { CompositeScreenProps } from '@react-navigation/native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { useAtomValue } from 'jotai'
+import { useAtom, useAtomValue } from 'jotai'
 
 import React from 'react'
 
@@ -59,11 +60,11 @@ export default function EmpScreen({ navigation }: Props) {
 
         console.log('Wanna Save this figure it out', _linkedin_id);
     }, [])
+    const [, setSingleContact] = useAtom(singleContactAtom)
     const handleEmployeeListItemSwipeLeft = React.useCallback((_linkedin_id: string | number, _data: EmployeeContact, _conceal: () => void) => {
+        setSingleContact(_data)
         const { current: menu } = refMoveContactSheet
-                
         if (menu) {
-            console.log(_data);
             menu.show()
             setConcealEmployeeListItem(() => _conceal)
         }
@@ -78,7 +79,7 @@ export default function EmpScreen({ navigation }: Props) {
     // const loading = true
     if (loading) {
         return (
-            <Container justifyContent={'center'} width={'100%'}  height={'100%'} alignItems={'center'}>
+            <Container justifyContent={'center'} width={'100%'} height={'100%'} alignItems={'center'}>
                 <SemiBoldText fontName='Comfortaa' props={{
                     textAlign: 'center',
                     px: 'lg',

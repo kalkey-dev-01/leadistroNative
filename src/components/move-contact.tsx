@@ -8,6 +8,8 @@ import { useAtomValue } from 'jotai'
 import { singleContactAtom } from '@/state/singleContactState'
 // import { LineChart } from 'react-native-chart-kit'
 import { Alert, Linking } from 'react-native'
+import { leadsCollection } from '@/api/firebase'
+import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore'
 
 interface Props {
     onClose?: () => void
@@ -92,7 +94,22 @@ const MoveContactSheet = React.forwardRef<MoveContactSheetHandle, Props>(
                             Save This Contact To Cold Leads List
                         </BoldText>
                         <Box justifyContent={'center'} alignItems={'center'} bg={'$primary'} px={'sm'} py={'sm'} borderRadius={'10'} borderWidth={1} borderColor={'$foreground'}>
-                            <FeatherIcon name='save' size={35} />
+                            <FeatherIcon name='save' size={35} onPress={() => {
+                                try {
+                                    leadsCollection.add({
+                                        fullName: `${data.first_name.charAt(0).toLocaleUpperCase() + data.first_name.slice(1, 8)} ${data.last_name.charAt(0).toLocaleUpperCase() + data.last_name.slice(1, 9)}`,
+                                        emailId: data.personal_email && data.personal_email.toString(),
+                                        business_email: data.business_email,
+                                        headline: data.headline,
+                                        city: data.city,
+                                        linkedInAddress: data.social_url,
+                                        company_name: data.company_name,
+                                    })
+                                } catch (error: any) {
+                                    Alert.alert('Something Went Wrong', error.message)
+                                }
+                                Alert.alert(`Successfully added to leadistro's Cold Mailing List`)
+                            }} />
                         </Box>
                     </Box>
                     {/* Divider */}

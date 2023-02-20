@@ -35,7 +35,7 @@ const HeaderBar: React.FC<Props> = props => {
   const refSearchInput = React.useRef<RNTextInput>(null)
   const handleSearchPostValue = async () => {
     setLoading(true)
-    await axios.post(employeesApi, { "api_key": apikey, 'domain': searchQuery }).then((res) => {
+    await axios.post(employeesApi, { "api_key": apikey, 'domain': searchQuery.endsWith('.com') ? searchQuery : searchQuery + '.com' }).then((res) => {
       console.log('Started Res.data');
       setData(res.data['employees'])
       console.log('Res  - > data - >  employees');

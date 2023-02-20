@@ -9,7 +9,7 @@ import { singleContactAtom } from '@/state/singleContactState'
 // import { LineChart } from 'react-native-chart-kit'
 import { Alert, Linking } from 'react-native'
 import { leadsCollection } from '@/api/firebase'
-import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore'
+// import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore'
 
 interface Props {
     onClose?: () => void
@@ -21,7 +21,7 @@ const MoveContactSheet = React.forwardRef<MoveContactSheetHandle, Props>(
     ({ onClose }, ref) => {
         const refBottomSheet = React.useRef<RNBottomSheet>(null)
         const snapPoints = React.useMemo(() => ['60%', '90%'], [])
-        // !!TODO: Add Functionality
+        // !!TODO: Add Delete and Send Functionality
         React.useImperativeHandle(ref, () => ({
             show: () => {
                 const { current: bottomSheet } = refBottomSheet
@@ -31,18 +31,18 @@ const MoveContactSheet = React.forwardRef<MoveContactSheetHandle, Props>(
             }
         }))
         const data = useAtomValue(singleContactAtom)
-        const openSocial = React.useCallback(async () => {
-            let supported = await Linking.canOpenURL(data.social_url.toString())
-            if (supported) {
-                await Linking.openURL(data.social_url.toString())
-            } else {
-                Alert.alert('This Url Seems Weird', 'This User might not exist in linkedIn anymore, or they may have changed accounts', [{
-                    text: 'Okay',
-                    style: 'cancel'
-                }])
-            }
-        }, [])
-        console.log(data);
+        console.log(data.social_url);
+        // const openSocial = React.useCallback(async () => {
+        //     let supported = await Linking.canOpenURL(data.social_url.toString())
+        //     if (supported) {
+        //         await Linking.openURL(data.social_url.toString())
+        //     } else {
+        //         Alert.alert('This Url Seems Weird', 'This User might not exist in linkedIn anymore, or they may have changed accounts', [{
+        //             text: 'Okay',
+        //             style: 'cancel'
+        //         }])
+        //     }
+        // }, [])
         return (
             <BottomSheet
                 ref={refBottomSheet}
@@ -156,7 +156,17 @@ const MoveContactSheet = React.forwardRef<MoveContactSheetHandle, Props>(
                     {
                         data && data.social_url !== false && data.social_url && data.first_name && data.last_name &&
                         <Pressable onPress={
-                            openSocial
+                            async () => {
+                                let supported = await Linking.canOpenURL(data.social_url.toString())
+                                if (supported) {
+                                    await Linking.openURL(data.social_url.toString())
+                                } else {
+                                    Alert.alert('This Url Seems Weird', 'This User might not exist in linkedIn anymore, or they may have changed accounts', [{
+                                        text: 'Okay',
+                                        style: 'cancel'
+                                    }])
+                                }
+                            }
                         }>
                             <BoldText fontName='Comfortaa' props={{
                                 px: 'xl', my: 'sm', fontSize: 20

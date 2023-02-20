@@ -6,7 +6,7 @@ import { DrawerScreenProps } from '@react-navigation/drawer';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import * as React from 'react';
-import firestore from '@react-native-firebase/firestore'
+// import firestore from '@react-native-firebase/firestore'
 import FeatherIcon from '@/components/icon';
 
 type Props = CompositeScreenProps<DrawerScreenProps<HomeDrawerParamList, 'CreateContacts'>, NativeStackScreenProps<RootStackParamList>>

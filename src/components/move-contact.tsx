@@ -32,17 +32,6 @@ const MoveContactSheet = React.forwardRef<MoveContactSheetHandle, Props>(
         }))
         const data = useAtomValue(singleContactAtom)
         console.log(data.social_url);
-        // const openSocial = React.useCallback(async () => {
-        //     let supported = await Linking.canOpenURL(data.social_url.toString())
-        //     if (supported) {
-        //         await Linking.openURL(data.social_url.toString())
-        //     } else {
-        //         Alert.alert('This Url Seems Weird', 'This User might not exist in linkedIn anymore, or they may have changed accounts', [{
-        //             text: 'Okay',
-        //             style: 'cancel'
-        //         }])
-        //     }
-        // }, [])
         return (
             <BottomSheet
                 ref={refBottomSheet}

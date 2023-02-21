@@ -40,12 +40,12 @@ export interface ConvertCompanyNames {
 }
 
 export interface SavedLeads {
-  business_email: string
-  city: string
-  company_name: string
-  emailId: string
-  fullName: string
-  headline: string
-  id: string
-  linkedInAddress: string
+  business_email?: string
+  city?: string
+  company_name?: string
+  emailId?: string
+  fullName?: string
+  headline?: string
+  id?: string
+  linkedInAddress?: string
 }

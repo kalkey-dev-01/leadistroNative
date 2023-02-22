@@ -94,7 +94,7 @@ const CCHeader: React.FC<Props> = props => {
                     color="$foreground"
                     autoCorrect={false}
                     autoComplete={'off'}
-                    placeholder="Search Saved Contacts"
+                    placeholder="Filter Saved Contacts Via Company Name"
                     placeholderColor="$fieldInputPlaceholderTextColor"
                     value={searchQuery}
                     onFocus={handleSearchInputFocus}

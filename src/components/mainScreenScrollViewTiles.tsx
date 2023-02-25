@@ -7,9 +7,11 @@ import { useNavigation } from '@react-navigation/native'
 // import { HomeDrawerParamList } from '@/navs'
 // import { DrawerScreenProps } from '@react-navigation/drawer'
 import { Alert, Linking } from 'react-native'
+import { leadsCollection } from '@/api/firebase'
+// import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore'
 
 
-const Tiles: React.FC<SavedLeads> = ({ fullName, emailId, linkedInAddress }) => {
+const Tiles: React.FC<SavedLeads> = ({ fullName, emailId, linkedInAddress, id }) => {
     const nav = useNavigation()
     return (
         <Box py={'sm'} mb={'sm'} px={'md'} borderColor={'$foreground'} borderWidth={2}
@@ -25,7 +27,7 @@ const Tiles: React.FC<SavedLeads> = ({ fullName, emailId, linkedInAddress }) => 
             </MediumText>
             <Box flexDirection={'row'}  >
                 {emailId !== "" ?
-                    <Pressable px={'sm'} py={'sm'} mr='md' borderRadius={'10'} borderColor={'$fieldInputBackground'}
+                    <Pressable px={'sm'} py={'sm'} mr='xs' borderRadius={'10'} borderColor={'$fieldInputBackground'}
                         bg={'red'} borderWidth={1} onPress={() => {
                             nav.navigate('Email' as never)
                             console.log('Email Id', emailId);
@@ -34,7 +36,7 @@ const Tiles: React.FC<SavedLeads> = ({ fullName, emailId, linkedInAddress }) => 
                     </Pressable>
                     : null
                 }
-                <Pressable px={'sm'} py={'sm'} borderRadius={'10'} borderColor={'$fieldInputBackground'}
+                <Pressable px={'sm'} py={'sm'} mr={'xs'} borderRadius={'10'} borderColor={'$fieldInputBackground'}
                     bg={'blue'} borderWidth={1} onPress={async () => {
                         let supported = await Linking.canOpenURL(linkedInAddress!.toString())
                         if (supported) {
@@ -47,6 +49,18 @@ const Tiles: React.FC<SavedLeads> = ({ fullName, emailId, linkedInAddress }) => 
                         }
                     }} >
                     <FeatherIcon size={18} name={'linkedin'} />
+                </Pressable>
+                <Pressable px={'sm'} py={'sm'} borderRadius={'10'} borderColor={'$fieldInputBackground'}
+                    bg={'$headerBarBackground'} borderWidth={1} onPress={
+                        () => {
+                            try { 
+                                leadsCollection.doc(id).delete().then(() => Alert.alert('Deleted lead successfully'))
+                            } catch (error: any) {
+                                Alert.alert('Something went wrong while deleting the lead', error.message)
+                            }
+                        }
+                    } >
+                    <FeatherIcon size={18} name={'trash'} />
                 </Pressable>
             </Box>
         </Box>

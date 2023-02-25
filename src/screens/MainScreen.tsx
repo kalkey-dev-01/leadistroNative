@@ -19,7 +19,6 @@ export default function MainScreen({ navigation }: Props) {
     const user = auth().currentUser
     const [data, setData] = useAtom(firestoreDataAtom)
 
-
     React.useLayoutEffect(() => {
         firestore().collection('users')
             .doc(user?.email?.toString())
@@ -62,7 +61,6 @@ export default function MainScreen({ navigation }: Props) {
             </Box>
             {/* Body Section */}
             <Box flexDirection={'column'} justifyContent={'flex-start'} alignItems={'flex-start'} width={'100%'} my={'lg'}>
-                {/* //!! Write a if else clause if firestore doesnt have any leads show this */}
                 {
                     data?.length === 0 || data?.length === undefined || data === undefined ?
                         <Box width={'100%'} px={'lg'} mt={'lg'} mx='md' alignSelf={'center'}>
@@ -86,22 +84,19 @@ export default function MainScreen({ navigation }: Props) {
                             </Pressable>
                         </Box>
                         :
-                        <Box width={'100%'} flexDirection={'column'}  >
+                        <Box width={'100%'} flexDirection={'column'} alignItems={'center'} >
                             <MediumText fontName='Comfortaa' props={{
-                                fontSize: 40, mt: 'md', mb: 'sm', px: 'sm'
+                                fontSize: 40, mt: 'md', mb: 'lg', px: 'sm'
                             }} >
                                 {data.length} Saved Leads
                             </MediumText>
-                            <Box flexDirection={'row'} alignItems='center' my='sm' >
-                                <Box flex={1} height={1} backgroundColor='$foreground' />
-                                <Box flex={1} height={1} backgroundColor='$foreground' />
-                            </Box>
-                            <ScrollView maxHeight={'60%'} minHeight={'40%'} width={'100%'} px={'sm'}
+                            <ScrollView maxHeight={'65%'} minHeight={'40%'} width={'95.5%'} 
                                 showsVerticalScrollIndicator={false}
                             >
                                 {
                                     data.map((item, index) =>
                                         <Tiles
+                                            id={item.id}
                                             key={index}
                                             emailId={item.emailId}
                                             fullName={item.fullName}
@@ -110,10 +105,6 @@ export default function MainScreen({ navigation }: Props) {
                                     )
                                 }
                             </ScrollView>
-                            <Box flexDirection={'row'} alignItems='center' my='sm' >
-                                <Box flex={1} height={1} backgroundColor='$foreground' />
-                                <Box flex={1} height={1} backgroundColor='$foreground' />
-                            </Box>
                         </Box>
                 }
             </Box>

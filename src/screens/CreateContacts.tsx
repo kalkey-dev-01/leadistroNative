@@ -29,14 +29,18 @@ export default function CreateContactsPage({ navigation }: Props) {
     const {
         control,
         handleSubmit,
-        formState: { errors }
+        formState: { errors },
+        getValues,
     } = useForm({
         resolver: zodResolver(addSingleContactSchema)
     })
     const handleSidebarToggle = React.useCallback(() => {
         navigation.toggleDrawer()
     }, [navigation])
+    const { optional } = getValues()
+    console.log(optional);
     const onSubmit = async (data: FieldValues) => {
+
         await leadsCollection.doc().set({
             ...data
         })
@@ -56,17 +60,10 @@ export default function CreateContactsPage({ navigation }: Props) {
                     <FeatherIcon name='users' size={20} style={{ marginHorizontal: 10, marginVertical: 10 }} />
                 </Box>
                 {/* Manually */}
-                <Pressable onPress={() => console.log('Clicked')} flexDirection={'row'} borderColor={'$foreground'} borderWidth={2} borderRadius={'10'} mt={'lg'} py={'sm'} px={'sm'} alignItems={'center'} justifyContent={'space-between'}>
-                    <MediumText fontName='Poppins' props={{
-                        fontSize: 22
-                    }}>
-                        Import Multiple Contacts
-                    </MediumText>
-                    <FeatherIcon name='users' size={20} />
-                </Pressable>
+
                 <Pressable onPress={() => {
                     setShow(!show)
-                    opacity.value = withTiming(1, { duration: 2000 })
+                    opacity.value = withTiming(1, { duration: 2500 })
                 }} flexDirection={'row'} borderColor={'$foreground'} bg={'$navbarBackground'} borderWidth={2} borderRadius={'10'} my={'lg'} py={'sm'} px={'sm'} alignItems={'center'} justifyContent={'space-between'}>
                     <MediumText fontName='Poppins' props={{
                         fontSize: 22
@@ -99,7 +96,7 @@ export default function CreateContactsPage({ navigation }: Props) {
                                 rules={{
                                     required: {
                                         value: true,
-                                        message: 'Name is required!'
+                                        message: 'Full Name of this Contact is needed'
                                     }
                                 }}
                             />
@@ -139,7 +136,7 @@ export default function CreateContactsPage({ navigation }: Props) {
                                 rules={{
                                     required: {
                                         value: true,
-                                        message: 'Name is required!'
+                                        message: 'Personal Email is Required!'
                                     }
                                 }}
                             />
@@ -331,8 +328,17 @@ export default function CreateContactsPage({ navigation }: Props) {
                             </BoldText>
 
                         </Pressable>
+
                     </AnimatedBox>
                 }
+                <Pressable onPress={() => console.log('Clicked')} flexDirection={'row'} borderColor={'$foreground'} borderWidth={2} borderRadius={'10'} my={show === true ? 'lg' : 'xs'} py={'sm'} px={'sm'} alignItems={'center'} justifyContent={'space-between'}>
+                    <MediumText fontName='Poppins' props={{
+                        fontSize: 22
+                    }}>
+                        Import Multiple Contacts
+                    </MediumText>
+                    <FeatherIcon name='users' size={20} />
+                </Pressable>
             </ScrollView>
         </Container>
     )

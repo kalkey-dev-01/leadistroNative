@@ -12,6 +12,8 @@ import { useAtom } from 'jotai'
 import { firestoreDataAtom } from '@/state/firestoreStates'
 import { Alert } from 'react-native'
 import Tiles from '@/components/mainScreenScrollViewTiles'
+import { Card } from '@/components/gradient-card'
+import Image from '@/atoms/image'
 // import { SavedLeads } from '@/models/model'
 type Props = CompositeScreenProps<DrawerScreenProps<HomeDrawerParamList, "Main">, NativeStackScreenProps<RootStackParamList>>
 
@@ -39,7 +41,6 @@ export default function MainScreen({ navigation }: Props) {
     // console.log(data?.length);
     return (
         <Container justifyContent={'flex-start'} alignItems={'flex-start'} py={'md'}  >
-
             {/* Header Bar */}
             <Box flexDirection={'row-reverse'} width={'94.5%'} borderRadius={'hg'} alignSelf={'center'} alignItems={'center'} justifyContent={'space-between'} borderColor={'$headerBarBackground'} borderWidth={2}>
                 <Pressable onPress={() => console.log('Clicked')} alignItems={'center'} justifyContent={'center'} width={40} height={40} borderRadius={'hg'} bg={'$fieldInputBackground'} borderColor={'$foreground'} borderWidth={2}>
@@ -60,7 +61,33 @@ export default function MainScreen({ navigation }: Props) {
                 </Pressable>
             </Box>
             {/* Body Section */}
-            <Box flexDirection={'column'} justifyContent={'flex-start'} alignItems={'flex-start'} width={'100%'} my={'lg'}>
+            <Box flexDirection={'column'} justifyContent={'space-evenly'} alignItems={'center'} width={'100%'} >
+                <Card>
+                    <Box width={'100%'} alignItems={'center'} justifyContent={'flex-start'} my={'lg'} mx={'lg'} flexDirection={'row'}>
+                        <Image source={require('../assets/images/leadistroWhite.png')} width={27.5} height={27.5} mr={'md'} borderRadius={'xs'} />
+                        <MediumText fontName='Poppins' props={{
+                            fontSize: 22,
+                        }}>
+                            Start your Email Campaign
+                        </MediumText>
+                    </Box>
+                    <Pressable onPress={() => navigation.navigate('Email', {})} flexDirection={'row'} alignItems={'center'} my={'sm'} mx={'lg'} px={'sm'} justifyContent={'flex-start'} >
+                        <FeatherIcon name={'mail'} size={20} style={{ paddingRight: 16 }} />
+                        <MediumText fontName='Poppins'>Design Your Email Template</MediumText>
+                    </Pressable>
+                    <Pressable onPress={() => { }} flexDirection={'row'} alignItems={'center'} my={'sm'} mx={'lg'} px={'sm'} justifyContent={'flex-start'} >
+                        <FeatherIcon name={'cpu'} size={20} style={{ paddingRight: 16 }} />
+                        <MediumText fontName='Poppins'>Use Ai Composed Emails</MediumText>
+                    </Pressable>
+                    <Pressable onPress={() => navigation.navigate('CreateContacts', {})} flexDirection={'row'} alignItems={'center'} my={'sm'} mx={'lg'} px={'sm'} justifyContent={'flex-start'} >
+                        <FeatherIcon name={'user-plus'} size={20} style={{ paddingRight: 16 }} />
+                        <MediumText fontName='Poppins'>Save A Single Contact</MediumText>
+                    </Pressable>
+                    <Pressable onPress={() => { }} flexDirection={'row'} alignItems={'center'} my={'md'} mx={'lg'} px={'sm'} justifyContent={'flex-start'} >
+                        <FeatherIcon name={'activity'} size={20} style={{ paddingRight: 16 }} />
+                        <BoldText fontName='Comfortaa'>See Your Conversion Rate</BoldText>
+                    </Pressable>
+                </Card>
                 {
                     data?.length === 0 || data?.length === undefined || data === undefined ?
                         <Box width={'100%'} px={'lg'} mt={'lg'} mx='md' alignSelf={'center'}>
@@ -84,13 +111,13 @@ export default function MainScreen({ navigation }: Props) {
                             </Pressable>
                         </Box>
                         :
-                        <Box width={'100%'} flexDirection={'column'} alignItems={'center'} >
-                            <MediumText fontName='Comfortaa' props={{
-                                fontSize: 40, mt: 'md', mb: 'lg', px: 'sm'
+                        <Box width={'100%'} flexDirection={'column'} alignItems={'center'}  >
+                            <MediumText fontName='Poppins' props={{
+                                fontSize: 35, my: 'sm', px: 'sm', letterSpacing: 1.25
                             }} >
-                                {data.length} Saved Leads
+                                Saved Leads  {data.length}
                             </MediumText>
-                            <ScrollView maxHeight={'65%'} minHeight={'40%'} width={'95.5%'} 
+                            <ScrollView height={'57.5%'} width={'95.5%'}
                                 showsVerticalScrollIndicator={false}
                             >
                                 {
@@ -107,8 +134,8 @@ export default function MainScreen({ navigation }: Props) {
                             </ScrollView>
                         </Box>
                 }
-            </Box>
 
+            </Box>
         </Container>
     )
 }

@@ -10,10 +10,12 @@ import {
 } from '@shopify/react-native-skia'
 
 
-import { Dimensions, View } from 'react-native'
-import Animated, { Extrapolate, interpolate, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
+import { Dimensions } from 'react-native'
+import { Extrapolate, interpolate, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import theme from '@/themes/DarkSpace';
+import { Box } from '@/atoms';
+import AnimatedBox from '@/atoms/animated-box';
 
 type BackgroundGradientProps = {
     width: number;
@@ -77,21 +79,21 @@ export const Card: React.FC<CardProps> = ({ children }) => {
         rotate_y.value = withTiming(0);
     })
     return (
-        <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: theme.colors.$background }}>
+        <Box  justifyContent={'center'} alignItems={'center'} bg={'$background'}>
             <BackgroundGradient height={HEIGHT} width={WIDTH} />
             <GestureDetector gesture={gesture}>
-                <Animated.View style={[{
-                    height: CARD_HEIGHT,
-                    width: CARD_WIDTH,
-                    position: 'absolute',
-                    borderRadius: 20,
-                    zIndex: 300,
-                    backgroundColor: theme.colors.$background
-                }, reanimatedStyle]} >
+                <AnimatedBox
+                    height={CARD_HEIGHT}
+                    width={CARD_WIDTH}
+                    position={'absolute'}
+                    borderRadius={'20'}
+                    zIndex={300}
+                    bg={'$background'}
+                    style={reanimatedStyle} >
                     {children}
-                </Animated.View>
+                </AnimatedBox>
             </GestureDetector>
 
-        </View>
+        </Box>
     )
 }

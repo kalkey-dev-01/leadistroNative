@@ -63,6 +63,7 @@ const theme = createTheme({
     xs: 4,
     '10': 10,
     sm: 16,
+    '20': 20,
     md: 24,
     lg: 64,
     hg: 128

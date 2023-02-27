@@ -14,7 +14,7 @@ import { leadsCollection } from '@/api/firebase'
 const Tiles: React.FC<SavedLeads> = ({ fullName, emailId, linkedInAddress, id }) => {
     const nav = useNavigation()
     return (
-        <Box py={'sm'} mb={'sm'} px={'md'} borderColor={'$foreground'} borderWidth={2}
+        <Box py={'sm'} my={'sm'} px={'md'} borderColor={'$foreground'} borderWidth={2}
             width={'100%'} flexDirection={'row'} borderRadius={'sm'}
             alignItems={'center'} justifyContent={'space-between'}>
             <MediumText

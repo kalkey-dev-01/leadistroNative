@@ -117,7 +117,7 @@ export default function MainScreen({ navigation }: Props) {
                             }} >
                                 Saved Leads  {data.length}
                             </MediumText>
-                            <ScrollView height={'57.5%'} width={'95.5%'}
+                            <ScrollView height={'57.5%'} width={'89.5%'}
                                 showsVerticalScrollIndicator={false}
                             >
                                 {

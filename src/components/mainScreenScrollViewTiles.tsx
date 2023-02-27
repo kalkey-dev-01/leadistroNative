@@ -27,7 +27,7 @@ const Tiles: React.FC<SavedLeads> = ({ fullName, emailId, linkedInAddress, id })
             </MediumText>
             <Box flexDirection={'row'}  >
                 {emailId !== "" ?
-                    <Pressable px={'sm'} py={'sm'} mr='xs' borderRadius={'10'} borderColor={'$fieldInputBackground'}
+                    <Pressable px={'sm'} py={'sm'} mr='xs' borderRadius={'10'} borderColor={'$foreground'}
                         bg={'red'} borderWidth={1} onPress={() => {
                             nav.navigate('Email' as never)
                             console.log('Email Id', emailId);
@@ -36,7 +36,7 @@ const Tiles: React.FC<SavedLeads> = ({ fullName, emailId, linkedInAddress, id })
                     </Pressable>
                     : null
                 }
-                <Pressable px={'sm'} py={'sm'} mr={'xs'} borderRadius={'10'} borderColor={'$fieldInputBackground'}
+                <Pressable px={'sm'} py={'sm'} mr={'xs'} borderRadius={'10'} borderColor={'$foreground'}
                     bg={'blue'} borderWidth={1} onPress={async () => {
                         let supported = await Linking.canOpenURL(linkedInAddress!.toString())
                         if (supported) {
@@ -50,7 +50,7 @@ const Tiles: React.FC<SavedLeads> = ({ fullName, emailId, linkedInAddress, id })
                     }} >
                     <FeatherIcon size={18} name={'linkedin'} />
                 </Pressable>
-                <Pressable px={'sm'} py={'sm'} borderRadius={'10'} borderColor={'$fieldInputBackground'}
+                <Pressable px={'sm'} py={'sm'} borderRadius={'10'} borderColor={'$foreground'}
                     bg={'$headerBarBackground'} borderWidth={1} onPress={
                         () => {
                             try { 

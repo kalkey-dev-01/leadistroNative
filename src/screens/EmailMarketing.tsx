@@ -1,18 +1,20 @@
 import { Box, Container, Pressable, ScrollView } from '@/atoms';
-import { BoldText, MediumText, RegularText, SemiBoldText } from '@/components/Typography';
+import { BoldText, MediumText, SemiBoldText } from '@/components/Typography';
 import FeatherIcon from '@/components/icon';
-import StickyHeader from '@/hooks/sticky-header';
+// import StickyHeader from '@/hooks/sticky-header';
 import { HomeDrawerParamList, RootStackParamList } from '@/navs';
 import { DrawerScreenProps } from '@react-navigation/drawer';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import * as React from 'react';
 import auth from '@react-native-firebase/auth'
+// import { } from '@faire/mjml-react'
 
 type Props = CompositeScreenProps<DrawerScreenProps<HomeDrawerParamList, 'Email'>, NativeStackScreenProps<RootStackParamList>>
 
 export default function EmailMarketing({ navigation }: Props) {
     const user = auth().currentUser
+
     const handleSidebarToggle = React.useCallback(() => {
         navigation.toggleDrawer()
     }, [navigation])

@@ -64,7 +64,7 @@ export default function MainScreen({ navigation }: Props) {
             <Box flexDirection={'column'} justifyContent={'space-evenly'} alignItems={'center'} width={'100%'} >
                 <Card>
                     <Box width={'100%'} alignItems={'center'} justifyContent={'flex-start'} my={'lg'} mx={'lg'} flexDirection={'row'}>
-                        <Image source={require('../assets/images/leadistroWhite.png')} width={27.5} height={27.5} mr={'md'} borderRadius={'xs'} />
+                        <Image source={require('../assets/images/leadistroBlack.png')} width={27.5} height={27.5} mr={'md'} bg={'$foreground'} borderColor={'$foreground'} borderWidth={1} borderRadius={'xs'} />
                         <MediumText fontName='Poppins' props={{
                             fontSize: 22,
                         }}>

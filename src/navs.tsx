@@ -46,8 +46,12 @@ export type HomeDrawerParamList = {
 
     }
 }
+export type EditorStacksList = {
+    DesignMail: {},
+}
 export type RootStackParamList = {
-    Home: NavigatorScreenParams<HomeDrawerParamList>
+    Home: NavigatorScreenParams<HomeDrawerParamList>,
+    DesignEditor: NavigatorScreenParams<EditorStacksList>
 
 }
 
@@ -132,9 +136,19 @@ export const SignedInNavigations = () => {
             <Stack.Screen name='Home' component={Home} options={{
                 headerShown: false
             }} />
+            <Stack.Screen name='DesignEditor' component={MailDesign} options={{ headerShown: false }} />
         </Stack.Navigator>
     )
 }
+
+function MailDesign() {
+    return (
+        <Stack.Navigator initialRouteName='DesignEditor'>
+            <Stack.Screen  name='DesignEditor' component={} />
+        </Stack.Navigator>
+    )
+}
+
 
 
 export default function Navigations() {

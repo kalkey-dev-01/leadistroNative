@@ -43,7 +43,6 @@ export default function EmailMarketing({ navigation }: Props) {
                 <Pressable onPress={() => console.log('Clicked')} alignItems={'center'} flexDirection={'row'} mx={'lg'} my='sm' py='xs' px={'sm'} justifyContent={'space-between'} borderColor={'$foreground'} borderWidth={2} borderRadius={'10'}>
                     <MediumText fontName='Poppins' props={{
                         fontSize: 25,
-
                     }}>
                         Send Batch Emails
                     </MediumText>
@@ -52,7 +51,6 @@ export default function EmailMarketing({ navigation }: Props) {
                 <Pressable onPress={() => console.log('Clicked')} alignItems={'center'} flexDirection={'row'} mx={'lg'} my='sm' py={'sm'} px={'md'} justifyContent={'space-between'} bg={'$primary'} borderRadius={'10'}>
                     <BoldText fontName='Comfortaa' props={{
                         fontSize: 25,
-
                     }}>
                         Design Your Mail
                     </BoldText>

@@ -1,5 +1,5 @@
 import { Box, Container } from '@/atoms'
-import { BoldText, RegularText, SemiBoldText } from '@/components/Typography'
+import { BoldText, MediumText, SemiBoldText } from '@/components/Typography'
 import EmployeeExampleList from '@/components/example-list'
 import { Card } from '@/components/gradient-card'
 // import { Card } from '@/components/gradient-card'
@@ -109,16 +109,16 @@ export default function EmpScreen({ navigation }: Props) {
                     ?
                     <Box width={'100%'} mt='hg' >
                         <Card>
-                            <Box height={'100%'} width={'100%'} borderRadius={'lg'} px={'xl'} py={'xl'}
-                                bg={'$background'} flexDirection={'column'} justifyContent={'space-between'} alignItems={'flex-start'}>
+                            <Box height={'100%'} width={'100%'} borderRadius={'20'} px={'xl'} py={'xl'}
+                                bg={'$navbarBackground'} flexDirection={'column'} justifyContent={'space-between'} alignItems={'flex-start'}>
                                 <BoldText fontName='Comfortaa' props={{ fontSize: 25 }} >
-                                    leadistroNative v0.1
+                                    Enrichment
                                 </BoldText>
-                                <RegularText fontName='Poppins' props={{ fontSize: 18 }} >
-                                    Search to pull the Employee Distribution of company specific doemps
-                                </RegularText>
+                                <MediumText fontName='Poppins' props={{ fontSize: 17 }} >
+                                    Search to pull the Employee Distribution of company specific domains.
+                                </MediumText>
                                 <BoldText fontName='Comfortaa'>
-                                    Remember to type | <SemiBoldText fontName='Poppins'> .com </SemiBoldText> | after a company name
+                                    Note - <SemiBoldText fontName='Poppins'> Domains with high visibility rate will have leads </SemiBoldText>Whereas some domains may not have any leads at all.
                                 </BoldText>
                             </Box>
                         </Card>

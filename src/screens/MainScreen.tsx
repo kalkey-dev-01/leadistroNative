@@ -62,6 +62,7 @@ export default function MainScreen({ navigation }: Props) {
             </Box>
             {/* Body Section */}
             <Box flexDirection={'column'} justifyContent={'space-evenly'} alignItems={'center'} width={'100%'} >
+                {/* Gradient Card */}
                 <Card>
                     <Box width={'100%'} alignItems={'center'} justifyContent={'flex-start'} my={'lg'} mx={'lg'} flexDirection={'row'}>
                         <Image source={require('../assets/images/leadistroBlack.png')} width={27.5} height={27.5} mr={'md'} bg={'$foreground'} borderColor={'$foreground'} borderWidth={1} borderRadius={'xs'} />
@@ -89,25 +90,37 @@ export default function MainScreen({ navigation }: Props) {
                     </Pressable>
                 </Card>
                 {
+                    // if nothing is saved on firestore
                     data?.length === 0 || data?.length === undefined || data === undefined ?
-                        <Box width={'100%'} px={'lg'} mt={'lg'} mx='md' alignSelf={'center'}>
+                        <Box width={'100%'} my={'xs'} pl={'xl'} ml={'sm'} alignSelf={'flex-start'}>
                             <BoldText fontName='Comfortaa' props={{
-                                fontSize: 28,
-                                textAlign: 'center'
+                                pl:"sm",fontSize: 16.5, letterSpacing: 1.65
                             }}>
                                 Your Saved Leads will Appear here.
                             </BoldText>
-                            <Pressable mt='lg' alignSelf={'center'} onPress={() => navigation.navigate('Emp', {})} flexDirection={'row'}
-                                width={'80%'} alignItems={'center'} justifyContent={'space-between'} px={'sm'} py={'sm'} borderRadius={'sm'}
+                            <Pressable mt='lg' onPress={() => navigation.navigate('Emp', {})} flexDirection={'row'}
+                                width={'90%'} alignItems={'center'} justifyContent={'space-between'} px={'sm'} py={'sm'} borderRadius={'sm'}
                                 borderColor={'$foreground'} borderWidth={2}
                             >
                                 <RegularText fontName='Poppins' props={{
                                     fontSize: 20,
                                     color: '$foreground'
                                 }}>
-                                    Start Researching Leads
+                                    Start Researching Leads.
                                 </RegularText>
                                 <FeatherIcon name='search' size={22.5} color={'$foreground'} />
+                            </Pressable>
+                            <Pressable mt='lg' onPress={() => navigation.navigate('Emp', {})} flexDirection={'row'}
+                                width={'90%'} alignItems={'center'} justifyContent={'space-between'} px={'sm'} py={'sm'} borderRadius={'sm'}
+                                borderColor={'$foreground'} borderWidth={2}
+                            >
+                                <RegularText fontName='Poppins' props={{
+                                    fontSize: 20,
+                                    color: '$foreground'
+                                }}>
+                                    Setup Your Company Account.
+                                </RegularText>
+                                <FeatherIcon name='user' size={22.5} color={'$foreground'} />
                             </Pressable>
                         </Box>
                         :

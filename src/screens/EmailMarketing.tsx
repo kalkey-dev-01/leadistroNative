@@ -48,11 +48,11 @@ export default function EmailMarketing({ navigation }: Props) {
                     </MediumText>
                     <FeatherIcon name='send' size={22} />
                 </Pressable>
-                <Pressable onPress={() => console.log('Clicked')} alignItems={'center'} flexDirection={'row'} mx={'lg'} my='sm' py={'sm'} px={'md'} justifyContent={'space-between'} bg={'$primary'} borderRadius={'10'}>
+                <Pressable onPress={() => navigation.navigate('DesignEditor', { screen: 'DesignMail' })} alignItems={'center'} flexDirection={'row'} mx={'lg'} my='sm' py={'sm'} px={'md'} justifyContent={'space-between'} bg={'$primary'} borderRadius={'10'}>
                     <BoldText fontName='Comfortaa' props={{
                         fontSize: 25,
                     }}>
-                        Design Your Mail
+                        Design Your Mail.
                     </BoldText>
                     <FeatherIcon name='mail' size={22} />
                 </Pressable>

@@ -22,6 +22,8 @@ import CreateContactsPage from './screens/CreateContacts';
 import Settings from './screens/Setttings';
 import EmpScreen from './screens/empScreen';
 import MainScreen from './screens/MainScreen';
+import DesignEditor from './screens/DesignEditor';
+import Finalize from './screens/finalizingDesign';
 
 
 
@@ -47,12 +49,12 @@ export type HomeDrawerParamList = {
     }
 }
 export type EditorStacksList = {
-    DesignMail: {},
+    DesignMail: undefined,
+    Finalize: undefined,
 }
 export type RootStackParamList = {
     Home: NavigatorScreenParams<HomeDrawerParamList>,
     DesignEditor: NavigatorScreenParams<EditorStacksList>
-
 }
 
 export type SignedOutStackParamList = {
@@ -67,7 +69,7 @@ const SignedOutStack = createNativeStackNavigator<SignedOutStackParamList>()
 const Stack = createNativeStackNavigator<RootStackParamList>()
 const Drawer = createDrawerNavigator<HomeDrawerParamList>()
 
-
+const DesignStack = createNativeStackNavigator<EditorStacksList>()
 
 function Home() {
     return (
@@ -132,7 +134,7 @@ export const SignedOutNavigations = () => {
 
 export const SignedInNavigations = () => {
     return (
-        <Stack.Navigator initialRouteName='Home'>
+        <Stack.Navigator initialRouteName='Home' screenOptions={{ animation: 'fade' }} >
             <Stack.Screen name='Home' component={Home} options={{
                 headerShown: false
             }} />
@@ -143,9 +145,10 @@ export const SignedInNavigations = () => {
 
 function MailDesign() {
     return (
-        <Stack.Navigator initialRouteName='DesignEditor'>
-            <Stack.Screen  name='DesignEditor' component={} />
-        </Stack.Navigator>
+        <DesignStack.Navigator initialRouteName='DesignMail' screenOptions={{ headerShown: false, animation: 'fade' }} >
+            <DesignStack.Screen name='DesignMail' component={DesignEditor} />
+            <DesignStack.Screen name='Finalize' component={Finalize} />
+        </DesignStack.Navigator>
     )
 }
 

@@ -31,7 +31,6 @@ const MoveContactSheet = React.forwardRef<MoveContactSheetHandle, Props>(
             }
         }))
         const data = useAtomValue(singleContactAtom)
-        console.log(data.social_url);
         return (
             <BottomSheet
                 ref={refBottomSheet}

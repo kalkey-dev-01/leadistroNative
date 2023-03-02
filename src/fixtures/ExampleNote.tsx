@@ -7,8 +7,8 @@ import { BoldText, MediumText, RegularText, SemiBoldText } from '@/components/Ty
 import FeatherIcon from '@/components/icon'
 import theme from '@/themes/DarkSpace'
 import { Linking, Alert } from 'react-native'
-import { useAtomValue } from 'jotai'
-import { searchQueryAtom } from '@/state/searchbar'
+// import { useAtomValue } from 'jotai'
+// import { searchQueryAtom } from '@/state/searchbar'
 
 
 export interface ExampleItemProps extends EmployeeContact {
@@ -76,7 +76,7 @@ export const ExampleListItem: React.FC<ExampleItemProps> = React.memo(props => {
     []
   )
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const searchQuery = useAtomValue(searchQueryAtom)
+
   return (
     <SwipeableView
       bg="yellow"

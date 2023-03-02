@@ -145,10 +145,12 @@ export const SignedInNavigations = () => {
 
 function MailDesign() {
     return (
+
         <DesignStack.Navigator initialRouteName='DesignMail' screenOptions={{ headerShown: false, animation: 'fade' }} >
             <DesignStack.Screen name='DesignMail' component={DesignEditor} />
             <DesignStack.Screen name='Finalize' component={Finalize} />
         </DesignStack.Navigator>
+
     )
 }
 

@@ -1,21 +1,23 @@
 import { Box, } from '@/atoms'
 import AnimatedBox from '@/atoms/animated-box'
 import React from 'react'
-import {  PinchGestureHandler, PinchGestureHandlerGestureEvent } from 'react-native-gesture-handler'
+import { PinchGestureHandler, PinchGestureHandlerGestureEvent } from 'react-native-gesture-handler'
 import { useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
 import FeatherIcon from './icon'
 import { GestureResponderEvent } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+
 // import { Theme } from '@/themes'
 // import { useTheme } from '@shopify/restyle'
 
 interface Props {
     width: number,
     height: number,
+    children: React.ReactNode
 
 
 }
-const EmailEditor: React.FC<Props> = ({ height, width }) => {
+const EmailEditor: React.FC<Props> = ({ height, width, children }) => {
     const scale = useSharedValue<number>(1)
     const focalX = useSharedValue<number>(0)
     const focalY = useSharedValue<number>(0)
@@ -23,7 +25,6 @@ const EmailEditor: React.FC<Props> = ({ height, width }) => {
     const gesture = useAnimatedGestureHandler<PinchGestureHandlerGestureEvent>({
         // onStart: (event) => {
         //     console.log(event);
-
         // },
         onActive: (event) => {
             scale.value = event.scale
@@ -54,7 +55,7 @@ const EmailEditor: React.FC<Props> = ({ height, width }) => {
     return (
         <PinchGestureHandler onGestureEvent={gesture} >
             <AnimatedBox style={scaleStyle} width={width} height={height} borderRadius={'10'} position={'absolute'} top={-safeAreaInsets.top + 10} bg={'$foreground'} >
-
+                {children}
             </AnimatedBox>
         </PinchGestureHandler>
     )

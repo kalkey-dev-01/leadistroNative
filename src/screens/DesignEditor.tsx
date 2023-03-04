@@ -1,11 +1,11 @@
-import { Box, Container, Pressable } from '@/atoms'
+import { Box, Container, } from '@/atoms'
 import Modal from '@/atoms/bottom-sheet-modal'
-import { BoldText, SemiBoldText } from '@/components/Typography'
+import { SemiBoldText } from '@/components/Typography'
 import MailDesignSheet, { MailDesignSheetRefProps } from '@/components/bottom-mail-info'
 import EmailEditor, { EmailEditorBar } from '@/components/wysiwygEmailEditor'
 import { EditorStacksList, HomeDrawerParamList } from '@/navs'
-import { BottomSheetModal, BottomSheetModalProvider } from '@gorhom/bottom-sheet'
-import BottomSheetModalProviderWrapper from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheetModalProvider/BottomSheetModalProvider'
+import { BottomSheetBackdrop, BottomSheetModal, BottomSheetModalProvider } from '@gorhom/bottom-sheet'
+// import BottomSheetModalProviderWrapper from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheetModalProvider/BottomSheetModalProvider'
 import { DrawerScreenProps } from '@react-navigation/drawer'
 import { CompositeScreenProps } from '@react-navigation/native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
@@ -18,7 +18,7 @@ type Props = CompositeScreenProps<NativeStackScreenProps<EditorStacksList, 'Desi
 const { width: WindowWidth, height: WindowHeight } = Dimensions.get('window')
 
 
-export default function DesignEditor({ navigation }: Props) {
+export default function DesignEditor({ }: Props) {
     const mdbsRef = React.useRef<MailDesignSheetRefProps>(null)
     const onPress = React.useCallback(() => {
         const { current: mdbs } = mdbsRef
@@ -30,7 +30,7 @@ export default function DesignEditor({ navigation }: Props) {
         }
     }, []);
     const modalRef = React.useRef<BottomSheetModal>(null)
-    const snapPoints = React.useMemo(() => ['27.5%', '55%'], [])
+    const snapPoints = React.useMemo(() => ['50%', '80%'], [])
     const addDesignBlock = React.useCallback(() => {
         const { current: modal } = modalRef
         modal?.present()
@@ -44,8 +44,18 @@ export default function DesignEditor({ navigation }: Props) {
                 <EmailEditor height={WindowHeight * 0.9} width={WindowWidth * 0.95} />
                 <EmailEditorBar width={WindowWidth * 0.8} onPressUp={onPress} onAddDesignBlock={addDesignBlock} />
                 {/* <Pressable onPress={onPress} height={50} my="sm" width={50} bg={'$foreground'} /> */}
-                <Modal ref={modalRef}  snapPoints={snapPoints} onChange={handleSheetChanges} detached={true}>
-                    <BoldText fontName='Poppins'>HI MOdal</BoldText>
+                <Modal
+                    backdropComponent={
+                        props => (
+                            <BottomSheetBackdrop
+                                {...props}
+                                appearsOnIndex={0}
+                                disappearsOnIndex={-1}
+                            />
+                        )
+                    }
+                    ref={modalRef} bottomInset={75} snapPoints={snapPoints} onChange={handleSheetChanges} detached={true}>
+
                 </Modal>
                 <MailDesignSheet ref={mdbsRef}>
                     <Box width={'100%'} height={'100%'} bg={'$navbarBackground'} flexDirection={'column'} justifyContent={'space-between'} alignItems={'center'}>

@@ -1,13 +1,13 @@
-import { Box, Pressable } from '@/atoms'
+import { Box, } from '@/atoms'
 import AnimatedBox from '@/atoms/animated-box'
 import React from 'react'
-import { PanGestureHandler, PanGestureHandlerGestureEvent, PinchGestureHandler, PinchGestureHandlerGestureEvent } from 'react-native-gesture-handler'
+import {  PinchGestureHandler, PinchGestureHandlerGestureEvent } from 'react-native-gesture-handler'
 import { useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
 import FeatherIcon from './icon'
 import { GestureResponderEvent } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { Theme } from '@/themes'
-import { useTheme } from '@shopify/restyle'
+// import { Theme } from '@/themes'
+// import { useTheme } from '@shopify/restyle'
 
 interface Props {
     width: number,
@@ -15,9 +15,10 @@ interface Props {
 
 
 }
-
 const EmailEditor: React.FC<Props> = ({ height, width }) => {
     const scale = useSharedValue<number>(1)
+    const focalX = useSharedValue<number>(0)
+    const focalY = useSharedValue<number>(0)
     const safeAreaInsets = useSafeAreaInsets()
     const gesture = useAnimatedGestureHandler<PinchGestureHandlerGestureEvent>({
         // onStart: (event) => {
@@ -26,7 +27,9 @@ const EmailEditor: React.FC<Props> = ({ height, width }) => {
         // },
         onActive: (event) => {
             scale.value = event.scale
-            console.log(event);
+            focalX.value = event.focalX
+            focalY.value = event.focalY
+            // console.log(event);
 
         },
         onEnd: () => {
@@ -35,7 +38,17 @@ const EmailEditor: React.FC<Props> = ({ height, width }) => {
     })
     const scaleStyle = useAnimatedStyle(() => {
         return {
-            transform: [{ scale: scale.value }]
+            transform: [
+                { translateX: focalX.value },
+                { translateY: focalY.value },
+                { translateX: -width / 2 },
+                { translateY: -height / 2 },
+                { scale: scale.value },
+                { translateX: -focalX.value },
+                { translateY: -focalY.value },
+                { translateX: width / 2 },
+                { translateY: height / 2 },
+            ]
         }
     })
     return (
@@ -51,7 +64,7 @@ export default EmailEditor
 
 export const EmailEditorBar: React.FC<{ width: number, onAddDesignBlock: (event: GestureResponderEvent) => void, onPressUp: (event: GestureResponderEvent) => void }> = ({ width, onPressUp, onAddDesignBlock }) => {
     const safeAreaInsets = useSafeAreaInsets()
-    const theme = useTheme<Theme>()
+    // const theme = useTheme<Theme>()
     return (
         <AnimatedBox flex={1} position={'absolute'} bottom={-safeAreaInsets.bottom}>
             <Box flexDirection={'row'} width={width} my={'lg'} bg={'$headerBarBackground'}

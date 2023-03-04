@@ -15,7 +15,7 @@ import { Box } from '@/atoms';
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
-const MAX_TRANSLATE_Y = -SCREEN_HEIGHT + 150;
+const MAX_TRANSLATE_Y = -SCREEN_HEIGHT + 125;
 
 type MailDesignSheetProps = {
     children?: React.ReactNode;
@@ -57,7 +57,7 @@ const MailDesignSheet = React.forwardRef<MailDesignSheetRefProps, MailDesignShee
                 translateY.value = Math.max(translateY.value, MAX_TRANSLATE_Y);
             })
             .onEnd(() => {
-                if (translateY.value > -SCREEN_HEIGHT / 3) {
+                if (translateY.value > -SCREEN_HEIGHT / 2.25) {
                     scrollTo(0);
                 } else if (translateY.value < -SCREEN_HEIGHT / 1.5) {
                     scrollTo(MAX_TRANSLATE_Y);
@@ -85,10 +85,10 @@ const MailDesignSheet = React.forwardRef<MailDesignSheetRefProps, MailDesignShee
                     top={SCREEN_HEIGHT}
                     borderRadius={'20'}
                     width={'100%'}
-                    bg={'$background'}
+                    bg={'$navbarBackground'}
                     height={SCREEN_HEIGHT}
                     style={rMailDesignSheetStyle}>
-                    <Box width={75} height={4} bg={'$foreground'} alignSelf={'center'} my={'lg'} borderRadius={'xs'} />
+                    <Box width={75} height={6} bg={'$foreground'} alignSelf={'center'} my={'lg'} borderRadius={'xs'} />
                     {children}
                 </AnimatedBox>
             </GestureDetector>

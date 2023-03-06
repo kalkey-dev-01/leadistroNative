@@ -23,7 +23,7 @@ type Props = NativeStackScreenProps<SignedOutStackParamList>
 
 export default function LoginScreen({ }: Props) {
     const [loading, setLoading] = useAtom(loadingAtom)
-    const { control, handleSubmit, formState: { errors } } = useForm({ resolver: zodResolver(loginSchema) })
+    const { control, handleSubmit, formState: { errors }, reset } = useForm({ resolver: zodResolver(loginSchema) })
     const onSubmit = async (data: FieldValues) => {
         setLoading(true)
         await auth()
@@ -31,7 +31,7 @@ export default function LoginScreen({ }: Props) {
             .then(() => Alert.alert('Logged In Successfully', 'Welcome Back we have new leads', [{ style: 'cancel' }]))
             .catch(e => Alert.alert('Error Caused While Logging in', e.message, [{ style: 'cancel' }])).
             finally(() => setLoading(false))
-
+        reset()
     }
 
     const [secure, setSecure] = useAtom(PasswordAtom)
@@ -47,129 +47,136 @@ export default function LoginScreen({ }: Props) {
         )
     }
     return (
-        <Container justifyContent={'flex-start'} alignItems={'center'} >
-            {/* Login Header Image */}
-            <Box alignItems={'center'} justifyContent={'center'} width={175} height={175} bg='$foreground' borderRadius={'hg'}
-                my={'lg'}
-            >
-                <Image source={require('../assets/images/leadistroBlack.png')} width={100} height={100}
-                    resizeMethod='auto' resizeMode='contain' borderRadius={'sm'}
-                />
-            </Box>
-            {/* Header */}
-            <Box px='xxl' flexDirection={'column'}  justifyContent={'center'} alignItems={'center'}>
-                <MediumText fontName='Comfortaa' props={{
-                    fontSize: 30,
-                    letterSpacing: 1,
-                    textAlign: 'center',
-                    my: 'md'
-                }}>
-                    Welcome back
-                </MediumText>
-                <RegularText fontName='Poppins' props={{
-                    fontSize: 18,
-                    letterSpacing: 0.5,
-                    textAlign: 'center'
-                }} >
-                    We missed your Presense, Our Distro Just Got Updated.
-                </RegularText>
-            </Box>
-            {/* Email Input Field */}
-            <Box
-                mt='xxl' mb={'md'} flexDirection={'row-reverse'} alignItems={'center'} justifyContent={'space-between'}
-                width={'85%'} borderRadius={'lg'} borderColor={'$foreground'} borderWidth={1.2}
-            >
-                <FeatherIcon name='mail' size={25} style={{ paddingRight: 25 }} />
-                <Controller control={control} name={'email'} render={({ field: { onChange, value, onBlur } }) => (
-                    <TextInput
-                        placeholder='Enter Email' px={'md'} borderColor={'white'} borderRadius={'md'}
-                        borderWidth={2} width={'82.5%'}
-                        value={value}
-                        onBlur={onBlur}
-                        onChangeText={e => onChange(e)}
-                        autoCapitalize='none'
-                        autoCorrect={false}
-                        autoComplete='off'
+        <>
+            <Container justifyContent={'space-evenly'} alignItems={'center'} >
+                {/* Login Header Image */}
+                <Box alignItems={'center'} justifyContent={'center'} width={175} height={175} bg='$foreground' borderRadius={'hg'}
+                    my={'lg'}
+                >
+                    <Image source={require('../assets/images/leadistroBlack.png')} width={100} height={100}
+                        resizeMethod='auto' resizeMode='contain' borderRadius={'sm'}
                     />
-                )}
-                    rules={{
-                        required: {
-                            value: true,
-                            message: 'Email is required!'
-                        }
-                    }}
-                />
-            </Box>
-            {
-                errors.email?.message
-                &&
-                <Box mb={'lg'} flexDirection={'row'} width={'80%'} alignItems={'center'} px={'sm'} >
-                    <FeatherIcon name='alert-triangle' size={12} color={'$foreground'} style={{
-                        paddingHorizontal: 7, paddingBottom: 2
-                    }} />
-                    <RegularText fontName='Comfortaa' props={{
-                        fontSize: 12
-                    }}>
-                        {errors.email?.message.toString()}
-                    </RegularText>
                 </Box>
-            }
-            {/* Password Input Field */}
-            <Box
-                mb='md' flexDirection={'row-reverse'} alignItems={'center'} justifyContent={'space-between'}
-                width={'85%'} borderRadius={'lg'} borderColor={'$foreground'} borderWidth={1.2}
-            >
-                <FeatherIcon name={secure ? 'eye' : 'eye-off'} size={25} style={{ paddingRight: 25 }} onPress={() => setSecure(!secure)} />
-                <Controller control={control} name={'password'} render={({ field: { onChange, value, onBlur } }) => (
-                    <TextInput
-                        placeholder='Password' px={'md'} borderColor={'white'} borderRadius={'md'}
-                        borderWidth={2} width={'82.5%'}
-                        value={value}
-                        onBlur={onBlur}
-                        onChangeText={e => onChange(e)}
-                        autoCapitalize='none'
-                        autoCorrect={false}
-                        autoComplete='off'
-                        secureTextEntry={!secure}
-                        textContentType='password'
-                    />
-                )}
-                    rules={{
-                        required: {
-                            value: true,
-                            message: 'Password is required!'
-                        }
-                    }}
-                />
-            </Box>
-            {
-                errors.password?.message
-                &&
-                <Box mb={'lg'} flexDirection={'row'} width={'80%'} alignItems={'center'} px={'sm'} >
-                    <FeatherIcon name='alert-triangle' size={12} color={'$foreground'} style={{
-                        paddingHorizontal: 7, paddingBottom: 2
-                    }} />
-                    <RegularText fontName='Comfortaa' props={{
-                        fontSize: 12
-
-                    }} >
-                        {errors.password?.message.toString()}
-                    </RegularText>
-                </Box>
-            }
-            <Box mt={'md'} px={'xl'} py={'sm'} borderRadius={'lg'} bg={'$foreground'}>
-                <Pressable onPress={handleSubmit(onSubmit)}>
-                    <BoldText fontName='Poppins' props={{
-                        color: '$background',
+                {/* Header */}
+                <Box px='xxl' flexDirection={'column'} justifyContent={'center'} alignItems={'center'}>
+                    <MediumText fontName='Comfortaa' props={{
                         fontSize: 30,
+                        letterSpacing: 1,
                         textAlign: 'center',
+                        my: 'md'
                     }}>
-                        Login
-                    </BoldText>
-                </Pressable>
-            </Box>
-            {/* Divider */}
-            {/* <Box flexDirection={'row'} alignItems='center' my='lg'>
+                        Welcome back
+                    </MediumText>
+                    <RegularText fontName='Comfortaa' props={{
+                        fontSize: 16,
+                        letterSpacing: 0.5,
+                        textAlign: 'center'
+                    }} >
+                        We missed your Presense, Our Distro Just Got Updated.
+                        Added New Features, and a lot more.
+                    </RegularText>
+                </Box>
+                <Box flex={1} width={'100%'} flexDirection={'column'} justifyContent={'space-around'} alignItems={'center'}>
+                    {/* Email Input Field */}
+                    <Box alignItems={'center'} width={'100%'} >
+                        <Box
+                            mb={'md'} flexDirection={'row-reverse'} alignItems={'center'} justifyContent={'space-between'}
+                            width={'85%'} borderRadius={'lg'} borderColor={'$foreground'} borderWidth={1.2}
+                        >
+                            <FeatherIcon name='mail' size={25} style={{ paddingRight: 25 }} />
+                            <Controller control={control} name={'email'} render={({ field: { onChange, value, onBlur } }) => (
+                                <TextInput
+                                    placeholder='Enter Email' px={'md'} borderColor={'white'} borderRadius={'md'}
+                                    borderWidth={2} width={'82.5%'}
+                                    value={value}
+                                    onBlur={onBlur}
+                                    onChangeText={e => onChange(e)}
+                                    autoCapitalize='none'
+                                    autoCorrect={false}
+                                    autoComplete='off'
+                                />
+                            )}
+                                rules={{
+                                    required: {
+                                        value: true,
+                                        message: 'Email is required!'
+                                    }
+                                }}
+                            />
+                        </Box>
+                        {
+                            errors.email?.message
+                            &&
+                            <Box mb={'lg'} flexDirection={'row'} width={'80%'} alignItems={'center'} px={'sm'} >
+                                <FeatherIcon name='alert-triangle' size={12} color={'$foreground'} style={{
+                                    paddingHorizontal: 7, paddingBottom: 2
+                                }} />
+                                <RegularText fontName='Comfortaa' props={{
+                                    fontSize: 12
+                                }}>
+                                    {errors.email?.message.toString()}
+                                </RegularText>
+                            </Box>
+                        }
+                        {/* Password Input Field */}
+                        <Box
+                            mb={'md'} flexDirection={'row-reverse'} alignItems={'center'} justifyContent={'space-between'}
+                            width={'85%'} borderRadius={'lg'} borderColor={'$foreground'} borderWidth={1.2}
+                        >
+                            <FeatherIcon name={secure ? 'eye' : 'eye-off'} size={25} style={{ paddingRight: 25 }} onPress={() => setSecure(!secure)} />
+                            <Controller control={control} name={'password'} render={({ field: { onChange, value, onBlur } }) => (
+                                <TextInput
+                                    placeholder='Password' px={'md'} borderColor={'white'} borderRadius={'md'}
+                                    borderWidth={2} width={'82.5%'}
+                                    value={value}
+                                    onBlur={onBlur}
+                                    onChangeText={e => onChange(e)}
+                                    autoCapitalize='none'
+                                    autoCorrect={false}
+                                    autoComplete='off'
+                                    secureTextEntry={!secure}
+                                    textContentType='password'
+                                />
+                            )}
+                                rules={{
+                                    required: {
+                                        value: true,
+                                        message: 'Password is required!'
+                                    }
+                                }}
+                            />
+                        </Box>
+                        {
+                            errors.password?.message
+                            &&
+                            <Box mb={'lg'} flexDirection={'row'} width={'80%'} alignItems={'center'} px={'sm'} >
+                                <FeatherIcon name='alert-triangle' size={12} color={'$foreground'} style={{
+                                    paddingHorizontal: 7, paddingBottom: 2
+                                }} />
+                                <RegularText fontName='Comfortaa' props={{
+                                    fontSize: 12
+
+                                }} >
+                                    {errors.password?.message.toString()}
+                                </RegularText>
+                            </Box>
+                        }
+                    </Box>
+                    <Box mt={'md'} px={'xl'} py={'sm'} borderRadius={'lg'} bg={'$foreground'}>
+                        <Pressable onPress={handleSubmit(onSubmit)}>
+                            <BoldText fontName='Poppins' props={{
+                                color: '$background',
+                                fontSize: 30,
+                                textAlign: 'center',
+                            }}>
+                                Login
+                            </BoldText>
+                        </Pressable>
+                    </Box>
+                </Box>
+
+                {/* Divider */}
+                {/* <Box flexDirection={'row'} alignItems='center' my='lg'>
                 <Box flex={1} height={1} backgroundColor='$foreground' />
                 <Box width={50}>
                     <SemiBoldText fontName='Comfortaa' props={{ fontSize: 15, color: '$foreground', textAlign: 'center' }}>
@@ -178,20 +185,21 @@ export default function LoginScreen({ }: Props) {
                 </Box>
                 <Box flex={1} height={1} backgroundColor='$foreground' />
             </Box> */}
-            {/* Google Sign In Button */}
-            <Box mb={'xxl'} mt={"lg"}  >
-                <Pressable flexDirection={'row-reverse'} alignItems={'center'} onPress={onGoogleSignIn} px={'lg'} py={'sm'} borderRadius={'xs'} borderColor={'$foreground'} borderWidth={2} bg={'$background'}  >
-                    <MediumText fontName='Poppins' props={{
-                        fontSize: 22,
-                        textAlign: 'center',
-                    }}>
-                        Log In with Google
-                    </MediumText>
-                    <Image source={require('../assets/images/OauthVec.png')} height={25} width={25} mr={'sm'} />
-                </Pressable>
-            </Box>
+                {/* Google Sign In Button */}
+                <Box mb={'xxl'} mt={"lg"}  >
+                    <Pressable flexDirection={'row-reverse'} alignItems={'center'} onPress={onGoogleSignIn} px={'lg'} py={'sm'} borderRadius={'xs'} borderColor={'$foreground'} borderWidth={2} bg={'$background'}  >
+                        <MediumText fontName='Poppins' props={{
+                            fontSize: 22,
+                            textAlign: 'center',
+                        }}>
+                            Log In with Google
+                        </MediumText>
+                        <Image source={require('../assets/images/OauthVec.png')} height={25} width={25} mr={'sm'} />
+                    </Pressable>
+                </Box>
 
-        </Container>
+            </Container>
+        </>
 
     )
 }

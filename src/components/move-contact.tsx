@@ -21,7 +21,6 @@ const MoveContactSheet = React.forwardRef<MoveContactSheetHandle, Props>(
     ({ onClose }, ref) => {
         const refBottomSheet = React.useRef<RNBottomSheet>(null)
         const snapPoints = React.useMemo(() => ['60%', '90%'], [])
-        // !!TODO: Add Delete and Send Functionality
         React.useImperativeHandle(ref, () => ({
             show: () => {
                 const { current: bottomSheet } = refBottomSheet

@@ -26,7 +26,8 @@ export default function RegisterScreen({ navigation }: Props) {
         const {
                 control,
                 handleSubmit,
-                formState: { errors }
+                formState: { errors },
+                reset
         } = useForm({
                 resolver: zodResolver(RegisterSchema)
         })
@@ -46,8 +47,8 @@ export default function RegisterScreen({ navigation }: Props) {
                                 isEmailVerified: auth().currentUser?.emailVerified,
                         }
                 })
+                reset()
                 setLoading(false)
-
         }
         const [secure, setSecure] = useAtom(PasswordAtom)
         if (loading) {

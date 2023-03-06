@@ -61,7 +61,7 @@ export default function MainScreen({ navigation }: Props) {
                 </Pressable>
             </Box>
             {/* Body Section */}
-            <Box flexDirection={'column'} justifyContent={'space-evenly'} alignItems={'center'} width={'100%'} >
+            <Box flexDirection={'column'} justifyContent={'space-evenly'} alignItems={'center'} mt={'lg'} width={'100%'} >
                 {/* Gradient Card */}
                 <Card>
                     <Box width={'100%'} alignItems={'center'} justifyContent={'flex-start'} my={'lg'} mx={'lg'} flexDirection={'row'}>

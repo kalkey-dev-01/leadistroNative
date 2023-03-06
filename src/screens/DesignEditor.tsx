@@ -12,6 +12,9 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import React from 'react'
 import { Dimensions } from 'react-native'
 import { } from '@faire/mjml-react/'
+import { Tem } from '@/fixtures/EmailTemplatesPremade'
+import RenderHTML from 'react-native-render-html'
+
 // import RenderHTML from 'react-native-render-html'
 // import { Mjml, MjmlSection } from '@faire/mjml-react'
 
@@ -55,20 +58,19 @@ export default function DesignEditor({ }: Props) {
     const handleSheetChanges = React.useCallback((index: number) => {
         console.log('handleSheetChanges', index);
     }, []);
-    // const source = {
-    //     html: `
-    //   <p style='text-align:center;'>
-    //     Hello World!
-    //   </p>`
-    // };
+    const source = {
+        html: `
+      <p style='text-align:center;'>
+        Hello World!
+      </p>`
+    };
     return (
         <BottomSheetModalProvider>
             <Container justifyContent={'center'} alignItems={'center'} >
-                <EmailEditor height={WindowHeight * 0.9} width={WindowWidth * 0.95}>
-                    {/* <RenderHTML contentWidth={WindowWidth * 0.9} source={source} /> */}
+                <EmailEditor height={WindowHeight * 0.95} width={WindowWidth * 0.95}>
+                    <RenderHTML contentWidth={WindowWidth * 0.95} source={source} />
                 </EmailEditor>
-                <EmailEditorBar width={WindowWidth * 0.8} onPressUp={onPress} onAddDesignBlock={addDesignBlock} />
-                {/* <Pressable onPress={onPress} height={50} my="sm" width={50} bg={'$foreground'} /> */}
+                <EmailEditorBar width={WindowWidth * 0.9} onPressUp={onPress} onAddDesignBlock={addDesignBlock} />
                 <Modal
                     backdropComponent={
                         props => (
@@ -163,7 +165,8 @@ export default function DesignEditor({ }: Props) {
                     <Box width={'100%'} height={'100%'} bg={'$navbarBackground'} flexDirection={'column'} justifyContent={'space-between'} alignItems={'center'}>
                         <SemiBoldText fontName='Poppins' props={{
                             fontSize: 26, letterSpacing: 0.5, px: 'lg'
-                        }}>Preview and Edit Template
+                        }}>
+                            Preview and Edit Template
                         </SemiBoldText>
                     </Box>
                 </MailDesignSheet>

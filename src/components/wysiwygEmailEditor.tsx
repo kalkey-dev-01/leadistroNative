@@ -14,8 +14,6 @@ interface Props {
     width: number,
     height: number,
     children: React.ReactNode
-
-
 }
 const EmailEditor: React.FC<Props> = ({ height, width, children }) => {
     const scale = useSharedValue<number>(1)
@@ -31,7 +29,6 @@ const EmailEditor: React.FC<Props> = ({ height, width, children }) => {
             focalX.value = event.focalX
             focalY.value = event.focalY
             // console.log(event);
-
         },
         onEnd: () => {
             scale.value = withTiming(1)

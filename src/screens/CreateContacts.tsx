@@ -29,6 +29,7 @@ export default function CreateContactsPage({ navigation }: Props) {
     const {
         control,
         handleSubmit,
+        reset,
         formState: { errors },
         getValues,
     } = useForm({
@@ -44,8 +45,9 @@ export default function CreateContactsPage({ navigation }: Props) {
         await leadsCollection.doc().set({
             ...data
         })
-            .catch((e: any) => Alert.alert('Something Went Wrong', e.message))
+            .catch((err: any) => Alert.alert('Something Went Wrong', err.message))
             .then(() => Alert.alert('Successfully added the lead'))
+        reset()
     }
     return (
         <Container justifyContent={'flex-start'} alignItems={'flex-start'}>

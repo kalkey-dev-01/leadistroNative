@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { EmployeeContact } from '@/models/model'
-import { Box, TouchableOpacity } from '@/atoms'
+import { Box, Pressable, TouchableOpacity } from '@/atoms'
 import SwipeableView, { BackViewProps } from '@/components/swipable-view'
 import ExampleListActionView from '@/components/example-list-actions-view'
 import { BoldText, MediumText, RegularText, SemiBoldText } from '@/components/Typography'
@@ -84,7 +84,7 @@ export const ExampleListItem: React.FC<ExampleItemProps> = React.memo(props => {
       backView={renderBackView}
     >
       <Box bg="$background" borderBottomWidth={1} borderBottomColor={'white'}>
-        <TouchableOpacity
+        <Pressable
           bg="$background"
           px="lg"
           py="xl"
@@ -167,8 +167,7 @@ export const ExampleListItem: React.FC<ExampleItemProps> = React.memo(props => {
               :
               null
           }
-
-        </TouchableOpacity>
+        </Pressable>
       </Box>
     </SwipeableView>
   )

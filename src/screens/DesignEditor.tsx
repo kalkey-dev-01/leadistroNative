@@ -12,15 +12,12 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import React from 'react'
 import { Dimensions } from 'react-native'
 import { } from '@faire/mjml-react/'
-import { Tem } from '@/fixtures/EmailTemplatesPremade'
-import RenderHTML from 'react-native-render-html'
+import WebView from '@/atoms/web-view'
 
-// import RenderHTML from 'react-native-render-html'
-// import { Mjml, MjmlSection } from '@faire/mjml-react'
 
 type Props = CompositeScreenProps<NativeStackScreenProps<EditorStacksList, 'DesignMail'>, DrawerScreenProps<HomeDrawerParamList>>
 
-// !! Fix enrichment .com problem
+
 const { width: WindowWidth, height: WindowHeight } = Dimensions.get('window')
 
 // const a = 
@@ -58,17 +55,33 @@ export default function DesignEditor({ }: Props) {
     const handleSheetChanges = React.useCallback((index: number) => {
         console.log('handleSheetChanges', index);
     }, []);
-    const source = {
-        html: `
-      <p style='text-align:center;'>
-        Hello World!
-      </p>`
-    };
+    // const source = {
+    //     html: `
+    //   <p style='text-align:left;'>
+    //     This is a placeholder paragraph text tag,
+    //     you need to start making the components.
+    //     This is html inside a string. its much easier than you think 
+    //     you will figure out the controling later first try intregrating a html,
+    //     if it does not work use Webview instead of render html
+    //   </p>`
+    // };
+
+
     return (
         <BottomSheetModalProvider>
             <Container justifyContent={'center'} alignItems={'center'} >
                 <EmailEditor height={WindowHeight * 0.95} width={WindowWidth * 0.95}>
-                    <RenderHTML contentWidth={WindowWidth * 0.95} source={source} />
+                    {/* <WebView source={{
+                        html: `
+                        <!DOCTYPE html>
+                        <html>
+                          <body>
+                           <p>Hello</p>
+                          </body>
+                        </html>
+                  `}} width={WindowWidth * 0.95} height={WindowHeight * 0.95} >
+
+                    </WebView> */}
                 </EmailEditor>
                 <EmailEditorBar width={WindowWidth * 0.9} onPressUp={onPress} onAddDesignBlock={addDesignBlock} />
                 <Modal

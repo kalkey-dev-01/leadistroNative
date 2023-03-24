@@ -51,7 +51,7 @@ const EmailEditor: React.FC<Props> = ({ height, width, children }) => {
     })
     return (
         <PinchGestureHandler onGestureEvent={gesture} >
-            <AnimatedBox flex={1} style={scaleStyle} width={width} height={height} borderRadius={'10'} position={'absolute'} top={-safeAreaInsets.top + 10} borderColor={'$foreground'} borderWidth={1}>
+            <AnimatedBox flex={1} style={scaleStyle} width={width} height={height} borderRadius={'10'} position={'absolute'} top={-safeAreaInsets.top + 10} borderColor={'$foreground'} borderWidth={1} px={'xs'} py={'xs'}>
                 {children}
             </AnimatedBox>
         </PinchGestureHandler>

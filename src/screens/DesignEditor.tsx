@@ -11,7 +11,7 @@ import { CompositeScreenProps } from '@react-navigation/native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import React from 'react'
 import { Dimensions } from 'react-native'
-import { } from '@faire/mjml-react/'
+// import { } from '@faire/mjml-react/'
 import WebView from '@/atoms/web-view'
 
 
@@ -61,27 +61,45 @@ export default function DesignEditor({ }: Props) {
     //     This is a placeholder paragraph text tag,
     //     you need to start making the components.
     //     This is html inside a string. its much easier than you think 
-    //     you will figure out the controling later first try intregrating a html,
-    //     if it does not work use Webview instead of render html
+    //     WebView is now atomised
     //   </p>`
     // };
 
-
+    const paragraph_one: string = `<div class="text-lg">How Are Ya mate</div>`
+    const colorHexCode: string = '#f0f0f0';
+    const gap: number = 40;
     return (
         <BottomSheetModalProvider>
             <Container justifyContent={'center'} alignItems={'center'} >
-                <EmailEditor height={WindowHeight * 0.95} width={WindowWidth * 0.95}>
-                    {/* <WebView source={{
-                        html: `
-                        <!DOCTYPE html>
-                        <html>
-                          <body>
-                           <p>Hello</p>
-                          </body>
-                        </html>
-                  `}} width={WindowWidth * 0.95} height={WindowHeight * 0.95} >
-
-                    </WebView> */}
+                <EmailEditor height={WindowHeight * 0.9} width={WindowWidth * 0.95}>
+                    <WebView setBuiltInZoomControls={false}
+                        mixedContentMode='compatibility'
+                        flex={1}
+                        scalesPageToFit={false}
+                        source={{
+                            html: `
+                              <!doctype html>
+                              <html>
+                                <head>
+                                <meta charset="UTF-8">
+                                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                                <script src="https://cdn.tailwindcss.com"></script>
+                              </head>
+                              <body class="bg-[${colorHexCode}]">
+                              
+                              <div class="flex flex-col justify-start  min-h-screen w-full gap-[${gap}px] items-center flex-1">
+                                <h1 class="text-4xl md:text-6xl font-normal bg-[#d0f7b0] underline">
+                                  Edit Your Template!
+                                </h1>
+                                <h3 class="text-3xl font-light bg-[#f0f0a0]">
+                                  Click On Any Of These Blocks
+                                </h3>
+                                ${paragraph_one}
+                                </div>
+                              </body>
+                              </html>`
+                        }}
+                        automaticallyAdjustContentInsets={false} />
                 </EmailEditor>
                 <EmailEditorBar width={WindowWidth * 0.9} onPressUp={onPress} onAddDesignBlock={addDesignBlock} />
                 <Modal

@@ -12,7 +12,9 @@ import React from 'react'
 import { Dimensions } from 'react-native'
 
 import WebView from '@/atoms/web-view'
-import { atom, useAtom } from 'jotai'
+import { useAtom } from 'jotai'
+import { body, head } from '@/state/DesignEditorState'
+// import { atom, useAtom } from 'jotai'
 
 
 type Props = CompositeScreenProps<NativeStackScreenProps<EditorStacksList, 'DesignMail'>, DrawerScreenProps<HomeDrawerParamList>>
@@ -20,7 +22,10 @@ type Props = CompositeScreenProps<NativeStackScreenProps<EditorStacksList, 'Desi
 
 const { width: WindowWidth, height: WindowHeight } = Dimensions.get('window')
 
+
 export default function DesignEditor({ }: Props) {
+    const [header,setHeader] = useAtom(head);
+    const [bodySection,setBodySection] = useAtom(body);
     const mdbsRef = React.useRef<MailDesignSheetRefProps>(null)
     const onPress = React.useCallback(() => {
         const { current: mdbs } = mdbsRef
@@ -52,41 +57,24 @@ export default function DesignEditor({ }: Props) {
 
     const paragraph_one: string = `<div class="text-lg">How Are Ya mate</div>`
     const colorHexCode: string = '#f0f0f0';
-    const gap: number = 40;
-    const htmlState = atom<string>(`
- <!doctype html>
-<html>
-  <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-[${colorHexCode}]">
+    
 
-<div class="flex flex-col justify-start  min-h-screen w-full gap-[${gap}px] items-center flex-1">
-  <h1 class="text-4xl md:text-6xl font-normal bg-[#d0f7b0] underline">
-    Edit Your Template!
-  </h1>
-  <h3 class="text-3xl font-light bg-[#f0f0a0]">
-    Click On Any Of These Blocks
-  </h3>
-  ${paragraph_one}
-  </div>
-</body>
-</html>
-`);
-    const [html, setHtml] = useAtom(htmlState);
-
+    // const [html, setHtml] = useAtom(htmlState);
+    
     return (
         <BottomSheetModalProvider>
             <Container justifyContent={'center'} alignItems={'center'} >
                 <EmailEditor height={WindowHeight * 0.9} width={WindowWidth * 0.95}>
-                    <WebView setBuiltInZoomControls={false}
+                    <WebView
+                    
+                    setBuiltInZoomControls={false}
                         mixedContentMode='compatibility'
                         flex={1}
                         scalesPageToFit={false}
                         source={{
-                            html: html
+                            html: `${header}
+                            ${bodySection}`
+                            
                         }}
                         automaticallyAdjustContentInsets={false} />
                 </EmailEditor>

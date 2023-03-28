@@ -1,7 +1,7 @@
-import { atom } from 'jotai'
+import { atom} from 'jotai'
 
 // dimport { atom } from 'jotai'
-
+export const queryAtom = atom<string>(``);
 export const head = atom<string>(`
 <!doctype html>
 <html>
@@ -11,9 +11,10 @@ export const head = atom<string>(`
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
 `)
-const gap: number = 20
+export const gap = atom<string>(`${20}`);
+// const gapper = useAtomValue(gap)
 export const body = atom<string>(`
-<body class="w-full h-full flex flex-col gap-[${gap}px] items-center">
+<body class="w-full h-full flex flex-col gap-[${gap.init}px] items-center">
 <nav class="flex flex-row max-w-screen-lg w-full my-4 justify-between items-center">
   <ul class="p-2 ">
       <li>
@@ -56,7 +57,7 @@ export const body = atom<string>(`
           <p class="font-medium text-sm">if you cannot decide here are somethings we can do with our product:</p>
       </div>
   </div>
-  <section class="flex  my-5 flex-col items-center justify-start">
+  <section class="flex my-5 flex-col items-center justify-start">
     <div class="flex bg-black/25 flex-row py-2 px-3 items-center justify-between md:w-[50vw] w-[90vw] ">  
       <h3 class="text-xl font-black"> Offer Expires Soon</h3>
       <p class="text-lg  underline underline-offset-2">Start Making Blocks</p>

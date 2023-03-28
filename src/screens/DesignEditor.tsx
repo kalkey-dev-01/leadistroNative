@@ -1,6 +1,6 @@
-import { Box, Container, Pressable, } from '@/atoms'
+import { Box, Container, Pressable, TextInput, } from '@/atoms'
 import Modal from '@/atoms/bottom-sheet-modal'
-import { SemiBoldText } from '@/components/Typography'
+import { BoldText, SemiBoldText } from '@/components/Typography'
 import MailDesignSheet, { MailDesignSheetRefProps } from '@/components/bottom-mail-info'
 import EmailEditor, { EmailEditorBar } from '@/components/wysiwygEmailEditor'
 import { EditorStacksList, HomeDrawerParamList } from '@/navs'
@@ -11,9 +11,10 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import React from 'react'
 import { Dimensions } from 'react-native'
 
-import WebView from '@/atoms/web-view'
+import WebView, { WebViewProps } from '@/atoms/web-view'
 import { useAtom } from 'jotai'
-import { body, head } from '@/state/DesignEditorState'
+import { body, gap, head, queryAtom } from '@/state/DesignEditorState'
+// import WebView from 'react-native-webview'
 // import { atom, useAtom } from 'jotai'
 
 
@@ -24,8 +25,9 @@ const { width: WindowWidth, height: WindowHeight } = Dimensions.get('window')
 
 
 export default function DesignEditor({ }: Props) {
-    const [header,setHeader] = useAtom(head);
-    const [bodySection,setBodySection] = useAtom(body);
+    const [header, setHeader] = useAtom(head);
+    const [bodySection, setBodySection] = useAtom(body);
+    const [, setGap] = useAtom(gap)
     const mdbsRef = React.useRef<MailDesignSheetRefProps>(null)
     const onPress = React.useCallback(() => {
         const { current: mdbs } = mdbsRef
@@ -54,31 +56,32 @@ export default function DesignEditor({ }: Props) {
     //     WebView is now atomised
     //   </p>`
     // };
-
-    const paragraph_one: string = `<div class="text-lg">How Are Ya mate</div>`
-    const colorHexCode: string = '#f0f0f0';
-    
-
-    // const [html, setHtml] = useAtom(htmlState);
-    
+    // const paragraph_one: string = `<div class="text-lg">How Are Ya mate</div>`
+    // const colorHexCode: string = '#f0f0f0';
+    const WebViewRef = React.useRef<WebViewProps>(null!)
+    const [query, setQuery] = useAtom(queryAtom);
+    const onClick = React.useCallback(()=>{
+     return console.log('Clocked');    
+    },[]);
     return (
         <BottomSheetModalProvider>
             <Container justifyContent={'center'} alignItems={'center'} >
+                {/* Email Editor */}
                 <EmailEditor height={WindowHeight * 0.9} width={WindowWidth * 0.95}>
                     <WebView
-                    
-                    setBuiltInZoomControls={false}
+                        ref={WebViewRef}
+                        setBuiltInZoomControls={false}
                         mixedContentMode='compatibility'
                         flex={1}
                         scalesPageToFit={false}
                         source={{
                             html: `${header}
                             ${bodySection}`
-                            
                         }}
                         automaticallyAdjustContentInsets={false} />
                 </EmailEditor>
                 <EmailEditorBar width={WindowWidth * 0.9} onPressUp={onPress} onAddDesignBlock={addDesignBlock} />
+                {/* Blocks Modal */}
                 <Modal
                     backdropComponent={
                         props => (
@@ -92,15 +95,13 @@ export default function DesignEditor({ }: Props) {
                     ref={modalRef} bottomInset={75} snapPoints={snapPoints} onChange={handleSheetChanges} detached={true}>
                     <Box width={'100%'} height={'90%'} flexDirection={'row'} alignItems={'center'} justifyContent={'center'}>
                         <Box width={'50%'} height={'90%'} flexDirection={'column'} justifyContent={'space-between'} alignItems={'center'}>
-                            <Pressable onPress={()=> {
-                              console.log('Pressed Text');                              
-                            }}>
-                            <SemiBoldText fontName='Poppins' props={{
-                                fontSize: 20,
-                                letterSpacing: 0.75
-                            }}>
-                                Text
-                            </SemiBoldText>
+                            <Pressable onPress={onClick}>
+                                <SemiBoldText fontName='Poppins' props={{
+                                    fontSize: 20,
+                                    letterSpacing: 0.75
+                                }}>
+                                    Text
+                                </SemiBoldText>
                             </Pressable>
                             <SemiBoldText fontName='Poppins' props={{
                                 fontSize: 20,
@@ -173,13 +174,59 @@ export default function DesignEditor({ }: Props) {
                         </Box>
                     </Box>
                 </Modal>
+                {/* Reanimated Modal */}
                 <MailDesignSheet ref={mdbsRef}>
-                    <Box width={'100%'} height={'100%'} bg={'$navbarBackground'} flexDirection={'column'} justifyContent={'space-between'} alignItems={'center'}>
+                    <Box width={'100%'} height={'100%'} bg={'$navbarBackground'} flexDirection={'column'} justifyContent={'flex-start'} alignItems={'center'}>
                         <SemiBoldText fontName='Poppins' props={{
                             fontSize: 26, letterSpacing: 0.5, px: 'lg'
                         }}>
                             Preview and Edit Template
                         </SemiBoldText>
+                        <Box justifyContent={'space-between'} alignItems={'center'} width={'100%'} my={'md'} px={'lg'} bg={'$fieldInputPlaceholderTextColor'} flexDirection={'row'}>
+                            <BoldText fontName={'Comfortaa'} props={{
+                                fontSize:18,
+                                color: '$foreground'
+                            }}>
+                                Set Gap Between Elements
+                            </BoldText>
+                            <TextInput keyboardType='numeric' value={query} onChangeText={setQuery} placeholder='20' />
+                        </Box>
+                        <Box justifyContent={'space-between'} alignItems={'center'} width={'100%'} my={'md'} px={'lg'} bg={'$fieldInputPlaceholderTextColor'} flexDirection={'row'}>
+                            <BoldText fontName={'Comfortaa'} props={{
+                                fontSize:18,
+                                color: '$foreground'
+                            }}>
+                                Set Color Of The design
+                            </BoldText>
+                            <TextInput keyboardType='numeric' value={query} onChangeText={setQuery} placeholder='20' />
+                        </Box>
+                        <Box justifyContent={'space-between'} alignItems={'center'} width={'100%'} my={'md'} px={'lg'} bg={'$fieldInputPlaceholderTextColor'} flexDirection={'row'}>
+                            <BoldText fontName={'Comfortaa'} props={{
+                                fontSize:18,
+                                color: '$foreground'
+                            }}>
+                                Set The Typography
+                            </BoldText>
+                            <TextInput keyboardType='numeric' value={query} onChangeText={setQuery} placeholder='20' />
+                        </Box>
+                        <Box justifyContent={'space-between'} alignItems={'center'} width={'100%'} my={'md'} px={'lg'} bg={'$fieldInputPlaceholderTextColor'} flexDirection={'row'}>
+                            <BoldText fontName={'Comfortaa'} props={{
+                                fontSize:18,
+                                color: '$foreground'
+                            }}>
+                                Set body Text
+                            </BoldText>
+                            <TextInput keyboardType='numeric' value={query} onChangeText={setQuery} placeholder='20' />
+                        </Box>
+                        <Box justifyContent={'space-between'} alignItems={'center'} width={'100%'} my={'md'} px={'lg'} bg={'$fieldInputPlaceholderTextColor'} flexDirection={'row'}>
+                            <BoldText fontName={'Comfortaa'} props={{
+                                fontSize:18,
+                                color: '$foreground'
+                            }}>
+                                Set Gap Between Elements
+                            </BoldText>
+                            <TextInput keyboardType='numeric' value={query} onChangeText={setQuery} placeholder='20' />
+                        </Box>
                     </Box>
                 </MailDesignSheet>
             </Container>

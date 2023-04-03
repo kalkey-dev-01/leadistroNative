@@ -82,6 +82,19 @@ const Sidebar: React.FC<DrawerContentComponentProps> = ({ navigation }) => {
                     </Pressable>
                     <Pressable
                         flexDirection={'row'} width={'100%'} alignItems={'center'} justifyContent={'flex-start'}
+                        onPress={() => navigation.navigate('bot')}>
+                        <FeatherIcon
+                            style={{ paddingRight: 15 }}
+                            name='cpu'
+                            size={20} />
+                        <BoldText fontName='Comfortaa' props={{
+                            variant: 'sidebar', fontSize: 20, my: 'xl', numberOfLines: 1,
+                        }}>
+                            distroGpt-alpha
+                        </BoldText>
+                    </Pressable>
+                    <Pressable
+                        flexDirection={'row'} width={'100%'} alignItems={'center'} justifyContent={'flex-start'}
                         onPress={() => navigation.navigate('Settings')}>
                         <FeatherIcon
                             style={{ paddingRight: 15 }}

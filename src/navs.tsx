@@ -24,7 +24,7 @@ import EmpScreen from './screens/empScreen';
 import MainScreen from './screens/MainScreen';
 import DesignEditor from './screens/DesignEditor';
 import Finalize from './screens/finalizingDesign';
-
+import BotScreen from './screens/BotScreen';
 
 
 
@@ -45,6 +45,9 @@ export type HomeDrawerParamList = {
 
     },
     Settings: {
+
+    },
+    bot: {
 
     }
 }
@@ -107,6 +110,11 @@ function Home() {
             <Drawer.Screen
                 name='Settings'
                 component={Settings}
+                options={{ headerShown: false }}
+            />
+            <Drawer.Screen
+                name="bot"
+                component={BotScreen}
                 options={{ headerShown: false }}
             />
         </Drawer.Navigator>

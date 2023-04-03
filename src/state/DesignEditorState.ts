@@ -1,4 +1,5 @@
 import { atom} from 'jotai'
+import { ReactNode } from 'react';
 
 // dimport { atom } from 'jotai'
 export const queryAtom = atom<string>(``);
@@ -13,7 +14,8 @@ export const head = atom<string>(`
 `)
 export const gap = atom<string>(`${20}`);
 // const gapper = useAtomValue(gap)
-export const body = atom<string>(`
+
+export const body = atom<ReactNode>(`
 <body class="w-full h-full flex flex-col gap-[${gap.init}px] items-center">
 <nav class="flex flex-row max-w-screen-lg w-full my-4 justify-between items-center">
   <ul class="p-2 ">

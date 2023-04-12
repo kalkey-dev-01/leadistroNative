@@ -14,7 +14,7 @@ import Image from "@/atoms/image";
 
 type Props = CompositeScreenProps<DrawerScreenProps<HomeDrawerParamList, "bot">, NativeStackScreenProps<RootStackParamList>>
 
-function DistroBertQueryBar() {
+function DistroGPTQueryBar() {
     const [promptValue, setPromptValue] = useAtom(PromptAtom);
     const safeAreaInsets = useSafeAreaInsets();
     const handlePress = () => {
@@ -37,7 +37,7 @@ function DistroBertQueryBar() {
             >
                 <TextInput
                     width={'80%'}
-                    placeholder="Ask distroBERT to Assist You"
+                    placeholder="Ask distroGPT to Assist You"
                     value={promptValue}
                     onChangeText={setPromptValue}
                     fontSize={16}
@@ -82,7 +82,7 @@ export default function BotScreen({ navigation }: Props) {
                             <FeatherIcon name='user' size={20} color={'$foreground'} />
                     }
                 </Pressable>
-                <SemiBoldText fontName='Comfortaa' props={{ fontSize: 22, pt: 'xs' }}>distroBERT</SemiBoldText>
+                <SemiBoldText fontName='Comfortaa' props={{ fontSize: 22, pt: 'xs' }}>distroGPT</SemiBoldText>
                 <Pressable onPress={() => navigation.openDrawer()} alignItems={'center'} justifyContent={'center'} width={40} height={40} borderRadius={'hg'} bg={'$headerBarBackground'}>
                     <FeatherIcon name='menu' size={20} color={'$foreground'} />
                 </Pressable>
@@ -95,7 +95,7 @@ export default function BotScreen({ navigation }: Props) {
                         <MediumText fontName='Poppins' props={{
                             fontSize: 22,
                         }}>
-                            Chat with distroBERT
+                            Chat with distroGPT
                         </MediumText>
                     </Box>
                     <Box px={'lg'} width={'100%'} height={'100%'} flex={1}>
@@ -119,8 +119,9 @@ export default function BotScreen({ navigation }: Props) {
                     </Box>
                 </Box>
             </Card>
+            
             {/* Query Text Input */}
-            <DistroBertQueryBar />
+            <DistroGPTQueryBar />
         </Container>
     )
 }

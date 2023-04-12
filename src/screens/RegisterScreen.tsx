@@ -88,7 +88,6 @@ export default function RegisterScreen({ navigation }: Props) {
                                 }}>
                                         Search leads and Create contacts, with our specialized software.
                                 </RegularText>
-
                         </Box>
                         <Box justifyContent={'flex-start'} py={'lg'} width={'100%'} height={'60%'} alignItems={'center'} flexDirection={'column'} bg={'$fieldInputBackground'} borderTopRightRadius={'lg'} borderTopLeftRadius={'lg'}>
                                 {/* Name Input Field */}

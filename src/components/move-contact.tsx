@@ -6,10 +6,8 @@ import { BoldText, RegularText, SemiBoldText } from './Typography'
 import FeatherIcon from './icon'
 import { useAtomValue } from 'jotai'
 import { singleContactAtom } from '@/state/singleContactState'
-// import { LineChart } from 'react-native-chart-kit'
 import { Alert, Linking } from 'react-native'
 import { leadsCollection } from '@/api/firebase'
-// import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore'
 
 interface Props {
     onClose?: () => void

@@ -19,3 +19,5 @@ export const searchContacts = atom<string>('')
 export const savedContactDataAtom = atom<Array<ConvertCompanyNames>>([])
 
 export const PromptAtom = atom<string>('');
+
+export const EnrichSearchCount  = atom<number>(1);

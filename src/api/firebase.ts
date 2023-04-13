@@ -5,3 +5,4 @@ const user = auth().currentUser?.email?.toString()
 
 export const usersCollectionWithEmailAsDoc = firestore().collection('users').doc(user)
 export const leadsCollection = usersCollectionWithEmailAsDoc.collection('leads')
+export const searchesCollection = usersCollectionWithEmailAsDoc.collection('searches')

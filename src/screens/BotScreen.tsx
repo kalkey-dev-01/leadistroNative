@@ -119,7 +119,6 @@ export default function BotScreen({ navigation }: Props) {
                     </Box>
                 </Box>
             </Card>
-            
             {/* Query Text Input */}
             <DistroGPTQueryBar />
         </Container>

@@ -44,7 +44,7 @@ const HeaderBar: React.FC<Props> = props => {
   const { onSidebarToggle, ...rest } = props
   const safeAreaInsets = useSafeAreaInsets()
   const theme = useTheme<Theme>()
-  const [, setData] = useAtom(responseDataAtom)
+  const [data, setData] = useAtom(responseDataAtom)
   const [searchQuery, setSearchQuery] = useAtom(searchQueryAtom)
   const [searchInputHasFocus, setSearchInputHasFocus] = useAtom(
     inputFocusAtom
@@ -70,9 +70,10 @@ const HeaderBar: React.FC<Props> = props => {
         searchQuery,
         searchCount,
         time: formattedDateTime,
+        possibleLeads: data.length
       })
-      console.log(searchQuery, searchCount);
-      console.log('searchQuery', 'searchCount');
+      console.log(searchQuery, searchCount, data.length);
+      console.log('searchQuery', 'searchCount', 'possible leads');
       // console.log(data);
       console.log('done');
     })

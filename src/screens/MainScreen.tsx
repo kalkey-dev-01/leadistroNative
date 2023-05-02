@@ -126,7 +126,7 @@ export default function MainScreen({ navigation }: Props) {
                         :
                         <Box width={'100%'} flexDirection={'column'} alignItems={'center'}  >
                             <MediumText fontName='Poppins' props={{
-                                fontSize: 35, my: 'sm', px: 'sm', letterSpacing: 1.25
+                                fontSize: 21, my: 'sm', px: 'sm', letterSpacing: 1.25
                             }} >
                                 Saved Leads  {data.length}
                             </MediumText>

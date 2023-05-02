@@ -1,11 +1,13 @@
-import { Box, } from '@/atoms'
+// import { Box, } from '@/atoms'
 import AnimatedBox from '@/atoms/animated-box'
 import React from 'react'
 import { PinchGestureHandler, PinchGestureHandlerGestureEvent } from 'react-native-gesture-handler'
 import { useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
-import FeatherIcon from './icon'
-import { GestureResponderEvent } from 'react-native'
+// import FeatherIcon from './icon'
+// import { GestureResponderEvent } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { RichToolbar } from '@/atoms/rich-text'
+import type { actions } from 'react-native-pell-rich-editor'
 
 // import { Theme } from '@/themes'
 // import { useTheme } from '@shopify/restyle'
@@ -51,7 +53,7 @@ const EmailEditor: React.FC<Props> = ({ height, width, children }) => {
     })
     return (
         <PinchGestureHandler onGestureEvent={gesture} >
-            <AnimatedBox flex={1} style={scaleStyle} width={width} height={height} borderRadius={'10'} position={'absolute'} top={-safeAreaInsets.top + 10} borderColor={'$foreground'} borderWidth={1} px={'xs'} py={'xs'}>
+            <AnimatedBox flex={1} style={scaleStyle} width={width} height={height} position={'absolute'} top={-safeAreaInsets.top + 10} borderColor={'$foreground'} borderWidth={1} px={'xs'} py={'xs'}>
                 {children}
             </AnimatedBox>
         </PinchGestureHandler>
@@ -60,19 +62,19 @@ const EmailEditor: React.FC<Props> = ({ height, width, children }) => {
 
 export default EmailEditor
 
-export const EmailEditorBar: React.FC<{ width: number, onAddDesignBlock: (event: GestureResponderEvent) => void, onPressUp: (event: GestureResponderEvent) => void }> = ({ width, onPressUp, onAddDesignBlock }) => {
+export const EmailEditorBar: React.FC<{ width: number, editor: unknown, actions: actions[] }> = ({ width, editor, actions }) => {
     const safeAreaInsets = useSafeAreaInsets()
     // const theme = useTheme<Theme>()
     return (
         <AnimatedBox flex={1} position={'absolute'} bottom={-safeAreaInsets.bottom}>
-            <Box flexDirection={'row'} width={width} my={'lg'} bg={'$headerBarBackground'}
-                alignItems={'center'} justifyContent={'space-between'}
-                px={'xl'} py={'lg'} borderRadius={'lg'}
-            >
-                <FeatherIcon size={25} name={'edit'} />
-                <FeatherIcon size={25} name={'plus-square'} onPress={onAddDesignBlock} />
-                <FeatherIcon size={25} name={'chevron-up'} onPress={onPressUp} />
-            </Box>
+            <RichToolbar width={width} actions={actions} borderTopLeftRadius={'20'} borderTopEndRadius={'20'} editor={editor} bg={'$background'}  height={50} onPressAddImage={() => {
+                console.log('Add Image')
+            }}
+                onInsertLink={() => {
+                    console.log('Add Link')
+                }}
+            
+            iconTint='#fff' />
         </AnimatedBox>
     )
 }

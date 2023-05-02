@@ -4,7 +4,7 @@ import { TextInput, TouchableOpacity } from '@/atoms'
 import firestore from '@react-native-firebase/firestore'
 import auth from '@react-native-firebase/auth'
 
-import { searchQueryAtom, inputFocusAtom, responseDataAtom, loadingAtom, EnrichSearchCount } from '@/state/searchbar'
+import { searchQueryAtom, inputFocusAtom, responseDataAtom, loadingAtom, } from '@/state/searchbar'
 import { useAtom } from 'jotai'
 import React from 'react'
 import axios from 'axios'
@@ -25,40 +25,47 @@ type Props = AnimatedBoxProps & {
 
 }
 
-const currentDate = new Date();
+// const currentDate = new Date();
 
-// Get individual components of the date and time
-const year = currentDate.getFullYear();        // e.g., 2023
-const month = currentDate.getMonth() + 1;     // 0-indexed, so add 1 for actual month value (1-12)
-const day = currentDate.getDate();            // 1-31
-const hour = currentDate.getHours();          // 0-23
-const minute = currentDate.getMinutes();      // 0-59
-const second = currentDate.getSeconds();      // 0-59
-const millisecond = currentDate.getMilliseconds();  // 0-999
+// // Get individual components of the date and time
+// const year = currentDate.getFullYear();        // e.g., 2023
+// const month = currentDate.getMonth() + 1;     // 0-indexed, so add 1 for actual month value (1-12)
+// const day = currentDate.getDate();            // 1-31
+// const hour = currentDate.getHours();          // 0-23
+// const minute = currentDate.getMinutes();      // 0-59
+// const second = currentDate.getSeconds();      // 0-59
+// // const millisecond = currentDate.getMilliseconds();  // 0-999
 
-// Format the date and time as a string
-const formattedDateTime = `${day}-${month}-${year} ${hour}:${minute}:${second}.${millisecond}`;
-console.log(formattedDateTime);
+// // Format the date and time as a string
+// const formattedDateTime = `${day}-${month}-${year} ${hour}:${minute}:${second}`;
+// console.log(formattedDateTime);
 
 const HeaderBar: React.FC<Props> = props => {
   const { onSidebarToggle, ...rest } = props
   const safeAreaInsets = useSafeAreaInsets()
   const theme = useTheme<Theme>()
-  const [data, setData] = useAtom(responseDataAtom)
+  const [, setData] = useAtom(responseDataAtom)
   const [searchQuery, setSearchQuery] = useAtom(searchQueryAtom)
   const [searchInputHasFocus, setSearchInputHasFocus] = useAtom(
     inputFocusAtom
   )
   const user = auth().currentUser?.email?.toString();
   const [, setLoading] = useAtom(loadingAtom)
-  const [searchCount, setSearchCount] = useAtom(EnrichSearchCount);
+  // const [searchCount, setSearchCount] = useAtom(EnrichSearchCount);
   const refSearchInput = React.useRef<RNTextInput>(null)
   const handleSearchPostValue = async () => {
     setLoading(true)
-    setSearchCount(searchCount + 1);
+    // setSearchCount(searchCount + 1);
     await axios.post(employeesApi, { "api_key": apikey, 'domain': searchQuery }).then((res) => {
       // console.log('Started Res.data');
       setData(res.data['employees'])
+      console.log(res.data['employees'].length);      
+      firestore().collection('users').doc(user).collection('searches').doc().set({
+        searchQuery,
+        // searchCount,
+        time: firestore.Timestamp.fromDate(new Date()),
+        possibleLeads: res.data['employees'].length as number
+      })
       // console.log('Res  - > data - >  employees');
       // console.log(res.data['employees']);
     }).catch((error) => {
@@ -66,14 +73,9 @@ const HeaderBar: React.FC<Props> = props => {
       console.log(error.message);
     }).finally(() => {
       setLoading(false)
-      firestore().collection('users').doc(user).collection('searches').doc().set({
-        searchQuery,
-        searchCount,
-        time: formattedDateTime,
-        possibleLeads: data.length
-      })
-      console.log(searchQuery, searchCount, data.length);
-      console.log('searchQuery', 'searchCount', 'possible leads');
+      
+      // console.log(searchQuery, searchCount, data.length);
+      // console.log('searchQuery', 'searchCount', 'possible leads');
       // console.log(data);
       console.log('done');
     })
@@ -172,7 +174,6 @@ const HeaderBar: React.FC<Props> = props => {
             p="xs"
             rippleBorderless
             onPress={handleSearchPostValue}
-
           >
             <FeatherIcon name="search" size={22} />
           </TouchableOpacity>

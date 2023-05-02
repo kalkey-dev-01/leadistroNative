@@ -8,9 +8,12 @@ import { createBox } from "@shopify/restyle";
 // import { useAtom, useAtomValue } from "jotai";
 import React from "react";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
+// import {RecyclerListView , RecyclerListViewProps} from 'recyclerlistview';
 import { FlatList, FlatListProps, NativeScrollEvent, NativeSyntheticEvent } from 'react-native'
 import Animated, { AnimateProps } from "react-native-reanimated";
 const StyledFlatlist = createBox<Theme, AnimateProps<FlatListProps<EmployeeContact>>>(Animated.FlatList)
+
+// const StyledRecyclerList = createBox<Theme, AnimateProps<RecyclerListViewProps>>(Animated.RecyclerListView)
 
 interface Props {
     scrollInsetTop: number
@@ -40,3 +43,8 @@ const EmployeeExampleList: React.FC<Props> = ({ onScroll, scrollInsetTop, onItem
 }
 
 export default EmployeeExampleList
+
+
+
+
+

@@ -1,14 +1,8 @@
-// import { Box, Container, Pressable, TextInput, } from '@/atoms'
-// import Modal from '@/atoms/bottom-sheet-modal'
-// import { BoldText, SemiBoldText } from '@/components/Typography'
-// import MailDesignSheet, { MailDesignSheetRefProps } from '@/components/bottom-mail-info'
-// import EmailEditor, { EmailEditorBar } from '@/components/wysiwygEmailEditor'
+
 import { Container, ScrollView } from '@/atoms'
 import RichEditor, { RichEditorProps} from '@/atoms/rich-text'
-// import { BoldText } from '@/components/Typography'
 import EmailEditor, { EmailEditorBar } from '@/components/wysiwygEmailEditor'
 import { EditorStacksList, HomeDrawerParamList } from '@/navs'
-// import { BottomSheetBackdrop, BottomSheetModal, BottomSheetModalProvider } from '@gorhom/bottom-sheet'
 import { DrawerScreenProps } from '@react-navigation/drawer'
 import { CompositeScreenProps } from '@react-navigation/native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
@@ -16,11 +10,7 @@ import React from 'react'
 import { actions } from 'react-native-pell-rich-editor'
 import { Dimensions } from 'react-native'
 
-// import WebView, { WebViewProps } from '@/atoms/web-view'
-// import { useAtom } from 'jotai'
-// import { body, gap, head, queryAtom } from '@/state/DesignEditorState'
-// import WebView from 'react-native-webview'
-// import { atom, useAtom } from 'jotai'
+
 
 
 type Props = CompositeScreenProps<NativeStackScreenProps<EditorStacksList, 'DesignMail'>, DrawerScreenProps<HomeDrawerParamList>>

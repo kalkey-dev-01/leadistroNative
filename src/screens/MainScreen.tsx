@@ -43,7 +43,7 @@ export default function MainScreen({ navigation }: Props) {
         <Container justifyContent={'flex-start'} alignItems={'flex-start'} py={'md'}  >
             {/* Header Bar */}
             <Box flexDirection={'row-reverse'} width={'94.5%'} borderRadius={'hg'} alignSelf={'center'} alignItems={'center'} justifyContent={'space-between'} borderColor={'$headerBarBackground'} borderWidth={2}>
-                <Pressable onPress={() => console.log('Clicked')} alignItems={'center'} justifyContent={'center'} width={40} height={40} borderRadius={'hg'} bg={'$fieldInputBackground'} borderColor={'$foreground'} borderWidth={2}>
+                <Pressable onPress={() => console.log('Clicked')} alignItems={'center'} justifyContent={'center'} width={40} height={40} borderRadius={'hg'} bg={'$fieldInputBackground'} borderColor={'$fieldInputPlaceholderTextColor'} borderWidth={2}>
                     {
                         user?.displayName !== null ?
                             <BoldText fontName='Poppins' props={{
@@ -65,7 +65,7 @@ export default function MainScreen({ navigation }: Props) {
                 {/* Gradient Card */}
                 <Card>
                     <Box width={'100%'} alignItems={'center'} justifyContent={'flex-start'} my={'lg'} mx={'lg'} flexDirection={'row'}>
-                        <Image source={require('../assets/images/leadistroBlack.png')} width={27.5} height={27.5} mr={'md'} bg={'$foreground'} borderColor={'$foreground'} borderWidth={1} borderRadius={'xs'} />
+                        <Image source={require('../assets/images/leadistroBlack.png')} width={27.5} height={27.5} mr={'md'} bg={'$foreground'} borderColor={'$fieldInputPlaceholderTextColor'} borderWidth={1} borderRadius={'xs'} />
                         <MediumText fontName='Poppins' props={{
                             fontSize: 22,
                         }}>
@@ -93,14 +93,9 @@ export default function MainScreen({ navigation }: Props) {
                     // if nothing is saved on firestore
                     data?.length === 0 || data?.length === undefined || data === undefined ?
                         <Box width={'100%'} my={'xs'} pl={'xl'} ml={'sm'} alignSelf={'flex-start'}>
-                            <BoldText fontName='Comfortaa' props={{
-                                pl:"sm",fontSize: 16.5, letterSpacing: 1.65
-                            }}>
-                                Your Saved Leads will Appear here.
-                            </BoldText>
                             <Pressable mt='lg' onPress={() => navigation.navigate('Emp', {})} flexDirection={'row'}
                                 width={'90%'} alignItems={'center'} justifyContent={'space-between'} px={'sm'} py={'sm'} borderRadius={'sm'}
-                                borderColor={'$foreground'} borderWidth={2}
+                                borderColor={'$fieldInputPlaceholderTextColor'} borderWidth={2}
                             >
                                 <RegularText fontName='Poppins' props={{
                                     fontSize: 20,
@@ -108,11 +103,11 @@ export default function MainScreen({ navigation }: Props) {
                                 }}>
                                     Start Researching Leads.
                                 </RegularText>
-                                <FeatherIcon name='search' size={22.5} color={'$foreground'} />
+                                <FeatherIcon name='search' size={21.25} color={'$sidebarForeground'} />
                             </Pressable>
-                            <Pressable mt='lg' onPress={() => navigation.navigate('Emp', {})} flexDirection={'row'}
+                            <Pressable mt='lg' onPress={() => navigation.navigate('Settings',{})} flexDirection={'row'}
                                 width={'90%'} alignItems={'center'} justifyContent={'space-between'} px={'sm'} py={'sm'} borderRadius={'sm'}
-                                borderColor={'$foreground'} borderWidth={2}
+                                borderColor={'$fieldInputPlaceholderTextColor'} borderWidth={2}
                             >
                                 <RegularText fontName='Poppins' props={{
                                     fontSize: 20,
@@ -120,7 +115,19 @@ export default function MainScreen({ navigation }: Props) {
                                 }}>
                                     Setup Your Company Account.
                                 </RegularText>
-                                <FeatherIcon name='user' size={22.5} color={'$foreground'} />
+                                <FeatherIcon name='user' size={21.25} color={'$sidebarForeground'} />
+                            </Pressable>
+                            <Pressable mt='lg' onPress={() => navigation.navigate('bot',{})} flexDirection={'row'}
+                                width={'90%'} alignItems={'center'} justifyContent={'space-between'} px={'sm'} py={'sm'} borderRadius={'sm'}
+                                borderColor={'$fieldInputPlaceholderTextColor'} borderWidth={2}
+                            >
+                                <RegularText fontName='Poppins' props={{
+                                    fontSize: 20,
+                                    color: '$foreground'
+                                }}>
+                                    Chat with DistroGPT.
+                                </RegularText>
+                                <FeatherIcon name='command' size={21.25} color={'$sidebarForeground'} />
                             </Pressable>
                         </Box>
                         :
@@ -147,7 +154,6 @@ export default function MainScreen({ navigation }: Props) {
                             </ScrollView>
                         </Box>
                 }
-
             </Box>
         </Container>
     )

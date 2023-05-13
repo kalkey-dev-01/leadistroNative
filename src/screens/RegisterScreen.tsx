@@ -45,6 +45,7 @@ export default function RegisterScreen({ navigation }: Props) {
                                 name: data.name,
                                 picture: auth().currentUser?.photoURL,
                                 isEmailVerified: auth().currentUser?.emailVerified,
+                                phoneNumber: data.phone
                         }
                 })
                 reset()
@@ -86,7 +87,7 @@ export default function RegisterScreen({ navigation }: Props) {
                                         textAlign: 'center',
                                         px: "xl"
                                 }}>
-                                        Search leads and Create contacts, with our specialized software.
+                                        Search leads, Design with Generative Emails and Start Campaigns, all with the help of leadistro.
                                 </RegularText>
                         </Box>
                         <Box justifyContent={'flex-start'} py={'lg'} width={'100%'} height={'60%'} alignItems={'center'} flexDirection={'column'} bg={'$fieldInputBackground'} borderTopRightRadius={'lg'} borderTopLeftRadius={'lg'}>
@@ -98,7 +99,7 @@ export default function RegisterScreen({ navigation }: Props) {
                                         <FeatherIcon name='user' size={25} style={{ paddingRight: 25 }} />
                                         <Controller control={control} name={'name'} render={({ field: { onChange, value, onBlur } }) => (
                                                 <TextInput
-                                                        placeholder='What should we call you' px={'md'} borderColor={'white'} borderRadius={'md'}
+                                                        placeholder='User Name' px={'md'} borderColor={'white'} borderRadius={'md'}
                                                         borderWidth={2} width={'82.5%'}
                                                         value={value}
                                                         onBlur={onBlur}
@@ -106,6 +107,7 @@ export default function RegisterScreen({ navigation }: Props) {
                                                         autoCapitalize='none'
                                                         autoCorrect={false}
                                                         autoComplete='off'
+                                                        keyboardType='name-phone-pad'
                                                 />
                                         )}
                                                 rules={{
@@ -138,13 +140,14 @@ export default function RegisterScreen({ navigation }: Props) {
                                         <FeatherIcon name='mail' size={25} style={{ paddingRight: 25 }} />
                                         <Controller control={control} name={'email'} render={({ field: { onChange, value, onBlur } }) => (
                                                 <TextInput
-                                                        placeholder='Enter Email' px={'md'} borderColor={'white'} borderRadius={'md'}
+                                                        placeholder='Email Address' px={'md'} borderColor={'white'} borderRadius={'md'}
                                                         borderWidth={2} width={'82.5%'}
                                                         value={value}
                                                         onBlur={onBlur}
                                                         onChangeText={e => onChange(e)}
                                                         autoCapitalize='none'
                                                         autoCorrect={false}
+                                                        keyboardType='email-address'
                                                         autoComplete='off'
                                                 />
                                         )}
@@ -207,9 +210,49 @@ export default function RegisterScreen({ navigation }: Props) {
                                                 }} />
                                                 <RegularText fontName='Comfortaa' props={{
                                                         fontSize: 12
-
                                                 }} >
                                                         {errors.password?.message.toString()}
+                                                </RegularText>
+                                        </Box>
+                                }
+                                <Box
+                                        mb='md' flexDirection={'row-reverse'} alignItems={'center'} justifyContent={'space-between'}
+                                        width={'85%'} borderRadius={'lg'} borderColor={'$foreground'} borderWidth={1.2}
+                                >
+                                        <FeatherIcon name={'phone'} size={25} style={{ paddingRight: 25 }} />
+                                        <Controller control={control} name={'phone'} render={({ field: { onChange, value, onBlur } }) => (
+                                                <TextInput
+                                                        placeholder='Phone Number' px={'md'} borderColor={'white'} borderRadius={'md'}
+                                                        borderWidth={2} width={'82.5%'}
+                                                        value={value}
+                                                        onBlur={onBlur}
+                                                        onChangeText={e => onChange(e)}
+                                                        autoCapitalize='none'
+                                                        autoCorrect={false}
+                                                        autoComplete='off'
+                                                        keyboardType='number-pad'
+                                                        textContentType='telephoneNumber'
+                                                />
+                                        )}
+                                                rules={{
+                                                        required: {
+                                                                value: false,
+                                                                message: 'Phone Number is Optional!'
+                                                        }
+                                                }}
+                                        />
+                                </Box>
+                                {
+                                        errors.phone?.message
+                                        &&
+                                        <Box mb={'lg'} flexDirection={'row'} width={'80%'} alignItems={'center'} px={'sm'} >
+                                                <FeatherIcon name='alert-triangle' size={12} color={'$foreground'} style={{
+                                                        paddingHorizontal: 7, paddingBottom: 2
+                                                }} />
+                                                <RegularText fontName='Comfortaa' props={{
+                                                        fontSize: 12
+                                                }} >
+                                                        {errors.phone?.message.toString()}
                                                 </RegularText>
                                         </Box>
                                 }
@@ -241,12 +284,14 @@ export default function RegisterScreen({ navigation }: Props) {
                                                 color: '$foreground',
                                                 fontSize: 18,
                                                 textAlign: 'center',
-
                                         }}>
                                                 Already Have An Account?
                                                 <BoldText fontName='Comfortaa' props={{
                                                         fontSize: 20
-                                                }}> Login</BoldText></RegularText>
+                                                }}>
+                                                        Login
+                                                </BoldText>
+                                        </RegularText>
                                 </Pressable>
                         </Box>
                 </Container>

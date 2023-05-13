@@ -66,7 +66,7 @@ export const EmailEditorBar: React.FC<{ width: number, editor: unknown, actions:
     const safeAreaInsets = useSafeAreaInsets()
     // const theme = useTheme<Theme>()
     return (
-        <AnimatedBox flex={1} position={'absolute'} bottom={-safeAreaInsets.bottom}>
+        <AnimatedBox flex={1} position={'absolute'} bg={'$foreground'} bottom={-safeAreaInsets.bottom}>
             <RichToolbar width={width} actions={actions} borderTopLeftRadius={'20'} borderTopEndRadius={'20'} editor={editor} bg={'$background'}  height={50} onPressAddImage={() => {
                 console.log('Add Image')
             }}

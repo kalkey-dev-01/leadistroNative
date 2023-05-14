@@ -44,7 +44,7 @@ export default function EmailMarketing({ navigation }: Props) {
                     <MediumText fontName='Poppins' props={{
                         fontSize: 25,
                     }}>
-                        Send Batch Emails
+                        Create a Campaign.
                     </MediumText>
                     <FeatherIcon name='send' size={22} />
                 </Pressable>

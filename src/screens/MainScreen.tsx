@@ -1,4 +1,4 @@
-import { Box, Container, Pressable, ScrollView } from '@/atoms'
+import { Box, Container, Pressable, } from '@/atoms'
 import { BoldText, MediumText, RegularText, SemiBoldText } from '@/components/Typography'
 import { HomeDrawerParamList, RootStackParamList } from '@/navs'
 import { DrawerScreenProps } from '@react-navigation/drawer'
@@ -7,37 +7,14 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import React from 'react'
 import auth from '@react-native-firebase/auth'
 import FeatherIcon from '@/components/icon'
-import firestore from '@react-native-firebase/firestore'
-import { useAtom } from 'jotai'
-import { firestoreDataAtom } from '@/state/firestoreStates'
-import { Alert } from 'react-native'
-import Tiles from '@/components/mainScreenScrollViewTiles'
+
 import { Card } from '@/components/gradient-card'
 import Image from '@/atoms/image'
 // import { SavedLeads } from '@/models/model'
 type Props = CompositeScreenProps<DrawerScreenProps<HomeDrawerParamList, "Main">, NativeStackScreenProps<RootStackParamList>>
 
 export default function MainScreen({ navigation }: Props) {
-    const user = auth().currentUser
-    const [data, setData] = useAtom(firestoreDataAtom)
-
-    React.useLayoutEffect(() => {
-        firestore().collection('users')
-            .doc(user?.email?.toString())
-            .collection('leads').get()
-            .then(querySnapshot => {
-                let arr: { id: string; }[] = []
-                querySnapshot.docs.forEach((doc) => {
-                    arr.push({
-                        ...doc.data(),
-                        id: doc.id
-                    })
-                })
-                setData(arr)
-            }).catch((_e) => {
-                Alert.alert('Error Caused while Retrieving Leads try again' + _e.message)
-            })
-    })
+    const user = auth().currentUser;
     // console.log(data?.length);
     return (
         <Container justifyContent={'flex-start'} alignItems={'flex-start'} py={'md'}  >
@@ -76,8 +53,8 @@ export default function MainScreen({ navigation }: Props) {
                         <FeatherIcon name={'mail'} size={20} style={{ paddingRight: 16 }} />
                         <MediumText fontName='Poppins'>Design Your Email Template</MediumText>
                     </Pressable>
-                    <Pressable onPress={() => { }} flexDirection={'row'} alignItems={'center'} my={'sm'} mx={'lg'} px={'sm'} justifyContent={'flex-start'} >
-                        <FeatherIcon name={'cpu'} size={20} style={{ paddingRight: 16 }} />
+                    <Pressable onPress={() => navigation.navigate('bot', {})} flexDirection={'row'} alignItems={'center'} my={'sm'} mx={'lg'} px={'sm'} justifyContent={'flex-start'} >
+                        <FeatherIcon name={'command'} size={20} style={{ paddingRight: 16 }} />
                         <MediumText fontName='Poppins'>Use Ai Composed Emails</MediumText>
                     </Pressable>
                     <Pressable onPress={() => navigation.navigate('CreateContacts', {})} flexDirection={'row'} alignItems={'center'} my={'sm'} mx={'lg'} px={'sm'} justifyContent={'flex-start'} >
@@ -89,71 +66,46 @@ export default function MainScreen({ navigation }: Props) {
                         <BoldText fontName='Comfortaa'>See Your Conversion Rate</BoldText>
                     </Pressable>
                 </Card>
-                {
-                    // if nothing is saved on firestore
-                    data?.length === 0 || data?.length === undefined || data === undefined ?
-                        <Box width={'100%'} my={'xs'} pl={'xl'} ml={'sm'} alignSelf={'flex-start'}>
-                            <Pressable mt='lg' onPress={() => navigation.navigate('Emp', {})} flexDirection={'row'}
-                                width={'90%'} alignItems={'center'} justifyContent={'space-between'} px={'sm'} py={'sm'} borderRadius={'sm'}
-                                borderColor={'$fieldInputPlaceholderTextColor'} borderWidth={2}
-                            >
-                                <RegularText fontName='Poppins' props={{
-                                    fontSize: 20,
-                                    color: '$foreground'
-                                }}>
-                                    Start Researching Leads.
-                                </RegularText>
-                                <FeatherIcon name='search' size={21.25} color={'$sidebarForeground'} />
-                            </Pressable>
-                            <Pressable mt='lg' onPress={() => navigation.navigate('Settings',{})} flexDirection={'row'}
-                                width={'90%'} alignItems={'center'} justifyContent={'space-between'} px={'sm'} py={'sm'} borderRadius={'sm'}
-                                borderColor={'$fieldInputPlaceholderTextColor'} borderWidth={2}
-                            >
-                                <RegularText fontName='Poppins' props={{
-                                    fontSize: 20,
-                                    color: '$foreground'
-                                }}>
-                                    Setup Your Company Account.
-                                </RegularText>
-                                <FeatherIcon name='user' size={21.25} color={'$sidebarForeground'} />
-                            </Pressable>
-                            <Pressable mt='lg' onPress={() => navigation.navigate('bot',{})} flexDirection={'row'}
-                                width={'90%'} alignItems={'center'} justifyContent={'space-between'} px={'sm'} py={'sm'} borderRadius={'sm'}
-                                borderColor={'$fieldInputPlaceholderTextColor'} borderWidth={2}
-                            >
-                                <RegularText fontName='Poppins' props={{
-                                    fontSize: 20,
-                                    color: '$foreground'
-                                }}>
-                                    Chat with DistroGPT.
-                                </RegularText>
-                                <FeatherIcon name='command' size={21.25} color={'$sidebarForeground'} />
-                            </Pressable>
-                        </Box>
-                        :
-                        <Box width={'100%'} flexDirection={'column'} alignItems={'center'}  >
-                            <MediumText fontName='Poppins' props={{
-                                fontSize: 21, my: 'sm', px: 'sm', letterSpacing: 1.25
-                            }} >
-                                Saved Leads  {data.length}
-                            </MediumText>
-                            <ScrollView height={'57.5%'} width={'89.5%'}
-                                showsVerticalScrollIndicator={false}
-                            >
-                                {
-                                    data.map((item, index) =>
-                                        <Tiles
-                                            id={item.id}
-                                            key={index}
-                                            emailId={item.emailId}
-                                            fullName={item.fullName}
-                                            linkedInAddress={item.linkedInAddress}
-                                        />
-                                    )
-                                }
-                            </ScrollView>
-                        </Box>
-                }
+                <Box width={'100%'} my={'0'} pl={'xl'} ml={'sm'} alignSelf={'flex-start'}>
+                    <Pressable mt='lg' onPress={() => navigation.navigate('Emp', {})} flexDirection={'row'}
+                        width={'90%'} alignItems={'center'} justifyContent={'space-between'} px={'sm'} py={'sm'} borderRadius={'sm'}
+                        borderColor={'$fieldInputPlaceholderTextColor'} borderWidth={2}
+                    >
+                        <RegularText fontName='Poppins' props={{
+                            fontSize: 20,
+                            color: '$foreground'
+                        }}>
+                            Start Researching Leads.
+                        </RegularText>
+                        <FeatherIcon name='search' size={21.25} color={'$sidebarForeground'} />
+                    </Pressable>
+                    <Pressable mt='lg' onPress={() => navigation.navigate('Settings', {})} flexDirection={'row'}
+                        width={'90%'} alignItems={'center'} justifyContent={'space-between'} px={'sm'} py={'sm'} borderRadius={'sm'}
+                        borderColor={'$fieldInputPlaceholderTextColor'} borderWidth={2}
+                    >
+                        <RegularText fontName='Poppins' props={{
+                            fontSize: 20,
+                            color: '$foreground'
+                        }}>
+                            Setup Your Company Account.
+                        </RegularText>
+                        <FeatherIcon name='user' size={21.25} color={'$sidebarForeground'} />
+                    </Pressable>
+                    <Pressable mt='lg' onPress={() => navigation.navigate('bot', {})} flexDirection={'row'}
+                        width={'90%'} alignItems={'center'} justifyContent={'space-between'} px={'sm'} py={'sm'} borderRadius={'sm'}
+                        borderColor={'$fieldInputPlaceholderTextColor'} borderWidth={2}
+                    >
+                        <RegularText fontName='Poppins' props={{
+                            fontSize: 20,
+                            color: '$foreground'
+                        }}>
+                            Chat with DistroGPT.
+                        </RegularText>
+                        <FeatherIcon name='command' size={21.25} color={'$sidebarForeground'} />
+                    </Pressable>
+                </Box>
+
+
             </Box>
         </Container>
     )
